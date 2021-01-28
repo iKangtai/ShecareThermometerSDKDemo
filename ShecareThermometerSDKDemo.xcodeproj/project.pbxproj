@@ -1,0 +1,1019 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 51;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		10142D5025BD7586008696A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142D4F25BD7586008696A5 /* AppDelegate.m */; };
+		10142D5625BD7586008696A5 /* YCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142D5525BD7586008696A5 /* YCMainViewController.m */; };
+		10142D5E25BD7587008696A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10142D5C25BD7587008696A5 /* LaunchScreen.storyboard */; };
+		10142D6125BD7587008696A5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142D6025BD7587008696A5 /* main.m */; };
+		10142D6B25BD7588008696A5 /* ShecareThermometerSDKDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142D6A25BD7588008696A5 /* ShecareThermometerSDKDemoTests.m */; };
+		10142D7625BD7588008696A5 /* ShecareThermometerSDKDemoUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142D7525BD7588008696A5 /* ShecareThermometerSDKDemoUITests.m */; };
+		10142DDE25BD8820008696A5 /* YCBBTView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142DDD25BD8820008696A5 /* YCBBTView.m */; };
+		10142DEB25BD8B35008696A5 /* YCGradientButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142DE925BD8B35008696A5 /* YCGradientButton.m */; };
+		10142DF125BD8B5E008696A5 /* CAGradientLayer+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142DEF25BD8B5E008696A5 /* CAGradientLayer+YCExtension.m */; };
+		10142E0125BD8D94008696A5 /* NSDate+YCUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E0025BD8D94008696A5 /* NSDate+YCUtilities.m */; };
+		10142E0B25BD9173008696A5 /* UIColor+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E0925BD9173008696A5 /* UIColor+YCExtension.m */; };
+		10142E3D25BD9FF7008696A5 /* YCViewController+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E3C25BD9FF7008696A5 /* YCViewController+Extension.m */; };
+		10142E5325C05D43008696A5 /* YCInputBBTView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E5125C05D43008696A5 /* YCInputBBTView.m */; };
+		10142E5E25C0619D008696A5 /* YCInputBBTTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E5C25C0619D008696A5 /* YCInputBBTTextField.m */; };
+		10142E6725C064C9008696A5 /* YCDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E6425C064C9008696A5 /* YCDatePickerView.m */; };
+		10142E6825C064C9008696A5 /* YCPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E6525C064C9008696A5 /* YCPickerView.m */; };
+		10142E7125C06BCB008696A5 /* YCButton+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E6F25C06BCB008696A5 /* YCButton+Extension.m */; };
+		10142E7725C06DFB008696A5 /* YCString+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E7525C06DFB008696A5 /* YCString+Extension.m */; };
+		10142E7E25C07711008696A5 /* YCUserHardwareInfoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E7D25C07711008696A5 /* YCUserHardwareInfoModel.m */; };
+		10142E8425C07953008696A5 /* YCUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E8225C07953008696A5 /* YCUtility.m */; };
+		10142E8A25C09197008696A5 /* YCBindViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E8825C09197008696A5 /* YCBindViewController.m */; };
+		10142E9025C099D8008696A5 /* YCDownloadingFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E8F25C099D8008696A5 /* YCDownloadingFile.m */; };
+		10142E9625C09A5D008696A5 /* YCBindSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E9525C09A5D008696A5 /* YCBindSuccessViewController.m */; };
+		10142EAF25C09E66008696A5 /* YCAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142EAD25C09E66008696A5 /* YCAlertController.m */; };
+		10142EB525C0A124008696A5 /* YCCommonAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142EB425C0A124008696A5 /* YCCommonAppDelegate.m */; };
+		10142EBB25C0A401008696A5 /* YCUserTemperatureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142EBA25C0A401008696A5 /* YCUserTemperatureModel.m */; };
+		101E12F425C1F0F1005F8ABB /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101E125B25C1DDAC005F8ABB /* CoreBluetooth.framework */; };
+		101E130E25C1F578005F8ABB /* libShecareBLEThermometerSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 101E130D25C1F578005F8ABB /* libShecareBLEThermometerSDK.a */; };
+		101E131425C1F5C5005F8ABB /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 101E131325C1F5C5005F8ABB /* libc++.tbd */; };
+		1052A6D725C1B48F0089CA98 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1052A6D625C1B48F0089CA98 /* MBProgressHUD.m */; };
+		1077F13625C28E470044E77C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1077F13525C28E470044E77C /* Assets.xcassets */; };
+		1077F13D25C298600044E77C /* YCConnectLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1077F13C25C298600044E77C /* YCConnectLoadingView.m */; };
+		1077F14525C2C0220044E77C /* YCConnectDeviceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1077F14325C2C0220044E77C /* YCConnectDeviceViewController.m */; };
+		1077F14A25C30A610044E77C /* YCBBTShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1077F14925C30A610044E77C /* YCBBTShowView.m */; };
+		1077F15525C33C080044E77C /* YCUserTemperatureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142EBA25C0A401008696A5 /* YCUserTemperatureModel.m */; };
+		1077F15A25C33C0E0044E77C /* YCBBTShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1077F14925C30A610044E77C /* YCBBTShowView.m */; };
+		12E21F7EE933193AE8109E9B /* Pods_ShecareThermometerSDKDemo_ShecareThermometerSDKDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51FD7FB7DAB5583D02A23949 /* Pods_ShecareThermometerSDKDemo_ShecareThermometerSDKDemoUITests.framework */; };
+		9138420FA3D228C4FD17D87B /* Pods_ShecareThermometerSDKDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C571D39030319849C789E50 /* Pods_ShecareThermometerSDKDemo.framework */; };
+		F256AFAC6C4951290EEEAE11 /* Pods_ShecareThermometerSDKDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF25432DAE04F98CCDF5102 /* Pods_ShecareThermometerSDKDemoTests.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		10142D6725BD7588008696A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 10142D4325BD7586008696A5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 10142D4A25BD7586008696A5;
+			remoteInfo = ShecareThermometerSDKDemo;
+		};
+		10142D7225BD7588008696A5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 10142D4325BD7586008696A5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 10142D4A25BD7586008696A5;
+			remoteInfo = ShecareThermometerSDKDemo;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		101E12EE25C1EBFC005F8ABB /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		10142D4B25BD7586008696A5 /* ShecareThermometerSDKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShecareThermometerSDKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		10142D4E25BD7586008696A5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		10142D4F25BD7586008696A5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		10142D5425BD7586008696A5 /* YCMainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCMainViewController.h; sourceTree = "<group>"; };
+		10142D5525BD7586008696A5 /* YCMainViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCMainViewController.m; sourceTree = "<group>"; };
+		10142D5D25BD7587008696A5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		10142D5F25BD7587008696A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10142D6025BD7587008696A5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		10142D6625BD7588008696A5 /* ShecareThermometerSDKDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShecareThermometerSDKDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		10142D6A25BD7588008696A5 /* ShecareThermometerSDKDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShecareThermometerSDKDemoTests.m; sourceTree = "<group>"; };
+		10142D6C25BD7588008696A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10142D7125BD7588008696A5 /* ShecareThermometerSDKDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShecareThermometerSDKDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		10142D7525BD7588008696A5 /* ShecareThermometerSDKDemoUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShecareThermometerSDKDemoUITests.m; sourceTree = "<group>"; };
+		10142D7725BD7588008696A5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		10142DDC25BD8820008696A5 /* YCBBTView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCBBTView.h; sourceTree = "<group>"; };
+		10142DDD25BD8820008696A5 /* YCBBTView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCBBTView.m; sourceTree = "<group>"; };
+		10142DE925BD8B35008696A5 /* YCGradientButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCGradientButton.m; sourceTree = "<group>"; };
+		10142DEA25BD8B35008696A5 /* YCGradientButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCGradientButton.h; sourceTree = "<group>"; };
+		10142DEF25BD8B5E008696A5 /* CAGradientLayer+YCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "CAGradientLayer+YCExtension.m"; sourceTree = "<group>"; };
+		10142DF025BD8B5E008696A5 /* CAGradientLayer+YCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CAGradientLayer+YCExtension.h"; sourceTree = "<group>"; };
+		10142DFF25BD8D94008696A5 /* NSDate+YCUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+YCUtilities.h"; sourceTree = "<group>"; };
+		10142E0025BD8D94008696A5 /* NSDate+YCUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+YCUtilities.m"; sourceTree = "<group>"; };
+		10142E0525BD8FD6008696A5 /* YCMacro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCMacro.h; sourceTree = "<group>"; };
+		10142E0925BD9173008696A5 /* UIColor+YCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+YCExtension.m"; sourceTree = "<group>"; };
+		10142E0A25BD9173008696A5 /* UIColor+YCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+YCExtension.h"; sourceTree = "<group>"; };
+		10142E3B25BD9FF7008696A5 /* YCViewController+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YCViewController+Extension.h"; sourceTree = "<group>"; };
+		10142E3C25BD9FF7008696A5 /* YCViewController+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YCViewController+Extension.m"; sourceTree = "<group>"; };
+		10142E5125C05D43008696A5 /* YCInputBBTView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCInputBBTView.m; sourceTree = "<group>"; };
+		10142E5225C05D43008696A5 /* YCInputBBTView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCInputBBTView.h; sourceTree = "<group>"; };
+		10142E5825C0601D008696A5 /* Shecare-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Shecare-Prefix.pch"; sourceTree = "<group>"; };
+		10142E5C25C0619D008696A5 /* YCInputBBTTextField.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCInputBBTTextField.m; sourceTree = "<group>"; };
+		10142E5D25C0619D008696A5 /* YCInputBBTTextField.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCInputBBTTextField.h; sourceTree = "<group>"; };
+		10142E6325C064C9008696A5 /* YCPickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCPickerView.h; sourceTree = "<group>"; };
+		10142E6425C064C9008696A5 /* YCDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCDatePickerView.m; sourceTree = "<group>"; };
+		10142E6525C064C9008696A5 /* YCPickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCPickerView.m; sourceTree = "<group>"; };
+		10142E6625C064C9008696A5 /* YCDatePickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCDatePickerView.h; sourceTree = "<group>"; };
+		10142E6F25C06BCB008696A5 /* YCButton+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YCButton+Extension.m"; sourceTree = "<group>"; };
+		10142E7025C06BCB008696A5 /* YCButton+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YCButton+Extension.h"; sourceTree = "<group>"; };
+		10142E7525C06DFB008696A5 /* YCString+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "YCString+Extension.m"; sourceTree = "<group>"; };
+		10142E7625C06DFB008696A5 /* YCString+Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "YCString+Extension.h"; sourceTree = "<group>"; };
+		10142E7C25C07711008696A5 /* YCUserHardwareInfoModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCUserHardwareInfoModel.h; sourceTree = "<group>"; };
+		10142E7D25C07711008696A5 /* YCUserHardwareInfoModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCUserHardwareInfoModel.m; sourceTree = "<group>"; };
+		10142E8225C07953008696A5 /* YCUtility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCUtility.m; sourceTree = "<group>"; };
+		10142E8325C07953008696A5 /* YCUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCUtility.h; sourceTree = "<group>"; };
+		10142E8825C09197008696A5 /* YCBindViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCBindViewController.m; sourceTree = "<group>"; };
+		10142E8925C09197008696A5 /* YCBindViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCBindViewController.h; sourceTree = "<group>"; };
+		10142E8E25C099D8008696A5 /* YCDownloadingFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCDownloadingFile.h; sourceTree = "<group>"; };
+		10142E8F25C099D8008696A5 /* YCDownloadingFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCDownloadingFile.m; sourceTree = "<group>"; };
+		10142E9425C09A5D008696A5 /* YCBindSuccessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCBindSuccessViewController.h; sourceTree = "<group>"; };
+		10142E9525C09A5D008696A5 /* YCBindSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCBindSuccessViewController.m; sourceTree = "<group>"; };
+		10142EAD25C09E66008696A5 /* YCAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCAlertController.m; sourceTree = "<group>"; };
+		10142EAE25C09E66008696A5 /* YCAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCAlertController.h; sourceTree = "<group>"; };
+		10142EB325C0A124008696A5 /* YCCommonAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCCommonAppDelegate.h; sourceTree = "<group>"; };
+		10142EB425C0A124008696A5 /* YCCommonAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCCommonAppDelegate.m; sourceTree = "<group>"; };
+		10142EB925C0A401008696A5 /* YCUserTemperatureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCUserTemperatureModel.h; sourceTree = "<group>"; };
+		10142EBA25C0A401008696A5 /* YCUserTemperatureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCUserTemperatureModel.m; sourceTree = "<group>"; };
+		101E125B25C1DDAC005F8ABB /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
+		101E12FB25C1F18D005F8ABB /* ShecareBLEThermometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShecareBLEThermometer.h; sourceTree = "<group>"; };
+		101E12FC25C1F18D005F8ABB /* BLEThermometerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEThermometerDelegate.h; sourceTree = "<group>"; };
+		101E12FD25C1F18D005F8ABB /* BLEThermometerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEThermometerDefines.h; sourceTree = "<group>"; };
+		101E12FE25C1F18D005F8ABB /* BluetoothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothManager.h; sourceTree = "<group>"; };
+		101E12FF25C1F18D005F8ABB /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
+		101E130025C1F18D005F8ABB /* DeviceStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceStorage.h; sourceTree = "<group>"; };
+		101E130125C1F18D005F8ABB /* OTAManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTAManager.h; sourceTree = "<group>"; };
+		101E130225C1F18D005F8ABB /* GenericServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericServiceManager.h; sourceTree = "<group>"; };
+		101E130325C1F18D005F8ABB /* SUOTAServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUOTAServiceManager.h; sourceTree = "<group>"; };
+		101E130425C1F18D005F8ABB /* ParameterStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterStorage.h; sourceTree = "<group>"; };
+		101E130D25C1F578005F8ABB /* libShecareBLEThermometerSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libShecareBLEThermometerSDK.a; sourceTree = "<group>"; };
+		101E131325C1F5C5005F8ABB /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		1052A6D525C1B48F0089CA98 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
+		1052A6D625C1B48F0089CA98 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		1077F13525C28E470044E77C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		1077F13B25C298600044E77C /* YCConnectLoadingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCConnectLoadingView.h; sourceTree = "<group>"; };
+		1077F13C25C298600044E77C /* YCConnectLoadingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCConnectLoadingView.m; sourceTree = "<group>"; };
+		1077F14325C2C0220044E77C /* YCConnectDeviceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCConnectDeviceViewController.m; sourceTree = "<group>"; };
+		1077F14425C2C0220044E77C /* YCConnectDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCConnectDeviceViewController.h; sourceTree = "<group>"; };
+		1077F14825C30A610044E77C /* YCBBTShowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCBBTShowView.h; sourceTree = "<group>"; };
+		1077F14925C30A610044E77C /* YCBBTShowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCBBTShowView.m; sourceTree = "<group>"; };
+		154D5867BBB8693C22503562 /* Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests/Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		51FD7FB7DAB5583D02A23949 /* Pods_ShecareThermometerSDKDemo_ShecareThermometerSDKDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShecareThermometerSDKDemo_ShecareThermometerSDKDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5C571D39030319849C789E50 /* Pods_ShecareThermometerSDKDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShecareThermometerSDKDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		8FF25432DAE04F98CCDF5102 /* Pods_ShecareThermometerSDKDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShecareThermometerSDKDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BE155A92C74E55053855229E /* Pods-ShecareThermometerSDKDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShecareThermometerSDKDemo.release.xcconfig"; path = "Target Support Files/Pods-ShecareThermometerSDKDemo/Pods-ShecareThermometerSDKDemo.release.xcconfig"; sourceTree = "<group>"; };
+		D19972284B448475EA43DBE0 /* Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests/Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
+		E18E0D47A41E23F8A5DF6454 /* Pods-ShecareThermometerSDKDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShecareThermometerSDKDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-ShecareThermometerSDKDemoTests/Pods-ShecareThermometerSDKDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E74F21DAB804EDD9DE460014 /* Pods-ShecareThermometerSDKDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShecareThermometerSDKDemo.debug.xcconfig"; path = "Target Support Files/Pods-ShecareThermometerSDKDemo/Pods-ShecareThermometerSDKDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		FFBED1ABA10BA8A662267935 /* Pods-ShecareThermometerSDKDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShecareThermometerSDKDemoTests.release.xcconfig"; path = "Target Support Files/Pods-ShecareThermometerSDKDemoTests/Pods-ShecareThermometerSDKDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		10142D4825BD7586008696A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				101E131425C1F5C5005F8ABB /* libc++.tbd in Frameworks */,
+				101E12F425C1F0F1005F8ABB /* CoreBluetooth.framework in Frameworks */,
+				9138420FA3D228C4FD17D87B /* Pods_ShecareThermometerSDKDemo.framework in Frameworks */,
+				101E130E25C1F578005F8ABB /* libShecareBLEThermometerSDK.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10142D6325BD7588008696A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F256AFAC6C4951290EEEAE11 /* Pods_ShecareThermometerSDKDemoTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10142D6E25BD7588008696A5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				12E21F7EE933193AE8109E9B /* Pods_ShecareThermometerSDKDemo_ShecareThermometerSDKDemoUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		10142D4225BD7586008696A5 = {
+			isa = PBXGroup;
+			children = (
+				10142D4D25BD7586008696A5 /* ShecareThermometerSDKDemo */,
+				10142D6925BD7588008696A5 /* ShecareThermometerSDKDemoTests */,
+				10142D7425BD7588008696A5 /* ShecareThermometerSDKDemoUITests */,
+				10142D4C25BD7586008696A5 /* Products */,
+				3821BF02542364BBF2782103 /* Pods */,
+				BB1795C492FE454D82B27E18 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		10142D4C25BD7586008696A5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				10142D4B25BD7586008696A5 /* ShecareThermometerSDKDemo.app */,
+				10142D6625BD7588008696A5 /* ShecareThermometerSDKDemoTests.xctest */,
+				10142D7125BD7588008696A5 /* ShecareThermometerSDKDemoUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		10142D4D25BD7586008696A5 /* ShecareThermometerSDKDemo */ = {
+			isa = PBXGroup;
+			children = (
+				101E12FA25C1F18D005F8ABB /* ShecareBLEThermometerSDK */,
+				10142E4125BDD5EB008696A5 /* Demo */,
+				10142E6225C0649D008696A5 /* Tools */,
+				10142DFB25BD8C1A008696A5 /* Extension */,
+				10142E5725C05FCA008696A5 /* SupportingFiles */,
+				10142D4E25BD7586008696A5 /* AppDelegate.h */,
+				10142D4F25BD7586008696A5 /* AppDelegate.m */,
+				10142EB325C0A124008696A5 /* YCCommonAppDelegate.h */,
+				10142EB425C0A124008696A5 /* YCCommonAppDelegate.m */,
+				10142D5C25BD7587008696A5 /* LaunchScreen.storyboard */,
+				1077F13525C28E470044E77C /* Assets.xcassets */,
+				10142D5F25BD7587008696A5 /* Info.plist */,
+				10142D6025BD7587008696A5 /* main.m */,
+			);
+			path = ShecareThermometerSDKDemo;
+			sourceTree = "<group>";
+		};
+		10142D6925BD7588008696A5 /* ShecareThermometerSDKDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				10142D6A25BD7588008696A5 /* ShecareThermometerSDKDemoTests.m */,
+				10142D6C25BD7588008696A5 /* Info.plist */,
+			);
+			path = ShecareThermometerSDKDemoTests;
+			sourceTree = "<group>";
+		};
+		10142D7425BD7588008696A5 /* ShecareThermometerSDKDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				10142D7525BD7588008696A5 /* ShecareThermometerSDKDemoUITests.m */,
+				10142D7725BD7588008696A5 /* Info.plist */,
+			);
+			path = ShecareThermometerSDKDemoUITests;
+			sourceTree = "<group>";
+		};
+		10142DFB25BD8C1A008696A5 /* Extension */ = {
+			isa = PBXGroup;
+			children = (
+				10142E7625C06DFB008696A5 /* YCString+Extension.h */,
+				10142E7525C06DFB008696A5 /* YCString+Extension.m */,
+				10142DF025BD8B5E008696A5 /* CAGradientLayer+YCExtension.h */,
+				10142DEF25BD8B5E008696A5 /* CAGradientLayer+YCExtension.m */,
+				10142DFF25BD8D94008696A5 /* NSDate+YCUtilities.h */,
+				10142E0025BD8D94008696A5 /* NSDate+YCUtilities.m */,
+				10142E7025C06BCB008696A5 /* YCButton+Extension.h */,
+				10142E6F25C06BCB008696A5 /* YCButton+Extension.m */,
+				10142E0A25BD9173008696A5 /* UIColor+YCExtension.h */,
+				10142E0925BD9173008696A5 /* UIColor+YCExtension.m */,
+				10142E3B25BD9FF7008696A5 /* YCViewController+Extension.h */,
+				10142E3C25BD9FF7008696A5 /* YCViewController+Extension.m */,
+			);
+			path = Extension;
+			sourceTree = "<group>";
+		};
+		10142E4125BDD5EB008696A5 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				10142D5425BD7586008696A5 /* YCMainViewController.h */,
+				10142D5525BD7586008696A5 /* YCMainViewController.m */,
+				1077F14025C2BF0C0044E77C /* BBT */,
+				10142EA025C09AD4008696A5 /* Binding */,
+				10142E7B25C076DE008696A5 /* Model */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		10142E5725C05FCA008696A5 /* SupportingFiles */ = {
+			isa = PBXGroup;
+			children = (
+				10142E5825C0601D008696A5 /* Shecare-Prefix.pch */,
+			);
+			path = SupportingFiles;
+			sourceTree = "<group>";
+		};
+		10142E6225C0649D008696A5 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				10142E0525BD8FD6008696A5 /* YCMacro.h */,
+				10142E6625C064C9008696A5 /* YCDatePickerView.h */,
+				10142E6425C064C9008696A5 /* YCDatePickerView.m */,
+				10142E6325C064C9008696A5 /* YCPickerView.h */,
+				10142E6525C064C9008696A5 /* YCPickerView.m */,
+				10142DEA25BD8B35008696A5 /* YCGradientButton.h */,
+				10142DE925BD8B35008696A5 /* YCGradientButton.m */,
+				10142EAE25C09E66008696A5 /* YCAlertController.h */,
+				10142EAD25C09E66008696A5 /* YCAlertController.m */,
+				1052A6D525C1B48F0089CA98 /* MBProgressHUD.h */,
+				1052A6D625C1B48F0089CA98 /* MBProgressHUD.m */,
+				10142E8325C07953008696A5 /* YCUtility.h */,
+				10142E8225C07953008696A5 /* YCUtility.m */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		10142E7B25C076DE008696A5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				10142EB925C0A401008696A5 /* YCUserTemperatureModel.h */,
+				10142EBA25C0A401008696A5 /* YCUserTemperatureModel.m */,
+				10142E7C25C07711008696A5 /* YCUserHardwareInfoModel.h */,
+				10142E7D25C07711008696A5 /* YCUserHardwareInfoModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		10142EA025C09AD4008696A5 /* Binding */ = {
+			isa = PBXGroup;
+			children = (
+				10142E8925C09197008696A5 /* YCBindViewController.h */,
+				10142E8825C09197008696A5 /* YCBindViewController.m */,
+				10142E9425C09A5D008696A5 /* YCBindSuccessViewController.h */,
+				10142E9525C09A5D008696A5 /* YCBindSuccessViewController.m */,
+				10142E8E25C099D8008696A5 /* YCDownloadingFile.h */,
+				10142E8F25C099D8008696A5 /* YCDownloadingFile.m */,
+			);
+			path = Binding;
+			sourceTree = "<group>";
+		};
+		101E12FA25C1F18D005F8ABB /* ShecareBLEThermometerSDK */ = {
+			isa = PBXGroup;
+			children = (
+				101E130D25C1F578005F8ABB /* libShecareBLEThermometerSDK.a */,
+				101E12FB25C1F18D005F8ABB /* ShecareBLEThermometer.h */,
+				101E12FC25C1F18D005F8ABB /* BLEThermometerDelegate.h */,
+				101E12FD25C1F18D005F8ABB /* BLEThermometerDefines.h */,
+				101E130C25C1F562005F8ABB /* OTAManager */,
+			);
+			path = ShecareBLEThermometerSDK;
+			sourceTree = "<group>";
+		};
+		101E130C25C1F562005F8ABB /* OTAManager */ = {
+			isa = PBXGroup;
+			children = (
+				101E130125C1F18D005F8ABB /* OTAManager.h */,
+				101E12FF25C1F18D005F8ABB /* Defines.h */,
+				101E12FE25C1F18D005F8ABB /* BluetoothManager.h */,
+				101E130025C1F18D005F8ABB /* DeviceStorage.h */,
+				101E130225C1F18D005F8ABB /* GenericServiceManager.h */,
+				101E130325C1F18D005F8ABB /* SUOTAServiceManager.h */,
+				101E130425C1F18D005F8ABB /* ParameterStorage.h */,
+			);
+			path = OTAManager;
+			sourceTree = "<group>";
+		};
+		1077F14025C2BF0C0044E77C /* BBT */ = {
+			isa = PBXGroup;
+			children = (
+				10142DDC25BD8820008696A5 /* YCBBTView.h */,
+				10142DDD25BD8820008696A5 /* YCBBTView.m */,
+				10142E5225C05D43008696A5 /* YCInputBBTView.h */,
+				10142E5125C05D43008696A5 /* YCInputBBTView.m */,
+				10142E5D25C0619D008696A5 /* YCInputBBTTextField.h */,
+				10142E5C25C0619D008696A5 /* YCInputBBTTextField.m */,
+				1077F14425C2C0220044E77C /* YCConnectDeviceViewController.h */,
+				1077F14325C2C0220044E77C /* YCConnectDeviceViewController.m */,
+				1077F13B25C298600044E77C /* YCConnectLoadingView.h */,
+				1077F13C25C298600044E77C /* YCConnectLoadingView.m */,
+				1077F14825C30A610044E77C /* YCBBTShowView.h */,
+				1077F14925C30A610044E77C /* YCBBTShowView.m */,
+			);
+			path = BBT;
+			sourceTree = "<group>";
+		};
+		3821BF02542364BBF2782103 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E74F21DAB804EDD9DE460014 /* Pods-ShecareThermometerSDKDemo.debug.xcconfig */,
+				BE155A92C74E55053855229E /* Pods-ShecareThermometerSDKDemo.release.xcconfig */,
+				154D5867BBB8693C22503562 /* Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.debug.xcconfig */,
+				D19972284B448475EA43DBE0 /* Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.release.xcconfig */,
+				E18E0D47A41E23F8A5DF6454 /* Pods-ShecareThermometerSDKDemoTests.debug.xcconfig */,
+				FFBED1ABA10BA8A662267935 /* Pods-ShecareThermometerSDKDemoTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		BB1795C492FE454D82B27E18 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				101E131325C1F5C5005F8ABB /* libc++.tbd */,
+				101E125B25C1DDAC005F8ABB /* CoreBluetooth.framework */,
+				5C571D39030319849C789E50 /* Pods_ShecareThermometerSDKDemo.framework */,
+				51FD7FB7DAB5583D02A23949 /* Pods_ShecareThermometerSDKDemo_ShecareThermometerSDKDemoUITests.framework */,
+				8FF25432DAE04F98CCDF5102 /* Pods_ShecareThermometerSDKDemoTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		10142D4A25BD7586008696A5 /* ShecareThermometerSDKDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10142D7A25BD7588008696A5 /* Build configuration list for PBXNativeTarget "ShecareThermometerSDKDemo" */;
+			buildPhases = (
+				1D7F418D8F7A44F8811A38C8 /* [CP] Check Pods Manifest.lock */,
+				10142D4725BD7586008696A5 /* Sources */,
+				10142D4825BD7586008696A5 /* Frameworks */,
+				10142D4925BD7586008696A5 /* Resources */,
+				103AEB75A2E531E368C0F912 /* [CP] Embed Pods Frameworks */,
+				101E12EE25C1EBFC005F8ABB /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShecareThermometerSDKDemo;
+			productName = ShecareThermometerSDKDemo;
+			productReference = 10142D4B25BD7586008696A5 /* ShecareThermometerSDKDemo.app */;
+			productType = "com.apple.product-type.application";
+		};
+		10142D6525BD7588008696A5 /* ShecareThermometerSDKDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10142D7D25BD7588008696A5 /* Build configuration list for PBXNativeTarget "ShecareThermometerSDKDemoTests" */;
+			buildPhases = (
+				6A7634EFCB1A19061A42ECC0 /* [CP] Check Pods Manifest.lock */,
+				10142D6225BD7588008696A5 /* Sources */,
+				10142D6325BD7588008696A5 /* Frameworks */,
+				10142D6425BD7588008696A5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				10142D6825BD7588008696A5 /* PBXTargetDependency */,
+			);
+			name = ShecareThermometerSDKDemoTests;
+			productName = ShecareThermometerSDKDemoTests;
+			productReference = 10142D6625BD7588008696A5 /* ShecareThermometerSDKDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		10142D7025BD7588008696A5 /* ShecareThermometerSDKDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 10142D8025BD7588008696A5 /* Build configuration list for PBXNativeTarget "ShecareThermometerSDKDemoUITests" */;
+			buildPhases = (
+				D7BFC76EA9693F6703DD35D1 /* [CP] Check Pods Manifest.lock */,
+				10142D6D25BD7588008696A5 /* Sources */,
+				10142D6E25BD7588008696A5 /* Frameworks */,
+				10142D6F25BD7588008696A5 /* Resources */,
+				3E6E9445B1245F5A8E83F82A /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				10142D7325BD7588008696A5 /* PBXTargetDependency */,
+			);
+			name = ShecareThermometerSDKDemoUITests;
+			productName = ShecareThermometerSDKDemoUITests;
+			productReference = 10142D7125BD7588008696A5 /* ShecareThermometerSDKDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		10142D4325BD7586008696A5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					10142D4A25BD7586008696A5 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+					10142D6525BD7588008696A5 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 10142D4A25BD7586008696A5;
+					};
+					10142D7025BD7588008696A5 = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 10142D4A25BD7586008696A5;
+					};
+				};
+			};
+			buildConfigurationList = 10142D4625BD7586008696A5 /* Build configuration list for PBXProject "ShecareThermometerSDKDemo" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 10142D4225BD7586008696A5;
+			productRefGroup = 10142D4C25BD7586008696A5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				10142D4A25BD7586008696A5 /* ShecareThermometerSDKDemo */,
+				10142D6525BD7588008696A5 /* ShecareThermometerSDKDemoTests */,
+				10142D7025BD7588008696A5 /* ShecareThermometerSDKDemoUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		10142D4925BD7586008696A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1077F13625C28E470044E77C /* Assets.xcassets in Resources */,
+				10142D5E25BD7587008696A5 /* LaunchScreen.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10142D6425BD7588008696A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10142D6F25BD7588008696A5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		103AEB75A2E531E368C0F912 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShecareThermometerSDKDemo/Pods-ShecareThermometerSDKDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShecareThermometerSDKDemo/Pods-ShecareThermometerSDKDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShecareThermometerSDKDemo/Pods-ShecareThermometerSDKDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1D7F418D8F7A44F8811A38C8 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShecareThermometerSDKDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3E6E9445B1245F5A8E83F82A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests/Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests/Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests/Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6A7634EFCB1A19061A42ECC0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShecareThermometerSDKDemoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D7BFC76EA9693F6703DD35D1 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		10142D4725BD7586008696A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10142E5325C05D43008696A5 /* YCInputBBTView.m in Sources */,
+				10142E9025C099D8008696A5 /* YCDownloadingFile.m in Sources */,
+				10142E8A25C09197008696A5 /* YCBindViewController.m in Sources */,
+				10142D5625BD7586008696A5 /* YCMainViewController.m in Sources */,
+				10142E3D25BD9FF7008696A5 /* YCViewController+Extension.m in Sources */,
+				10142E0125BD8D94008696A5 /* NSDate+YCUtilities.m in Sources */,
+				10142E6725C064C9008696A5 /* YCDatePickerView.m in Sources */,
+				10142EB525C0A124008696A5 /* YCCommonAppDelegate.m in Sources */,
+				10142DF125BD8B5E008696A5 /* CAGradientLayer+YCExtension.m in Sources */,
+				10142E6825C064C9008696A5 /* YCPickerView.m in Sources */,
+				10142E7725C06DFB008696A5 /* YCString+Extension.m in Sources */,
+				10142D5025BD7586008696A5 /* AppDelegate.m in Sources */,
+				1052A6D725C1B48F0089CA98 /* MBProgressHUD.m in Sources */,
+				10142DDE25BD8820008696A5 /* YCBBTView.m in Sources */,
+				10142EBB25C0A401008696A5 /* YCUserTemperatureModel.m in Sources */,
+				10142E7E25C07711008696A5 /* YCUserHardwareInfoModel.m in Sources */,
+				10142E9625C09A5D008696A5 /* YCBindSuccessViewController.m in Sources */,
+				1077F13D25C298600044E77C /* YCConnectLoadingView.m in Sources */,
+				10142EAF25C09E66008696A5 /* YCAlertController.m in Sources */,
+				10142E7125C06BCB008696A5 /* YCButton+Extension.m in Sources */,
+				10142E0B25BD9173008696A5 /* UIColor+YCExtension.m in Sources */,
+				10142E8425C07953008696A5 /* YCUtility.m in Sources */,
+				1077F14A25C30A610044E77C /* YCBBTShowView.m in Sources */,
+				10142DEB25BD8B35008696A5 /* YCGradientButton.m in Sources */,
+				10142D6125BD7587008696A5 /* main.m in Sources */,
+				10142E5E25C0619D008696A5 /* YCInputBBTTextField.m in Sources */,
+				1077F14525C2C0220044E77C /* YCConnectDeviceViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10142D6225BD7588008696A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10142D6B25BD7588008696A5 /* ShecareThermometerSDKDemoTests.m in Sources */,
+				1077F15A25C33C0E0044E77C /* YCBBTShowView.m in Sources */,
+				1077F15525C33C080044E77C /* YCUserTemperatureModel.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		10142D6D25BD7588008696A5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10142D7625BD7588008696A5 /* ShecareThermometerSDKDemoUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		10142D6825BD7588008696A5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 10142D4A25BD7586008696A5 /* ShecareThermometerSDKDemo */;
+			targetProxy = 10142D6725BD7588008696A5 /* PBXContainerItemProxy */;
+		};
+		10142D7325BD7588008696A5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 10142D4A25BD7586008696A5 /* ShecareThermometerSDKDemo */;
+			targetProxy = 10142D7225BD7588008696A5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		10142D5C25BD7587008696A5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				10142D5D25BD7587008696A5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		10142D7825BD7588008696A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		10142D7925BD7588008696A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		10142D7B25BD7588008696A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E74F21DAB804EDD9DE460014 /* Pods-ShecareThermometerSDKDemo.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6T36JHYWF5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShecareThermometerSDKDemo",
+				);
+				GCC_PREFIX_HEADER = "${SRCROOT}/ShecareThermometerSDKDemo/SupportingFiles/Shecare-Prefix.pch";
+				INFOPLIST_FILE = ShecareThermometerSDKDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShecareThermometerSDKDemo/ShecareThermometerSDK",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ShecareThermometerSDKDemo/ShecareBLEThermometerSDK",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.ShecareThermometerSDKDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		10142D7C25BD7588008696A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BE155A92C74E55053855229E /* Pods-ShecareThermometerSDKDemo.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6T36JHYWF5;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShecareThermometerSDKDemo",
+				);
+				GCC_PREFIX_HEADER = "${SRCROOT}/ShecareThermometerSDKDemo/SupportingFiles/Shecare-Prefix.pch";
+				INFOPLIST_FILE = ShecareThermometerSDKDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/ShecareThermometerSDKDemo/ShecareThermometerSDK",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ShecareThermometerSDKDemo/ShecareBLEThermometerSDK",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.ShecareThermometerSDKDemo;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		10142D7E25BD7588008696A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E18E0D47A41E23F8A5DF6454 /* Pods-ShecareThermometerSDKDemoTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ShecareThermometerSDKDemoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.ShecareThermometerSDKDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShecareThermometerSDKDemo.app/ShecareThermometerSDKDemo";
+			};
+			name = Debug;
+		};
+		10142D7F25BD7588008696A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FFBED1ABA10BA8A662267935 /* Pods-ShecareThermometerSDKDemoTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ShecareThermometerSDKDemoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.ShecareThermometerSDKDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ShecareThermometerSDKDemo.app/ShecareThermometerSDKDemo";
+			};
+			name = Release;
+		};
+		10142D8125BD7588008696A5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 154D5867BBB8693C22503562 /* Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ShecareThermometerSDKDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.ShecareThermometerSDKDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ShecareThermometerSDKDemo;
+			};
+			name = Debug;
+		};
+		10142D8225BD7588008696A5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D19972284B448475EA43DBE0 /* Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ShecareThermometerSDKDemoUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.ShecareThermometerSDKDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ShecareThermometerSDKDemo;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		10142D4625BD7586008696A5 /* Build configuration list for PBXProject "ShecareThermometerSDKDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10142D7825BD7588008696A5 /* Debug */,
+				10142D7925BD7588008696A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10142D7A25BD7588008696A5 /* Build configuration list for PBXNativeTarget "ShecareThermometerSDKDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10142D7B25BD7588008696A5 /* Debug */,
+				10142D7C25BD7588008696A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10142D7D25BD7588008696A5 /* Build configuration list for PBXNativeTarget "ShecareThermometerSDKDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10142D7E25BD7588008696A5 /* Debug */,
+				10142D7F25BD7588008696A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		10142D8025BD7588008696A5 /* Build configuration list for PBXNativeTarget "ShecareThermometerSDKDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				10142D8125BD7588008696A5 /* Debug */,
+				10142D8225BD7588008696A5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 10142D4325BD7586008696A5 /* Project object */;
+}

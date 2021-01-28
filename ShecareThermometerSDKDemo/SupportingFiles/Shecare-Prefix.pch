@@ -1,0 +1,30 @@
+//
+//  Shecare-Prefix.pch
+//  Shecare
+//
+//  Created by 北京爱康泰科技有限责任公司 on 15-1-7.
+//  Copyright (c) 2015年 北京爱康泰科技有限责任公司. All rights reserved.
+//
+
+#import <Availability.h>
+
+#ifndef __IPHONE_6_0
+#warning "This project uses features only available in iOS SDK 6.0 and later."
+#endif
+
+#ifdef __OBJC__
+
+#import <Masonry/Masonry.h>
+
+#import "YCCommonAppDelegate.h"
+#import "YCGradientButton.h"
+#import "YCAlertController.h"
+#import "YCMacro.h"
+#import "YCUtility.h"
+
+#import "YCString+Extension.h"
+#import "UIColor+YCExtension.h"
+#import "YCViewController+Extension.h"
+#import "NSDate+YCUtilities.h"
+
+#endif
