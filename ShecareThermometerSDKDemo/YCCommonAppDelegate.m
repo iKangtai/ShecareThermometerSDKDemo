@@ -99,6 +99,13 @@
 }
 
 - (void)bleDidConnectThermometer {
+    UIViewController *curVC = [UIViewController currentViewController];
+    //  绑定相关页面不弹出 “已连接”
+    if ([curVC isKindOfClass:[YCBindViewController class]]) {
+    } else {
+        //  硬件连接后的提示
+        [YCAlertController showToast:@"已连接" completion:nil];
+    }
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_ThermometerConnectSuccessed object:@(YES)];
 }
 
@@ -128,7 +135,7 @@
         //  把数据过滤放在数据库存储部分即可。
         [self.validTemps addObject:tModel];
         if (flag == YCBLEMeasureFlagOfflineBegin) {
-            
+
         } else if (flag == YCBLEMeasureFlagOfflineEnd) {
             [self insertTemperaturesToDB:self.validTemps.copy];
             self.validTemps = nil;
@@ -378,6 +385,13 @@
         alarmNotification.timeZone = [NSTimeZone systemTimeZone];
         [[UIApplication sharedApplication] scheduleLocalNotification:alarmNotification];
     }
+}
+
+-(NSMutableArray *)validTemps {
+    if (_validTemps == nil) {
+        _validTemps = [[NSMutableArray alloc] init];
+    }
+    return _validTemps;
 }
 
 @end

@@ -11,6 +11,7 @@
 #import "ShecareBLEThermometer.h"
 #import "YCUserTemperatureModel.h"
 #import "YCBBTShowView.h"
+#import "YCDeviceListViewController.h"
 
 #define kConnectTimeout 10.0
 #define kConnectFailed 50.0
@@ -124,10 +125,13 @@
 
 - (void)setupNavigationItem {
     self.navigationItem.leftBarButtonItem = [YCUtility navigationBackItemWithTarget:self action:@selector(goBack)];
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc] initWithTitle:@"体温计管理" style:UIBarButtonItemStylePlain target:self action:@selector(thermometerManage)];
+    self.navigationItem.rightBarButtonItem = rightItem;
 }
 
 -(void)thermometerManage {
-
+    YCDeviceListViewController *vc = [[YCDeviceListViewController alloc] init];
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 - (void)goBack {

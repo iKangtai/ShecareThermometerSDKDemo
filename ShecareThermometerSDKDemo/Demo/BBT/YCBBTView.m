@@ -74,7 +74,7 @@
     }];
     [bindAct setValue:[UIColor textColor] forKey:@"titleTextColor"];
     UIAlertAction *buyAct = [UIAlertAction actionWithTitle:@"去购买" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [YCUtility handleOpenURL:[NSURL URLWithString:@"https://s.click.taobao.com/t?e=m%3D2%26s%3D%2BdwcswYJ9x4cQipKwQzePOeEDrYVVa64K7Vc7tFgwiFRAdhuF14FMVaWVHkUN9aQRitN3%2FurF3wG50TC%2BOEKRemerOqjd4FnM5oX%2FWJ3sGI8MxJ5Q%2FOfKYyhxLkYeYrta7G8XfSvkCk8eRex8LTEM9CkUAHLmx%2B1xg5p7bh%2BFbQ%3D&pvid=53_125.123.142.160_636_1608534275528"]];
+        [YCUtility handleOpenURL:[NSURL URLWithString:@"https://s.click.taobao.com/t?e=m%3D2%26s%3DGl4fwHb1kuIcQipKwQzePOeEDrYVVa64K7Vc7tFgwiFRAdhuF14FMdqwDYeCq0ILRitN3%2FurF3wG50TC%2BOEKRemerOqjd4FnM5oX%2FWJ3sGKV7VtawtKc9xGcLav92zkya7G8XfSvkCk8eRex8LTEM9CkUAHLmx%2B1xg5p7bh%2BFbQ%3D&pvid=53_115.239.25.5_624_1611125519095"]];
     }];
     [buyAct setValue:[UIColor mainColor] forKey:@"titleTextColor"];
     [alertC addAction:bindAct];

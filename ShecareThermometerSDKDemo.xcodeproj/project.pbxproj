@@ -43,6 +43,10 @@
 		1077F14A25C30A610044E77C /* YCBBTShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1077F14925C30A610044E77C /* YCBBTShowView.m */; };
 		1077F15525C33C080044E77C /* YCUserTemperatureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142EBA25C0A401008696A5 /* YCUserTemperatureModel.m */; };
 		1077F15A25C33C0E0044E77C /* YCBBTShowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1077F14925C30A610044E77C /* YCBBTShowView.m */; };
+		1077F28F25C4FD590044E77C /* YCDeviceInfoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1077F28E25C4FD590044E77C /* YCDeviceInfoViewController.m */; };
+		1077F29425C4FDC70044E77C /* YCUpdateDeviceController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1077F29225C4FDC70044E77C /* YCUpdateDeviceController.m */; };
+		1077F29925C503D50044E77C /* YCDeviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1077F29725C503D50044E77C /* YCDeviceListViewController.m */; };
+		1077F29E25C5052B0044E77C /* YCDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1077F29D25C5052B0044E77C /* YCDeviceTableViewCell.m */; };
 		12E21F7EE933193AE8109E9B /* Pods_ShecareThermometerSDKDemo_ShecareThermometerSDKDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51FD7FB7DAB5583D02A23949 /* Pods_ShecareThermometerSDKDemo_ShecareThermometerSDKDemoUITests.framework */; };
 		9138420FA3D228C4FD17D87B /* Pods_ShecareThermometerSDKDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C571D39030319849C789E50 /* Pods_ShecareThermometerSDKDemo.framework */; };
 		F256AFAC6C4951290EEEAE11 /* Pods_ShecareThermometerSDKDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF25432DAE04F98CCDF5102 /* Pods_ShecareThermometerSDKDemoTests.framework */; };
@@ -157,6 +161,14 @@
 		1077F14425C2C0220044E77C /* YCConnectDeviceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCConnectDeviceViewController.h; sourceTree = "<group>"; };
 		1077F14825C30A610044E77C /* YCBBTShowView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCBBTShowView.h; sourceTree = "<group>"; };
 		1077F14925C30A610044E77C /* YCBBTShowView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCBBTShowView.m; sourceTree = "<group>"; };
+		1077F28D25C4FD590044E77C /* YCDeviceInfoViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCDeviceInfoViewController.h; sourceTree = "<group>"; };
+		1077F28E25C4FD590044E77C /* YCDeviceInfoViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCDeviceInfoViewController.m; sourceTree = "<group>"; };
+		1077F29225C4FDC70044E77C /* YCUpdateDeviceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCUpdateDeviceController.m; sourceTree = "<group>"; };
+		1077F29325C4FDC70044E77C /* YCUpdateDeviceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCUpdateDeviceController.h; sourceTree = "<group>"; };
+		1077F29725C503D50044E77C /* YCDeviceListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCDeviceListViewController.m; sourceTree = "<group>"; };
+		1077F29825C503D50044E77C /* YCDeviceListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCDeviceListViewController.h; sourceTree = "<group>"; };
+		1077F29C25C5052B0044E77C /* YCDeviceTableViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCDeviceTableViewCell.h; sourceTree = "<group>"; };
+		1077F29D25C5052B0044E77C /* YCDeviceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCDeviceTableViewCell.m; sourceTree = "<group>"; };
 		154D5867BBB8693C22503562 /* Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests/Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		51FD7FB7DAB5583D02A23949 /* Pods_ShecareThermometerSDKDemo_ShecareThermometerSDKDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShecareThermometerSDKDemo_ShecareThermometerSDKDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C571D39030319849C789E50 /* Pods_ShecareThermometerSDKDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShecareThermometerSDKDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -381,6 +393,14 @@
 				1077F14325C2C0220044E77C /* YCConnectDeviceViewController.m */,
 				1077F13B25C298600044E77C /* YCConnectLoadingView.h */,
 				1077F13C25C298600044E77C /* YCConnectLoadingView.m */,
+				1077F29825C503D50044E77C /* YCDeviceListViewController.h */,
+				1077F29725C503D50044E77C /* YCDeviceListViewController.m */,
+				1077F29C25C5052B0044E77C /* YCDeviceTableViewCell.h */,
+				1077F29D25C5052B0044E77C /* YCDeviceTableViewCell.m */,
+				1077F28D25C4FD590044E77C /* YCDeviceInfoViewController.h */,
+				1077F28E25C4FD590044E77C /* YCDeviceInfoViewController.m */,
+				1077F29325C4FDC70044E77C /* YCUpdateDeviceController.h */,
+				1077F29225C4FDC70044E77C /* YCUpdateDeviceController.m */,
 				1077F14825C30A610044E77C /* YCBBTShowView.h */,
 				1077F14925C30A610044E77C /* YCBBTShowView.m */,
 			);
@@ -655,13 +675,16 @@
 				10142D5625BD7586008696A5 /* YCMainViewController.m in Sources */,
 				10142E3D25BD9FF7008696A5 /* YCViewController+Extension.m in Sources */,
 				10142E0125BD8D94008696A5 /* NSDate+YCUtilities.m in Sources */,
+				1077F28F25C4FD590044E77C /* YCDeviceInfoViewController.m in Sources */,
 				10142E6725C064C9008696A5 /* YCDatePickerView.m in Sources */,
 				10142EB525C0A124008696A5 /* YCCommonAppDelegate.m in Sources */,
 				10142DF125BD8B5E008696A5 /* CAGradientLayer+YCExtension.m in Sources */,
 				10142E6825C064C9008696A5 /* YCPickerView.m in Sources */,
 				10142E7725C06DFB008696A5 /* YCString+Extension.m in Sources */,
+				1077F29925C503D50044E77C /* YCDeviceListViewController.m in Sources */,
 				10142D5025BD7586008696A5 /* AppDelegate.m in Sources */,
 				1052A6D725C1B48F0089CA98 /* MBProgressHUD.m in Sources */,
+				1077F29425C4FDC70044E77C /* YCUpdateDeviceController.m in Sources */,
 				10142DDE25BD8820008696A5 /* YCBBTView.m in Sources */,
 				10142EBB25C0A401008696A5 /* YCUserTemperatureModel.m in Sources */,
 				10142E7E25C07711008696A5 /* YCUserHardwareInfoModel.m in Sources */,
@@ -671,6 +694,7 @@
 				10142E7125C06BCB008696A5 /* YCButton+Extension.m in Sources */,
 				10142E0B25BD9173008696A5 /* UIColor+YCExtension.m in Sources */,
 				10142E8425C07953008696A5 /* YCUtility.m in Sources */,
+				1077F29E25C5052B0044E77C /* YCDeviceTableViewCell.m in Sources */,
 				1077F14A25C30A610044E77C /* YCBBTShowView.m in Sources */,
 				10142DEB25BD8B35008696A5 /* YCGradientButton.m in Sources */,
 				10142D6125BD7587008696A5 /* main.m in Sources */,

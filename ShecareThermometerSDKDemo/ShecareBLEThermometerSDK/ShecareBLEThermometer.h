@@ -57,36 +57,22 @@
 ///  单例
 + (instancetype)sharedThermometer;
 
-/**
- * 判断 CBPeripheral 是否是 A32 硬件
- */
+/*  判断 CBPeripheral 是否是 A32 硬件 */
 - (BOOL)isA32:(CBPeripheral *)peripheral;
 
-/**
- * 判断 CBPeripheral 是否是 A33 硬件
- */
+/*  判断 CBPeripheral 是否是 A33 硬件 */
 - (BOOL)isA33:(CBPeripheral *)peripheral;
 
-/**
- * 返回当前设备的 BLE 状态
- */
+/* 返回当前设备的 BLE 状态 */
 - (YCBLEState)bleState;
 
-/**
- * Conenct to the specified thermometer.
- *
- * @param thermometer the specified thermometer.
- */
+/* 连接特定的设备 */
 - (void)connectThermometer:(CBPeripheral *)thermometer;
 
-/**
- * 断开当前连接的设备
- */
+/* 断开当前连接的设备 */
 - (void)disconnectActiveThermometer;
 
-/**
- * 检索 “系统已连接设备列表” 并连接满足 Service 条件的设备
- */
+/* 检索 “系统已连接设备列表” 并连接满足 Service 条件的设备 */
 - (void)connectRetrievePeripherals;
 
 /**
@@ -98,9 +84,7 @@
  */
 - (BOOL)connectThermometerWithMACList:(NSString *)macList;
 
-/**
- *  停止扫描
- */
+/* 停止扫描 */
 - (void)stopThermometerScan;
 
 /**
@@ -110,9 +94,7 @@
  */
 - (void)updateThermometerFirmware:(NSArray <NSString *>*)imgPaths;
 
-/**
- *  停止正在进行的 OAD
- */
+/*  停止正在进行的 OAD */
 - (void)stopUpdateThermometerFirmwareImage;
 
 /**

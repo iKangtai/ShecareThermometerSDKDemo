@@ -89,6 +89,34 @@
     return macsStrM.length > 1 ? [macsStrM substringToIndex:macsStrM.length-1] : @"";
 }
 
++ (NSArray <YCUserHardwareInfoModel *>*)bindedDeviceModels {
+    NSArray *bindedDatas = [[NSUserDefaults standardUserDefaults] objectForKey:kDefaults_UserHardwareInfos];
+    
+    NSMutableArray *resultM = [NSMutableArray array];
+    for (NSData *data in bindedDatas) {
+        YCUserHardwareInfoModel *modelI = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        [resultM addObject:modelI];
+    }
+    return resultM.copy;
+}
+
++(void)removeDevice:(NSString *)macAddress {
+    NSArray *oldInfos = [[NSUserDefaults standardUserDefaults] objectForKey:kDefaults_UserHardwareInfos];
+    NSMutableArray *newInfos = [NSMutableArray array];
+    [oldInfos enumerateObjectsUsingBlock:^(NSData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        YCUserHardwareInfoModel *modelI = [NSKeyedUnarchiver unarchiveObjectWithData:obj];
+        if (![modelI.macAddress isEqualToString:macAddress]) {
+            [newInfos addObject:obj];
+        }
+    }];
+    if (newInfos.count > 0) {
+        [[NSUserDefaults standardUserDefaults] setObject:newInfos forKey:kDefaults_UserHardwareInfos];
+    } else {
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:kDefaults_UserHardwareInfos];
+    }
+    [[NSUserDefaults standardUserDefaults] synchronize];
+}
+
 + (NSString *)firmwareImageFolderPath {
     NSString *appDocumentsFolder = [NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES) objectAtIndex:0];
     NSString *path = [appDocumentsFolder stringByAppendingPathComponent:@"firmware"];

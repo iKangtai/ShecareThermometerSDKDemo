@@ -14,10 +14,12 @@ PODS:
   - AFNetworking/Serialization (4.0.1)
   - AFNetworking/UIKit (4.0.1):
     - AFNetworking/NSURLSession
+  - CRToast (0.0.9)
   - Masonry (1.1.0)
 
 DEPENDENCIES:
   - AFNetworking (~> 4.0)
+  - CRToast (from `https://github.com/qq345386817/CRToast.git`)
   - Masonry
 
 SPEC REPOS:
@@ -25,10 +27,20 @@ SPEC REPOS:
     - AFNetworking
     - Masonry
 
+EXTERNAL SOURCES:
+  CRToast:
+    :git: https://github.com/qq345386817/CRToast.git
+
+CHECKOUT OPTIONS:
+  CRToast:
+    :commit: ceb14ed81ee1fb880ef423a7aea42884f55833f2
+    :git: https://github.com/qq345386817/CRToast.git
+
 SPEC CHECKSUMS:
   AFNetworking: 7864c38297c79aaca1500c33288e429c3451fdce
+  CRToast: 5a78c22b921c5ed3487488af605bc403a9c92fed
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
-PODFILE CHECKSUM: e76f2fde1326fd3852967e9ec1fad3ebf2389172
+PODFILE CHECKSUM: 3e3536f208c4016af29e1dc287acfd251b9221de
 
 COCOAPODS: 1.10.1

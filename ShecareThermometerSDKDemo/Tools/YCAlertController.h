@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 ///  是否自动 dismiss
 @property (assign, nonatomic) BOOL autoDismiss;
 
++ (void)showToast:(NSString * _Nonnull)title completion:(void (^ __nullable)(void))completion;
+
 ///  普通弹窗（自定义按钮文字）
 + (void)showAlertWithTitle:(NSString * _Nullable)title
                    message:(NSString * _Nullable)message

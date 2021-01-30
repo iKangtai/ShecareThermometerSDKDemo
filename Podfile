@@ -8,6 +8,7 @@ target 'ShecareThermometerSDKDemo' do
   # Pods for ShecareThermometerSDKDemo
   pod 'Masonry'
   pod 'AFNetworking', '~> 4.0'
+  pod 'CRToast', :git => 'https://github.com/qq345386817/CRToast.git'
 
   target 'ShecareThermometerSDKDemoTests' do
     inherit! :search_paths

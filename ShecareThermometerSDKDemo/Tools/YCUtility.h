@@ -28,6 +28,10 @@
 + (void)addHardwareInfoToLocal:(YCUserHardwareInfoModel *)hardwareInfo;
 ///  获取绑定的 MAC 列表
 + (NSString *)bindedMACAddressList;
+///  获取所有的设备信息
++ (NSArray <YCUserHardwareInfoModel *>*)bindedDeviceModels;
+///  从本地移除对应 MAC 地址的设备绑定信息
++ (void)removeDevice:(NSString *)macAddress;
 ///  获取固件的镜像文件夹路径
 + (NSString *)firmwareImageFolderPath;
 ///  获取对应固件版本、固件镜像版本的 OAD 文件路径

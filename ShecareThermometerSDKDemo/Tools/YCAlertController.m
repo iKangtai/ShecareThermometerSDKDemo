@@ -8,8 +8,39 @@
 
 #import "YCAlertController.h"
 #import "YCViewController+Extension.h"
+#import <CRToast/CRToast.h>
 
 @implementation YCAlertController
+
++ (void)showToast:(NSString *)title completion:(void (^)(void))completion {
+    CRToastInteractionResponder *toastInteractionResponder = [CRToastInteractionResponder interactionResponderWithInteractionType:CRToastInteractionTypeSwipeUp
+                                                                                                             automaticallyDismiss:YES
+                                                                                                                            block:^(CRToastInteractionType interactionType){
+                                                                                                                            }];
+    NSDictionary *options = @{
+        kCRToastNotificationTypeKey: @(CRToastTypeNavigationBar),
+        kCRToastNotificationPresentationTypeKey: @(CRToastPresentationTypeCover),
+        kCRToastUnderStatusBarKey: @(NO),
+        kCRToastTextKey : title,
+        kCRToastFontKey: [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline],
+        kCRToastTextAlignmentKey : @(NSTextAlignmentCenter),
+        kCRToastTimeIntervalKey: @(1.0),
+        kCRToastBackgroundColorKey : [UIColor mainColor],
+        kCRToastAnimationInTypeKey : @(CRToastAnimationTypeGravity),
+        kCRToastAnimationOutTypeKey : @(CRToastAnimationTypeGravity),
+        kCRToastAnimationInDirectionKey : @(CRToastAnimationDirectionTop),
+        kCRToastAnimationOutDirectionKey : @(CRToastAnimationDirectionTop),
+        kCRToastInteractionRespondersKey: @[toastInteractionResponder],
+        kCRToastNotificationPreferredPaddingKey: @(0)
+    };
+    NSLog(@"Show toast with title: %@", title);
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [CRToastManager showNotificationWithOptions:options
+                                     apperanceBlock:^(void) {
+                                     }
+                                    completionBlock:completion];
+    });
+}
 
 + (void)showAlertWithTitle:(NSString *)title
                    message:(NSString *)message
