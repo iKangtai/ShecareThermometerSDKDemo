@@ -10,11 +10,6 @@
 
 @interface UIButton(YCButtonExtension)
 
-///  便利构造器
--(instancetype)initWithTitle:(NSString *)title fontSize:(CGFloat)fontSize titleColor:(UIColor *)titleColor bgColor:(UIColor *)bgColor;
-
-+ (UIButton *)buttonItem:(UIViewController *)viewController horizontalInset:(CGFloat)horizontalInset verticalInset:(CGFloat)verticalInset imageName:(NSString *)imageName action:(SEL)action;
-
 +(UIButton *)healthProfilePickerButton;
 
 @end

@@ -14,11 +14,10 @@
 @property (nonatomic, strong) NSDate *measureTime;
 ///  温度数值
 @property (nonatomic, strong) NSNumber *temperature;
+///  UUID
 @property (nonatomic, copy) NSString *temperatureID;
-///  用户存储时的温度类型，0 摄氏度 1 华氏度
-@property (nonatomic, strong) NSNumber *type;
 
-+ (instancetype)modelWithTemperature:(NSNumber *)temperature time:(NSDate *)time type:(NSNumber *)type temperatureID:(NSString *)temperatureID;
++ (instancetype)modelWithTemperature:(NSNumber *)temperature time:(NSDate *)time temperatureID:(NSString *)temperatureID;
 
 -(NSString *)temperatureString;
 

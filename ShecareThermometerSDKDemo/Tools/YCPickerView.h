@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 #define kTopBarHeight   44
-#define kPickerViewHeight (SCREEN_ADAPTION(216)+kTopBarHeight)
+#define kPickerViewHeight (216+kTopBarHeight)
 
 @interface YCPickerView : UIView
 

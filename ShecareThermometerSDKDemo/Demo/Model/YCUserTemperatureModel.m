@@ -14,24 +14,22 @@
 
 @implementation YCUserTemperatureModel
 
-- (instancetype)initWithTemperature:(NSNumber *)temperature time:(NSDate *)time type:(NSNumber *)type temperatureID:(NSString *)temperatureID {
+- (instancetype)initWithTemperature:(NSNumber *)temperature time:(NSDate *)time temperatureID:(NSString *)temperatureID {
     if (self = [super init]) {
         self.temperature = temperature;
         self.measureTime = time;
-        self.type = type;
         self.temperatureID = temperatureID;
     }
     return self;
 }
 
-+ (instancetype)modelWithTemperature:(NSNumber *)temperature time:(NSDate *)time type:(NSNumber *)type temperatureID:(NSString *)temperatureID {
-    return [[self alloc] initWithTemperature:temperature time:time type:type temperatureID: temperatureID];
++ (instancetype)modelWithTemperature:(NSNumber *)temperature time:(NSDate *)time temperatureID:(NSString *)temperatureID {
+    return [[self alloc] initWithTemperature:temperature time:time temperatureID: temperatureID];
 }
 
 - (void)encodeWithCoder:(nonnull NSCoder *)coder {
     [coder encodeObject:self.temperature forKey:@"temperature"];
     [coder encodeObject:self.measureTime forKey:@"measureTime"];
-    [coder encodeObject:self.type forKey:@"type"];
     [coder encodeObject:self.temperatureID forKey:@"temperatureID"];
 }
 
@@ -39,7 +37,6 @@
     if (self = [super init]) {
         self.temperature = [coder decodeObjectForKey:@"macAddress"];
         self.measureTime = [coder decodeObjectForKey:@"measureTime"];
-        self.type = [coder decodeObjectForKey:@"type"];
         self.temperatureID = [coder decodeObjectForKey:@"temperatureID"];
     }
     return self;

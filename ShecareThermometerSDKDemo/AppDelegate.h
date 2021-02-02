@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "BLEThermometerDefines.h"
+#import <SCBLESDK/SCBLESDK.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 

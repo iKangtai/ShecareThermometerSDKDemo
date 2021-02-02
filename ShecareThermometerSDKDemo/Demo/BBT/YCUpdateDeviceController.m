@@ -7,11 +7,10 @@
 //
 
 #import "YCUpdateDeviceController.h"
-#import "ShecareBLEThermometer.h"
+#import <SCBLESDK/SCBLESDK.h>
 #import "MBProgressHUD.h"
 #import "YCDownloadingFile.h"
 #import "YCUserHardwareInfoModel.h"
-#import "OTAManager.h"
 
 @interface YCUpdateDeviceController()<BLEThermometerOADDelegate>
 
@@ -25,7 +24,7 @@
 ///  从服务器获取的最新固件版本信息
 @property (copy, nonatomic) NSString *newestFirmwareVersion;
 
-@property (nonatomic, strong) OTAManager *otaManager;
+@property (nonatomic, strong) SCOTAManager *otaManager;
 
 @end
 
@@ -34,7 +33,7 @@
 -(instancetype)init {
     if (self = [super init]) {
         self.ischeckingFirmwareVersionFromCloud = NO;
-        [ShecareBLEThermometer sharedThermometer].oadDelegate = self;
+        [SCBLEThermometer sharedThermometer].oadDelegate = self;
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(thermometerConnected:) name:kNotification_ThermometerConnectSuccessed object:nil];
     }
     return self;
@@ -42,9 +41,9 @@
 
 -(void)updateDevice {
 #if !TARGET_OS_SIMULATOR
-    if ([ShecareBLEThermometer sharedThermometer].activeThermometer != nil) {
-        if (!IS_EMPTY_STRING([ShecareBLEThermometer sharedThermometer].firmwareVersion)
-            && [ShecareBLEThermometer sharedThermometer].image_type != YCBLEFirmwareImageTypeUnknown) {
+    if ([SCBLEThermometer sharedThermometer].activePeripheral != nil) {
+        if (!IS_EMPTY_STRING([SCBLEThermometer sharedThermometer].firmwareVersion)
+            && [SCBLEThermometer sharedThermometer].imageType != YCBLEFirmwareImageTypeUnknown) {
             [self checkFirmwareVersionFromCloud];
         } else {
             [YCAlertController showAlertWithBody:@"获取设备版本失败，请重新连接设备！" finished:nil];
@@ -70,7 +69,7 @@
 
 -(void)checkFirmwareVersion {
     NSInteger factory = 1; // 1 孕橙 2 安康源
-    if ([[ShecareBLEThermometer sharedThermometer] isA33:[ShecareBLEThermometer sharedThermometer].activeThermometer]) {
+    if ([[SCBLEThermometer sharedThermometer] isA33]) {
         factory = 2;
     }
     NSDictionary *dataDict = @{@"version": @"3.68", @"A": @"http://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/A31/Athermometer.bin", @"B": @"http://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/A31/Bthermometer.bin"};
@@ -84,7 +83,7 @@
     self.downloadUrls = urlsM.copy;
     self.newestFirmwareVersion = [dataDict objectForKey:@"version"];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if ([YCUtility compareVersion:self.newestFirmwareVersion and:[ShecareBLEThermometer sharedThermometer].firmwareVersion] == NSOrderedDescending) {
+        if ([YCUtility compareVersion:self.newestFirmwareVersion and:[SCBLEThermometer sharedThermometer].firmwareVersion] == NSOrderedDescending) {
             YCWeakSelf(self)
             [YCAlertController showAlertWithTitle:@"您的设备程序不是最新的，请点击确定更新设备程序！"
                                           message:nil
@@ -102,9 +101,9 @@
 - (void)connectToNewThermometer {
 #if !TARGET_OS_SIMULATOR
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        if ([ShecareBLEThermometer sharedThermometer].activeThermometer == nil) {
-            [ShecareBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeNotBinding;
-            [SHAREDAPP scan];
+        if ([SCBLEThermometer sharedThermometer].activePeripheral == nil) {
+            [SCBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeNotBinding;
+            [SHAREDAPP startScan];
         }
     });
 #endif
@@ -152,7 +151,7 @@
         [YCUtility extendedWithPath:pathStr key:kDefaults_LocalFirmwareVersion value:[self.newestFirmwareVersion dataUsingEncoding:NSUTF8StringEncoding]];
         
         // 新版本固件，使用 OTA，只有一个镜像文件
-        if ([[ShecareBLEThermometer sharedThermometer] isA33:[ShecareBLEThermometer sharedThermometer].activeThermometer]) {
+        if ([[SCBLEThermometer sharedThermometer] isA33]) {
             [self oadStart];
         } else {
             if (curIndex >= totalUrlCount - 1) {
@@ -166,19 +165,19 @@
 }
 
 - (void)oadStart {
-    if ([[ShecareBLEThermometer sharedThermometer] isA33:[ShecareBLEThermometer sharedThermometer].activeThermometer]) {
+    if ([[SCBLEThermometer sharedThermometer] isA33]) {
         NSString *folderPath = [YCUtility firmwareImageFolderPath];
         NSString *filePath = [folderPath stringByAppendingPathComponent:@"Athermometer.bin"];
         self.otaManager.fileURL = [NSURL fileURLWithPath:filePath];
         [self.otaManager handleOTAAction];
         return;
     }
-    if ([ShecareBLEThermometer sharedThermometer].activeThermometer != nil
-        && [ShecareBLEThermometer sharedThermometer].image_type != YCBLEFirmwareImageTypeUnknown
-        && !IS_EMPTY_STRING([ShecareBLEThermometer sharedThermometer].firmwareVersion)) {
-        [[ShecareBLEThermometer sharedThermometer] setCleanState:YCBLECommandTypeOAD xx:0 yy:0];
+    if ([SCBLEThermometer sharedThermometer].activePeripheral != nil
+        && [SCBLEThermometer sharedThermometer].imageType != YCBLEFirmwareImageTypeUnknown
+        && !IS_EMPTY_STRING([SCBLEThermometer sharedThermometer].firmwareVersion)) {
+        [[SCBLEThermometer sharedThermometer] setCleanState:YCBLECommandTypeOAD xx:0 yy:0];
         
-        [[ShecareBLEThermometer sharedThermometer] updateThermometerFirmware:[self localImgPaths]];
+        [[SCBLEThermometer sharedThermometer] updateThermometerFirmware:[self localImgPaths]];
         return;
     }
     [YCAlertController showAlertWithBody:@"数据获取失败，请重新连接蓝牙后再试" finished:nil];
@@ -186,7 +185,7 @@
 }
 
 - (void)checkUpLocalNewFirmwareVersion {
-    NSString *pathStr = [YCUtility firmwareImagePath:[ShecareBLEThermometer sharedThermometer].firmwareVersion];
+    NSString *pathStr = [YCUtility firmwareImagePath:[SCBLEThermometer sharedThermometer].firmwareVersion];
     if ([[NSFileManager defaultManager] fileExistsAtPath:pathStr]) {
         if ([NSData dataWithContentsOfFile:pathStr] != nil) {
             NSString *lVersion = [[NSString alloc] initWithData:[YCUtility extendedWithPath:pathStr key:kDefaults_LocalFirmwareVersion] encoding:NSUTF8StringEncoding];
@@ -208,10 +207,10 @@
 }
 
 -(BOOL)isOADing {
-    if ([[ShecareBLEThermometer sharedThermometer] isA33:[ShecareBLEThermometer sharedThermometer].activeThermometer]) {
-        return self.otaManager.isOADing;
+    if ([[SCBLEThermometer sharedThermometer] isA33]) {
+        return self.otaManager.isOTAing;
     }
-    return [ShecareBLEThermometer sharedThermometer].isOADing;
+    return [SCBLEThermometer sharedThermometer].isOADing;
 }
 
 #pragma mark - ble thermometer notify
@@ -227,20 +226,42 @@
                 }];
                 [self hideProgressHUD:NO];
                 [MBProgressHUD hideHUDForView:[UIViewController currentViewController].view animated:YES];
-                [[ShecareBLEThermometer sharedThermometer] stopUpdateThermometerFirmwareImage];
+                [[SCBLEThermometer sharedThermometer] stopUpdateThermometerFirmwareImage];
             }
             [UIViewController currentViewController].view.userInteractionEnabled = YES;
         });
     }
 }
 
+- (void)updateFirmwareImageFailed {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        NSString *alertBody = @"更新设备程序失败，请稍后重试！";
+        YCWeakSelf(self)
+        [YCAlertController showAlertWithBody:alertBody finished:^(UIAlertAction * _Nonnull action) {
+            YCStrongSelf(self)
+            [self connectToNewThermometer];
+        }];
+        [self hideProgressHUD:NO];
+        [MBProgressHUD hideHUDForView:[UIViewController currentViewController].view animated:YES];
+        [UIViewController currentViewController].view.userInteractionEnabled = YES;
+    });
+}
+
+- (void)hideProgressHUD:(BOOL)animated {
+    if (animated) {
+        [self.progressView hideAnimated:YES afterDelay:0.1];
+    } else {
+        [self.progressView hideAnimated:NO];
+    }
+}
+
 #pragma mark - OAD Delegate
 
-- (void)bleThermometerDidReadFirmwareImageType:(YCBLEFirmwareImageType)imgReversion {
+-(void)thermometer:(SCBLEThermometer *)thermometer didReadFirmwareImageType:(YCBLEFirmwareImageType)imgReversion {
     NSLog(@"img reversion  %@", @(imgReversion));
 }
 
-- (void)bleThermometerDidBeginUpdateFirmwareImage {
+-(void)thermometerDidBeginFirmwareImageUpdate:(SCBLEThermometer *)thermometer {
     dispatch_async(dispatch_get_main_queue(), ^{
         [MBProgressHUD hideHUDForView:[UIViewController currentViewController].view animated:YES];
         self.progressView.progress = 0.0;
@@ -251,16 +272,16 @@
     });
 }
 
-- (void)bleThermometerDidUpdateFirmwareImage:(YCBLEOADResultType)type message:(NSString *)message {
+-(void)thermometer:(SCBLEThermometer *)thermometer didUpdateFirmwareImage:(YCBLEOADResultType)type message:(NSString *)message {
     switch (type) {
         case YCBLEOADResultTypeSucceed: {
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.01 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                 self.progressView.progress = 1.0;
                 self.progressView.progressLabel.text = @"100%";
                 [self hideProgressHUD:NO];
-                if (!IS_EMPTY_STRING([ShecareBLEThermometer sharedThermometer].macAddress)) {
+                if (!IS_EMPTY_STRING([SCBLEThermometer sharedThermometer].macAddress)) {
                     //  更新设备信息到本地
-                    YCUserHardwareInfoModel *bindingModel = [YCUserHardwareInfoModel modelWithMACAddress:[ShecareBLEThermometer sharedThermometer].macAddress version:self.newestFirmwareVersion syncType:NO];
+                    YCUserHardwareInfoModel *bindingModel = [YCUserHardwareInfoModel modelWithMACAddress:[SCBLEThermometer sharedThermometer].macAddress version:self.newestFirmwareVersion syncType:NO];
                     [YCUtility addHardwareInfoToLocal:bindingModel];
                 }
             });
@@ -286,39 +307,11 @@
     }
 }
 
-- (void)bleThermometerUpdateFirmwareImageProgress:(CGFloat)progress {
+-(void)thermometer:(SCBLEThermometer *)thermometer firmwareImageUpdateProgress:(CGFloat)progress {
     dispatch_async(dispatch_get_main_queue(), ^{
         self.progressView.progress = progress;
         self.progressView.progressLabel.text = [NSString stringWithFormat:@"%@%%", @((NSInteger)(progress * 100))];
     });
-}
-
-- (void)bleThermometerDidOnOTAStatus:(BOOL)isOn { 
-    if (isOn == false) {
-        [YCAlertController showAlertWithBody:@"请把体温计连上电源" finished:nil];
-    }
-}
-
-- (void)updateFirmwareImageFailed {
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        NSString *alertBody = @"更新设备程序失败，请稍后重试！";
-        YCWeakSelf(self)
-        [YCAlertController showAlertWithBody:alertBody finished:^(UIAlertAction * _Nonnull action) {
-            YCStrongSelf(self)
-            [self connectToNewThermometer];
-        }];
-        [self hideProgressHUD:NO];
-        [MBProgressHUD hideHUDForView:[UIViewController currentViewController].view animated:YES];
-        [UIViewController currentViewController].view.userInteractionEnabled = YES;
-    });
-}
-
-- (void)hideProgressHUD:(BOOL)animated {
-    if (animated) {
-        [self.progressView hideAnimated:YES afterDelay:0.1];
-    } else {
-        [self.progressView hideAnimated:NO];
-    }
 }
 
 #pragma mark - lazy load
@@ -346,9 +339,9 @@
     return _progressView;
 }
 
--(OTAManager *)otaManager {
+-(SCOTAManager *)otaManager {
     if (_otaManager == nil) {
-        _otaManager = [[OTAManager alloc] init];
+        _otaManager = [[SCOTAManager alloc] init];
     }
     return _otaManager;
 }

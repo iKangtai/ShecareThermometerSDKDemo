@@ -10,31 +10,6 @@
 
 @implementation UIButton(YCButtonExtension)
 
--(instancetype)initWithTitle:(NSString *)title fontSize:(CGFloat)fontSize titleColor:(UIColor *)titleColor bgColor:(UIColor *)bgColor {
-    if (self = [super init]) {
-        [self setTitle:title forState:UIControlStateNormal];
-        self.titleLabel.font = [UIFont systemFontOfSize:fontSize];
-        [self setTitleColor:titleColor forState:UIControlStateNormal];
-        self.backgroundColor = bgColor;
-    }
-    
-    return self;
-}
-
-+ (UIButton *)buttonItem:(UIViewController *)viewController horizontalInset:(CGFloat)horizontalInset verticalInset:(CGFloat)verticalInset imageName:(NSString *)imageName action:(SEL)action {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    UIImage *image = [UIImage imageNamed:imageName];
-    button.frame = CGRectMake(0, 0, image.size.width, image.size.height);
-    
-    // 让按钮图片右移horizontalInset,下移verticalInset
-    [button setImageEdgeInsets:UIEdgeInsetsMake(verticalInset, horizontalInset, -verticalInset, -horizontalInset)];
-    
-    [button setImage:image forState:UIControlStateNormal];
-    [button addTarget:viewController action:action forControlEvents:UIControlEventTouchUpInside];
-    
-    return button;
-}
-
 +(UIButton *)healthProfilePickerButton {
     UIButton *result = [UIButton buttonWithType:UIButtonTypeCustom];
     result.titleEdgeInsets = UIEdgeInsetsMake(0, 0, 5, 0);

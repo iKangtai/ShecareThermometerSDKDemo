@@ -8,7 +8,7 @@
 
 #import "YCConnectLoadingView.h"
 #import <Masonry/Masonry.h>
-#import "ShecareBLEThermometer.h"
+#import <SCBLESDK/SCBLESDK.h>
 
 static NSString *connectLoadingAnimeKey = @"ycconnect.loading.rotationAnimation";
 

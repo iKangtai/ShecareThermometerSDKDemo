@@ -30,28 +30,6 @@
 #define kNotification_ThermometerSyncDateResult (@"kNotification_ThermometerSyncDateResult")
 ///  温度计当前电量
 #define kNotification_ThermometerCurrentPower (@"kNotification_ThermometerCurrentPower")
-///  温度计当前时间
-#define kNotification_ThermometerCurrentTime (@"kNotification_ThermometerCurrentTime")
-///  温度计绑定状态
-#define kNotification_ThermometerDidBind (@"kNotification_ThermometerDidBind")
-///  温度计设置预热时间
-#define kNotification_ThermometerDidSetWarmupTime (@"kNotification_ThermometerDidSetWarmupTime")
-///  温度计设置测温时间
-#define kNotification_ThermometerDidSetMeasureTime (@"kNotification_ThermometerDidSetMeasureTime")
-///  温度计清空温度
-#define kNotification_ThermometerDidClearDatas (@"kNotification_ThermometerDidClearDatas")
-///  读到硬件的固件版本号
-#define kNotification_UpdateFirmwareRevision (@"kNotification_UpdateFirmwareRevision")
-///  读到硬件 MAC 地址
-#define kNotification_UpdateMACAddress (@"kNotification_UpdateMACAddress")
-///  保存硬件的温度到数据库
-#define kNotification_DidSaveHardwareTemperaturesToDB (@"kNotification_DidSaveHardwareTemperaturesToDB")
-///  设置体温计测温模式
-#define kNotification_SetMeasureMode (@"kNotification_SetMeasureMode")
-///  获取体温计测温模式
-#define kNotification_GetMeasureMode (@"kNotification_GetMeasureMode")
-///  获取体温计预热时间和测温时间
-#define kNotification_GetMeasureAndWarmupTime (@"kNotification_GetMeasureAndWarmupTime")
 
 #define Localizable_NotSupportBLE (@"硬件不支持蓝牙 4.0")
 #define Localizable_NotAuthorizedForBLE (@"没有授权应用使用蓝牙")
@@ -101,18 +79,6 @@
         }\
         [descriptionString appendString:@">"];\
         [descriptionString copy];\
-    })
-
-#define SCREEN_ADAPTION(DeviceSize5) \
-    ({\
-        CGFloat DeviceWidth;\
-        if (kScreenWidth == 320)       \
-            DeviceWidth=DeviceSize5;   \
-        else if (kScreenWidth == 414)  \
-            DeviceWidth=(DeviceSize5)*1.294;    \
-        else                \
-            DeviceWidth=(DeviceSize5)*1.1719;  \
-        DeviceWidth;\
     })
 
 #endif /* YCMacro_h */

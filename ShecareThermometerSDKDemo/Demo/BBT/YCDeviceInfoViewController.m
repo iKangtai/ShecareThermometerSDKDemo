@@ -9,7 +9,7 @@
 #import "YCDeviceInfoViewController.h"
 #import "YCUserHardwareInfoModel.h"
 #import "YCUpdateDeviceController.h"
-#import "ShecareBLEThermometer.h"
+#import <SCBLESDK/SCBLESDK.h>
 
 @interface YCDeviceInfoViewController ()
 
@@ -86,7 +86,7 @@
 }
 
 -(void)setConnectStatus {
-    NSString *macAddress = [ShecareBLEThermometer sharedThermometer].macAddress;
+    NSString *macAddress = [SCBLEThermometer sharedThermometer].macAddress;
     if (!IS_EMPTY_STRING(macAddress)) {
         if ([macAddress isEqualToString:self.deviceModel.macAddress]) {
             self.isConnected = true;
@@ -118,13 +118,13 @@
 
 -(void)unpair {
     [self unbindSuccessHandler];
-    [[ShecareBLEThermometer sharedThermometer] disconnectActiveThermometer];
+    [[SCBLEThermometer sharedThermometer] disconnectActiveThermometer];
 }
 
 -(void)unbindSuccessHandler {
     [YCUtility removeDevice:self.deviceModel.macAddress];
-    [ShecareBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeNotBinding;
-    [[YCCommonAppDelegate shared] scan];
+    [SCBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeNotBinding;
+    [[YCCommonAppDelegate shared] startScan];
     [self.navigationController popToRootViewControllerAnimated:true];
 }
 

@@ -8,7 +8,7 @@
 
 #import "YCConnectDeviceViewController.h"
 #import "YCConnectLoadingView.h"
-#import "ShecareBLEThermometer.h"
+#import <SCBLESDK/SCBLESDK.h>
 #import "YCUserTemperatureModel.h"
 #import "YCBBTShowView.h"
 #import "YCDeviceListViewController.h"
@@ -42,9 +42,9 @@
     [self setupNavigationItem];
     
 #if !TARGET_OS_SIMULATOR
-    ShecareBLEThermometer *thermometer = [ShecareBLEThermometer sharedThermometer];
+    SCBLEThermometer *thermometer = [SCBLEThermometer sharedThermometer];
     //  如果硬件已连接
-    if (thermometer.activeThermometer != nil) {
+    if (thermometer.activePeripheral != nil) {
         self.step1Btn.selected = true;
         self.step2Btn.selected = true;
     } else {
@@ -64,15 +64,15 @@
                                         cancelHandler:^(UIAlertAction * _Nonnull action) {
                 }
                                        confirmHandler:^(UIAlertAction * _Nonnull action) {
-                    [ShecareBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeNotBinding;
-                    [SHAREDAPP scan];
+                    [SCBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeNotBinding;
+                    [SHAREDAPP startScan];
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
                 }];
                 break;
             case YCBLEStateValid:
                 self.step1Btn.selected = YES;
-                [ShecareBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeNotBinding;
-                [SHAREDAPP scan];
+                [SCBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeNotBinding;
+                [SHAREDAPP startScan];
                 break;
             case YCBLEStateUnknown:
                 state = Localizable_BluetoothStateUnknow;
@@ -100,8 +100,8 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    ShecareBLEThermometer *thermometer = [ShecareBLEThermometer sharedThermometer];
-    [self setConnectStatus:(nil != thermometer.activeThermometer)];
+    SCBLEThermometer *thermometer = [SCBLEThermometer sharedThermometer];
+    [self setConnectStatus:(nil != thermometer.activePeripheral)];
 }
 
 - (void)viewDidDisappear:(BOOL)animated {
@@ -286,8 +286,8 @@
             self.step1Btn.selected = NO;
             self.step2Btn.selected = NO;
         }
-        ShecareBLEThermometer *thermometer = [ShecareBLEThermometer sharedThermometer];
-        [self setConnectStatus:(nil != thermometer.activeThermometer)];
+        SCBLEThermometer *thermometer = [SCBLEThermometer sharedThermometer];
+        [self setConnectStatus:(nil != thermometer.activePeripheral)];
     });
 }
 

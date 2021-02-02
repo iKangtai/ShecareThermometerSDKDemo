@@ -34,8 +34,6 @@
 		10142EB525C0A124008696A5 /* YCCommonAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142EB425C0A124008696A5 /* YCCommonAppDelegate.m */; };
 		10142EBB25C0A401008696A5 /* YCUserTemperatureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142EBA25C0A401008696A5 /* YCUserTemperatureModel.m */; };
 		101E12F425C1F0F1005F8ABB /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101E125B25C1DDAC005F8ABB /* CoreBluetooth.framework */; };
-		101E130E25C1F578005F8ABB /* libShecareBLEThermometerSDK.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 101E130D25C1F578005F8ABB /* libShecareBLEThermometerSDK.a */; };
-		101E131425C1F5C5005F8ABB /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 101E131325C1F5C5005F8ABB /* libc++.tbd */; };
 		1052A6D725C1B48F0089CA98 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1052A6D625C1B48F0089CA98 /* MBProgressHUD.m */; };
 		1077F13625C28E470044E77C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1077F13525C28E470044E77C /* Assets.xcassets */; };
 		1077F13D25C298600044E77C /* YCConnectLoadingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1077F13C25C298600044E77C /* YCConnectLoadingView.m */; };
@@ -48,6 +46,8 @@
 		1077F29925C503D50044E77C /* YCDeviceListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1077F29725C503D50044E77C /* YCDeviceListViewController.m */; };
 		1077F29E25C5052B0044E77C /* YCDeviceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1077F29D25C5052B0044E77C /* YCDeviceTableViewCell.m */; };
 		12E21F7EE933193AE8109E9B /* Pods_ShecareThermometerSDKDemo_ShecareThermometerSDKDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 51FD7FB7DAB5583D02A23949 /* Pods_ShecareThermometerSDKDemo_ShecareThermometerSDKDemoUITests.framework */; };
+		5273CB6E25C9BDE800DF1789 /* SCBLESDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5273CB6D25C9BDE800DF1789 /* SCBLESDK.framework */; };
+		5273CB6F25C9BDE800DF1789 /* SCBLESDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5273CB6D25C9BDE800DF1789 /* SCBLESDK.framework */; };
 		9138420FA3D228C4FD17D87B /* Pods_ShecareThermometerSDKDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C571D39030319849C789E50 /* Pods_ShecareThermometerSDKDemo.framework */; };
 		F256AFAC6C4951290EEEAE11 /* Pods_ShecareThermometerSDKDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8FF25432DAE04F98CCDF5102 /* Pods_ShecareThermometerSDKDemoTests.framework */; };
 /* End PBXBuildFile section */
@@ -140,18 +140,6 @@
 		10142EB925C0A401008696A5 /* YCUserTemperatureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCUserTemperatureModel.h; sourceTree = "<group>"; };
 		10142EBA25C0A401008696A5 /* YCUserTemperatureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCUserTemperatureModel.m; sourceTree = "<group>"; };
 		101E125B25C1DDAC005F8ABB /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
-		101E12FB25C1F18D005F8ABB /* ShecareBLEThermometer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShecareBLEThermometer.h; sourceTree = "<group>"; };
-		101E12FC25C1F18D005F8ABB /* BLEThermometerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEThermometerDelegate.h; sourceTree = "<group>"; };
-		101E12FD25C1F18D005F8ABB /* BLEThermometerDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BLEThermometerDefines.h; sourceTree = "<group>"; };
-		101E12FE25C1F18D005F8ABB /* BluetoothManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothManager.h; sourceTree = "<group>"; };
-		101E12FF25C1F18D005F8ABB /* Defines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Defines.h; sourceTree = "<group>"; };
-		101E130025C1F18D005F8ABB /* DeviceStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DeviceStorage.h; sourceTree = "<group>"; };
-		101E130125C1F18D005F8ABB /* OTAManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OTAManager.h; sourceTree = "<group>"; };
-		101E130225C1F18D005F8ABB /* GenericServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GenericServiceManager.h; sourceTree = "<group>"; };
-		101E130325C1F18D005F8ABB /* SUOTAServiceManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SUOTAServiceManager.h; sourceTree = "<group>"; };
-		101E130425C1F18D005F8ABB /* ParameterStorage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ParameterStorage.h; sourceTree = "<group>"; };
-		101E130D25C1F578005F8ABB /* libShecareBLEThermometerSDK.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libShecareBLEThermometerSDK.a; sourceTree = "<group>"; };
-		101E131325C1F5C5005F8ABB /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		1052A6D525C1B48F0089CA98 /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		1052A6D625C1B48F0089CA98 /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
 		1077F13525C28E470044E77C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -171,6 +159,7 @@
 		1077F29D25C5052B0044E77C /* YCDeviceTableViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = YCDeviceTableViewCell.m; sourceTree = "<group>"; };
 		154D5867BBB8693C22503562 /* Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests/Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		51FD7FB7DAB5583D02A23949 /* Pods_ShecareThermometerSDKDemo_ShecareThermometerSDKDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShecareThermometerSDKDemo_ShecareThermometerSDKDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5273CB6D25C9BDE800DF1789 /* SCBLESDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SCBLESDK.framework; sourceTree = "<group>"; };
 		5C571D39030319849C789E50 /* Pods_ShecareThermometerSDKDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShecareThermometerSDKDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		8FF25432DAE04F98CCDF5102 /* Pods_ShecareThermometerSDKDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ShecareThermometerSDKDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE155A92C74E55053855229E /* Pods-ShecareThermometerSDKDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShecareThermometerSDKDemo.release.xcconfig"; path = "Target Support Files/Pods-ShecareThermometerSDKDemo/Pods-ShecareThermometerSDKDemo.release.xcconfig"; sourceTree = "<group>"; };
@@ -185,10 +174,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				101E131425C1F5C5005F8ABB /* libc++.tbd in Frameworks */,
+				5273CB6E25C9BDE800DF1789 /* SCBLESDK.framework in Frameworks */,
 				101E12F425C1F0F1005F8ABB /* CoreBluetooth.framework in Frameworks */,
 				9138420FA3D228C4FD17D87B /* Pods_ShecareThermometerSDKDemo.framework in Frameworks */,
-				101E130E25C1F578005F8ABB /* libShecareBLEThermometerSDK.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +185,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F256AFAC6C4951290EEEAE11 /* Pods_ShecareThermometerSDKDemoTests.framework in Frameworks */,
+				5273CB6F25C9BDE800DF1789 /* SCBLESDK.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -236,7 +225,7 @@
 		10142D4D25BD7586008696A5 /* ShecareThermometerSDKDemo */ = {
 			isa = PBXGroup;
 			children = (
-				101E12FA25C1F18D005F8ABB /* ShecareBLEThermometerSDK */,
+				5273CAE025C97A7200DF1789 /* Frameworks */,
 				10142E4125BDD5EB008696A5 /* Demo */,
 				10142E6225C0649D008696A5 /* Tools */,
 				10142DFB25BD8C1A008696A5 /* Extension */,
@@ -354,32 +343,6 @@
 			path = Binding;
 			sourceTree = "<group>";
 		};
-		101E12FA25C1F18D005F8ABB /* ShecareBLEThermometerSDK */ = {
-			isa = PBXGroup;
-			children = (
-				101E130D25C1F578005F8ABB /* libShecareBLEThermometerSDK.a */,
-				101E12FB25C1F18D005F8ABB /* ShecareBLEThermometer.h */,
-				101E12FC25C1F18D005F8ABB /* BLEThermometerDelegate.h */,
-				101E12FD25C1F18D005F8ABB /* BLEThermometerDefines.h */,
-				101E130C25C1F562005F8ABB /* OTAManager */,
-			);
-			path = ShecareBLEThermometerSDK;
-			sourceTree = "<group>";
-		};
-		101E130C25C1F562005F8ABB /* OTAManager */ = {
-			isa = PBXGroup;
-			children = (
-				101E130125C1F18D005F8ABB /* OTAManager.h */,
-				101E12FF25C1F18D005F8ABB /* Defines.h */,
-				101E12FE25C1F18D005F8ABB /* BluetoothManager.h */,
-				101E130025C1F18D005F8ABB /* DeviceStorage.h */,
-				101E130225C1F18D005F8ABB /* GenericServiceManager.h */,
-				101E130325C1F18D005F8ABB /* SUOTAServiceManager.h */,
-				101E130425C1F18D005F8ABB /* ParameterStorage.h */,
-			);
-			path = OTAManager;
-			sourceTree = "<group>";
-		};
 		1077F14025C2BF0C0044E77C /* BBT */ = {
 			isa = PBXGroup;
 			children = (
@@ -420,10 +383,17 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		5273CAE025C97A7200DF1789 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				5273CB6D25C9BDE800DF1789 /* SCBLESDK.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
 		BB1795C492FE454D82B27E18 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				101E131325C1F5C5005F8ABB /* libc++.tbd */,
 				101E125B25C1DDAC005F8ABB /* CoreBluetooth.framework */,
 				5C571D39030319849C789E50 /* Pods_ShecareThermometerSDKDemo.framework */,
 				51FD7FB7DAB5583D02A23949 /* Pods_ShecareThermometerSDKDemo_ShecareThermometerSDKDemoUITests.framework */,
@@ -799,7 +769,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -852,7 +822,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -867,24 +837,26 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6T36JHYWF5;
+				DEVELOPMENT_TEAM = YL5HCBTF4V;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShecareThermometerSDKDemo",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ShecareThermometerSDKDemo/Frameworks",
 				);
 				GCC_PREFIX_HEADER = "${SRCROOT}/ShecareThermometerSDKDemo/SupportingFiles/Shecare-Prefix.pch";
 				INFOPLIST_FILE = ShecareThermometerSDKDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ShecareThermometerSDKDemo/ShecareThermometerSDK",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/ShecareThermometerSDKDemo/ShecareBLEThermometerSDK",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.ShecareThermometerSDKDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -898,23 +870,24 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 6T36JHYWF5;
+				DEVELOPMENT_TEAM = YL5HCBTF4V;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/ShecareThermometerSDKDemo",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ShecareThermometerSDKDemo/Frameworks",
 				);
 				GCC_PREFIX_HEADER = "${SRCROOT}/ShecareThermometerSDKDemo/SupportingFiles/Shecare-Prefix.pch";
 				INFOPLIST_FILE = ShecareThermometerSDKDemo/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/ShecareThermometerSDKDemo/ShecareThermometerSDK",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/ShecareThermometerSDKDemo/ShecareBLEThermometerSDK",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.ShecareThermometerSDKDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -928,8 +901,15 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ShecareThermometerSDKDemo",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/ShecareThermometerSDKDemo/Frameworks",
+				);
 				INFOPLIST_FILE = ShecareThermometerSDKDemoTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -948,8 +928,15 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/ShecareThermometerSDKDemo",
+					"$(PROJECT_DIR)/Frameworks",
+					"$(PROJECT_DIR)/ShecareThermometerSDKDemo/Frameworks",
+				);
 				INFOPLIST_FILE = ShecareThermometerSDKDemoTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

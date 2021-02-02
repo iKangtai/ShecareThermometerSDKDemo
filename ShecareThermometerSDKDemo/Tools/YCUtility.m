@@ -33,17 +33,18 @@
     NSArray *oldInfos = [[NSUserDefaults standardUserDefaults] objectForKey:kDefaults_UserTemperatureInfos];
     NSMutableArray *newInfos = [NSMutableArray array];
     [oldInfos enumerateObjectsUsingBlock:^(NSData * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-        YCUserTemperatureModel *modelI = [NSKeyedUnarchiver unarchiveObjectWithData:obj];
+        YCUserTemperatureModel *modelI = [NSKeyedUnarchiver unarchivedObjectOfClass:[YCUserTemperatureModel class] fromData:obj error:nil];
         if (![modelI.temperatureID isEqualToString:temperatureInfo.temperatureID]) {
             [newInfos addObject:obj];
         }
     }];
-    NSData *newInfoData = [NSKeyedArchiver archivedDataWithRootObject:temperatureInfo];
-    [newInfos addObject:newInfoData];
+    NSData *newInfoData = [NSKeyedArchiver archivedDataWithRootObject:temperatureInfo requiringSecureCoding:false error:nil];
+    if (newInfoData != nil) {
+        [newInfos addObject:newInfoData];
+    }
     
     [[NSUserDefaults standardUserDefaults] setObject:newInfos forKey:kDefaults_UserTemperatureInfos];
     [[NSUserDefaults standardUserDefaults] synchronize];
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_DidSaveHardwareTemperaturesToDB object:newInfos.copy];
 }
 
 + (NSArray <YCUserTemperatureModel *>*)temperatureInfoList {

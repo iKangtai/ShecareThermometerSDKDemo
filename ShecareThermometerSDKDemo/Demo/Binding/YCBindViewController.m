@@ -9,10 +9,9 @@
 #import "YCBindViewController.h"
 #import "MBProgressHUD.h"
 #import "YCUserHardwareInfoModel.h"
-#import "ShecareBLEThermometer.h"
+#import <SCBLESDK/SCBLESDK.h>
 #import "YCDownloadingFile.h"
 #import "YCBindSuccessViewController.h"
-#import "OTAManager.h"
 
 static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
 
@@ -49,7 +48,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
 @property (nonatomic, copy) NSString *macAddress;
 @property (nonatomic, copy) NSString *firmwareVersion;
 
-@property (nonatomic, strong) OTAManager *otaManager;
+@property (nonatomic, strong) SCOTAManager *otaManager;
 
 @end
 
@@ -63,10 +62,10 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
     [self setupNavigationItem];
     
 #if !TARGET_OS_SIMULATOR
-    ShecareBLEThermometer *thermometer = [ShecareBLEThermometer sharedThermometer];
+    SCBLEThermometer *thermometer = [SCBLEThermometer sharedThermometer];
     thermometer.oadDelegate = self;
     //  如果硬件已连接且硬件数据已经准确读取到，直接开始与服务器的交互
-    if ((thermometer.activeThermometer != nil) && !IS_EMPTY_STRING(thermometer.macAddress) && !IS_EMPTY_STRING(thermometer.firmwareVersion)) {
+    if ((thermometer.activePeripheral != nil) && !IS_EMPTY_STRING(thermometer.macAddress) && !IS_EMPTY_STRING(thermometer.firmwareVersion)) {
         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
             self.step1StatusButton.selected = YES;
             self.step1IndicateBtn.selected = YES;
@@ -92,7 +91,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
                                         cancelHandler:^(UIAlertAction * _Nonnull action) {
                 }
                                        confirmHandler:^(UIAlertAction * _Nonnull action) {
-                    [ShecareBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeBinding;
+                    [SCBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeBinding;
                     [self scan];
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
                 }];
@@ -102,7 +101,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
                 self.bluetoothIsConnected = true;
                 self.step1StatusButton.selected = YES;
                 self.step1IndicateBtn.selected = YES;
-                [ShecareBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeBinding;
+                [SCBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeBinding;
                 [self scan];
                 break;
             case YCBLEStateUnknown:
@@ -140,12 +139,10 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(thermometerConnected:) name:kNotification_ThermometerConnectSuccessed object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateThermometerState:) name:kNotification_ThermometerDidUpdateState object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateFirmwareRevision:) name:kNotification_UpdateFirmwareRevision object:nil];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateMACAddress:) name:kNotification_UpdateMACAddress object:nil];
     
     if (self.bluetoothIsConnected == true) {
-        ShecareBLEThermometer *thermometer = [ShecareBLEThermometer sharedThermometer];
-        [self setConnectStatus:(nil != thermometer.activeThermometer)];
+        SCBLEThermometer *thermometer = [SCBLEThermometer sharedThermometer];
+        [self setConnectStatus:(nil != thermometer.activePeripheral)];
     }
 }
 
@@ -156,8 +153,8 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
     [[NSNotificationCenter defaultCenter] removeObserver:self];
     //  如果过早开始下次扫描，YCBLEConnectTypeNotBinding 来不及起作用
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [ShecareBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeNotBinding;
-        [SHAREDAPP scan];
+        [SCBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeNotBinding;
+        [SHAREDAPP startScan];
     });
 }
 
@@ -236,7 +233,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
         [YCUtility extendedWithPath:pathStr key:kDefaults_LocalFirmwareVersion value:[self.newestFirmwareVersion dataUsingEncoding:NSUTF8StringEncoding]];
         
         // 新版本固件，使用 OTA，只有一个镜像文件
-        if ([[ShecareBLEThermometer sharedThermometer] isA33:[ShecareBLEThermometer sharedThermometer].activeThermometer]) {
+        if ([[SCBLEThermometer sharedThermometer] isA33]) {
             [self oadStart];
         } else {
             if (curIndex >= totalUrlCount - 1) {
@@ -254,17 +251,17 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
 }
 
 - (void)oadStart {
-    if ([[ShecareBLEThermometer sharedThermometer] isA33:[ShecareBLEThermometer sharedThermometer].activeThermometer]) {
+    if ([[SCBLEThermometer sharedThermometer] isA33]) {
         NSString *folderPath = [YCUtility firmwareImageFolderPath];
         NSString *filePath = [folderPath stringByAppendingPathComponent:@"Athermometer.bin"];
         self.otaManager.fileURL = [NSURL fileURLWithPath:filePath];
         [self.otaManager handleOTAAction];
         return;
     }
-    if ([ShecareBLEThermometer sharedThermometer].activeThermometer != nil
-        && [ShecareBLEThermometer sharedThermometer].image_type != YCBLEFirmwareImageTypeUnknown
-        && !IS_EMPTY_STRING([ShecareBLEThermometer sharedThermometer].firmwareVersion)) {
-        [[ShecareBLEThermometer sharedThermometer] updateThermometerFirmware:[self localImgPaths]];
+    if ([SCBLEThermometer sharedThermometer].activePeripheral != nil
+        && [SCBLEThermometer sharedThermometer].imageType != YCBLEFirmwareImageTypeUnknown
+        && !IS_EMPTY_STRING([SCBLEThermometer sharedThermometer].firmwareVersion)) {
+        [[SCBLEThermometer sharedThermometer] updateThermometerFirmware:[self localImgPaths]];
         return;
     }
     NSString *errorMsg = @"数据获取失败，请重新连接蓝牙后再试";
@@ -273,7 +270,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
 }
 
 - (void)checkUpLocalNewFirmwareVersion {
-    NSString *pathStr = [YCUtility firmwareImagePath:[ShecareBLEThermometer sharedThermometer].firmwareVersion];
+    NSString *pathStr = [YCUtility firmwareImagePath:[SCBLEThermometer sharedThermometer].firmwareVersion];
     if ([[NSFileManager defaultManager] fileExistsAtPath:pathStr]) {
         if ([NSData dataWithContentsOfFile:pathStr] != nil) {
             NSString *lVersion = [[NSString alloc] initWithData:[YCUtility extendedWithPath:pathStr key:kDefaults_LocalFirmwareVersion] encoding:NSUTF8StringEncoding];
@@ -310,13 +307,13 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
 
 ///  检查 MAC 地址是否已被绑定。调用此函数时，App与硬件是连接状态
 - (void)checkMACAddressIsBinded:(UIButton *)sender {
-    if (!IS_EMPTY_STRING([ShecareBLEThermometer sharedThermometer].macAddress)
-        && !IS_EMPTY_STRING([ShecareBLEThermometer sharedThermometer].firmwareVersion)) {
+    if (!IS_EMPTY_STRING([SCBLEThermometer sharedThermometer].macAddress)
+        && !IS_EMPTY_STRING([SCBLEThermometer sharedThermometer].firmwareVersion)) {
         NSString *macStr = [YCUtility bindedMACAddressList];
         
         if ([macStr isKindOfClass:[NSString class]]
             && (macStr.length >= 17)
-            && ([macStr containsString:[ShecareBLEThermometer sharedThermometer].macAddress])) {
+            && ([macStr containsString:[SCBLEThermometer sharedThermometer].macAddress])) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
             YCWeakSelf(self)
             [YCAlertController showAlertWithTitle:@"温馨提示" message:@"您已绑定该设备，无需再次绑定！" cancelHandler:nil confirmHandler:^(UIAlertAction * _Nonnull action) {
@@ -325,21 +322,17 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
             }];
             return;
         }
-        if ([[ShecareBLEThermometer sharedThermometer] isA32:ShecareBLEThermometer.sharedThermometer.activeThermometer]) {
-            [self handleBindAction];
-        } else {
-            [self checkFirmwareVersion];
-        }
+        [self checkFirmwareVersion];
     }
 }
 
 -(void)checkFirmwareVersion {
     NSInteger factory = 1; // 1 孕橙 2 安康源
-    if ([[ShecareBLEThermometer sharedThermometer] isA33:[ShecareBLEThermometer sharedThermometer].activeThermometer]) {
+    if ([[SCBLEThermometer sharedThermometer] isA33]) {
         factory = 2;
     }
 
-    NSDictionary *dataDict = @{@"version": @"3.68", @"A": @"http://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/A31/Athermometer.bin", @"B": @"http://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/A31/Bthermometer.bin"};
+    NSDictionary *dataDict = @{@"version": @"3.65", @"A": @"http://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/A31/Athermometer.bin", @"B": @"http://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/A31/Bthermometer.bin"};
     NSMutableArray *urlsM = [NSMutableArray array];
     if (dataDict[@"A"] != nil) {
         [urlsM addObject:dataDict[@"A"]];
@@ -350,7 +343,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
     self.downloadUrls = urlsM.copy;
     self.newestFirmwareVersion = [dataDict objectForKey:@"version"];
     dispatch_async(dispatch_get_main_queue(), ^{
-        if ([YCUtility compareVersion:self.newestFirmwareVersion and:[ShecareBLEThermometer sharedThermometer].firmwareVersion] == NSOrderedDescending) {
+        if ([YCUtility compareVersion:self.newestFirmwareVersion and:[SCBLEThermometer sharedThermometer].firmwareVersion] == NSOrderedDescending) {
             YCWeakSelf(self)
             [YCAlertController showAlertWithTitle:@"温馨提示" message:@"您的设备程序不是最新的，请点击确定更新设备程序！" cancelHandler:nil confirmHandler:^(UIAlertAction * _Nonnull action) {
                 YCStrongSelf(self)
@@ -375,9 +368,9 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
     //  绑定时设置温度单位
     NSInteger tempType = [[NSUserDefaults standardUserDefaults] integerForKey:kDefaults_TemperatureUnits];
     if (2 == tempType) {
-        [[ShecareBLEThermometer sharedThermometer] setCleanState:YCBLECommandTypeSetUnitF xx:0 yy:0];
+        [[SCBLEThermometer sharedThermometer] setCleanState:YCBLECommandTypeSetUnitF xx:0 yy:0];
     } else if (1 == tempType) {
-        [[ShecareBLEThermometer sharedThermometer] setCleanState:YCBLECommandTypeSetUnitC xx:0 yy:0];
+        [[SCBLEThermometer sharedThermometer] setCleanState:YCBLECommandTypeSetUnitC xx:0 yy:0];
     }
     //  存储绑定信息到本地
     YCUserHardwareInfoModel *bindingModel = [YCUserHardwareInfoModel modelWithMACAddress:self.macAddress version:self.firmwareVersion syncType:NO];
@@ -391,21 +384,21 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
 }
 
 -(BOOL)isOADing {
-    if ([[ShecareBLEThermometer sharedThermometer] isA33:[ShecareBLEThermometer sharedThermometer].activeThermometer]) {
-        return self.otaManager.isOADing;
+    if ([[SCBLEThermometer sharedThermometer] isA33]) {
+        return self.otaManager.isOTAing;
     }
-    return [ShecareBLEThermometer sharedThermometer].isOADing;
+    return [SCBLEThermometer sharedThermometer].isOADing;
 }
 
 #pragma mark - BLEThermometer Notify
 
 // 开始蓝牙扫描
 - (void)scan {
-    if ([ShecareBLEThermometer sharedThermometer].activeThermometer != nil) {
+    if ([SCBLEThermometer sharedThermometer].activePeripheral != nil) {
         return;
     }
     //  start to scan the peripheral
-    if ([[ShecareBLEThermometer sharedThermometer] connectThermometerWithMACList:[YCUtility bindedMACAddressList]]) {
+    if ([[SCBLEThermometer sharedThermometer] connectThermometerWithMACList:[YCUtility bindedMACAddressList]]) {
     }
 }
 
@@ -434,8 +427,8 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
             self.step2StatusButton.selected = NO;
             self.step2IndicateBtn.selected = NO;
         }
-        ShecareBLEThermometer *thermometer = [ShecareBLEThermometer sharedThermometer];
-        [self setConnectStatus:(nil != thermometer.activeThermometer)];
+        SCBLEThermometer *thermometer = [SCBLEThermometer sharedThermometer];
+        [self setConnectStatus:(nil != thermometer.activePeripheral)];
     });
 }
 
@@ -456,88 +449,15 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
                     [self handleBindAction];
                 }];
                 [self hideProgressHUD:NO];
-                [[ShecareBLEThermometer sharedThermometer] stopUpdateThermometerFirmwareImage];
+                [[SCBLEThermometer sharedThermometer] stopUpdateThermometerFirmwareImage];
             }
         } else {
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
-            self.macAddress = [ShecareBLEThermometer sharedThermometer].macAddress;
-            self.firmwareVersion = [ShecareBLEThermometer sharedThermometer].firmwareVersion;
+            self.macAddress = [SCBLEThermometer sharedThermometer].macAddress;
+            self.firmwareVersion = [SCBLEThermometer sharedThermometer].firmwareVersion;
             [self checkMACAddressIsBinded:nil];
         }
     });
-}
-
-- (void)updateMACAddress:(NSNotification *)notify {
-    self.macAddress = [ShecareBLEThermometer sharedThermometer].macAddress;
-    self.firmwareVersion = [ShecareBLEThermometer sharedThermometer].firmwareVersion;
-    [self checkMACAddressIsBinded:nil];
-}
-
-- (void)updateFirmwareRevision:(NSNotification *)notify {
-    self.macAddress = [ShecareBLEThermometer sharedThermometer].macAddress;
-    self.firmwareVersion = [ShecareBLEThermometer sharedThermometer].firmwareVersion;
-    [self checkMACAddressIsBinded:nil];
-}
-
-#pragma mark - OAD Delegate
-
-- (void)bleThermometerDidReadFirmwareImageType:(YCBLEFirmwareImageType)imgReversion {
-    NSLog(@"img reversion  %@", @(imgReversion));
-}
-
-- (void)bleThermometerDidBeginUpdateFirmwareImage {
-    if ([ShecareBLEThermometer sharedThermometer].activeThermometer == nil) {
-        [YCAlertController showAlertWithBody:@"未连接到设备" finished:nil];
-        return;
-    }
-    dispatch_async(dispatch_get_main_queue(), ^{
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        self.progressView.progress = 0.0;
-        self.progressView.progressLabel.text = @"0%";
-        [self.view addSubview:self.progressView];
-        [self.progressView showAnimated:YES];
-        self.view.userInteractionEnabled = NO;
-    });
-}
-
-- (void)bleThermometerDidUpdateFirmwareImage:(YCBLEOADResultType)type message:(NSString *)message {
-    switch (type) {
-        case YCBLEOADResultTypeSucceed: {
-            dispatch_async(dispatch_get_main_queue(), ^{
-                self.progressView.progress = 1.0;
-                self.progressView.progressLabel.text = @"100%";
-                self.firmwareVersion = self.newestFirmwareVersion;
-                [self hideProgressHUD:NO];
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                    [self handleBindAction];
-                    self.view.userInteractionEnabled = YES;
-                });
-            });
-        }
-            break;
-        case YCBLEOADResultTypeFailed: {
-            [self updateFirmwareImageFailed:message];
-        }
-            break;
-        case YCBLEOADResultTypeIsRunning: {
-        }
-            break;
-        default:
-            break;
-    }
-}
-
-- (void)bleThermometerUpdateFirmwareImageProgress:(CGFloat)progress {
-    dispatch_async(dispatch_get_main_queue(), ^{
-        self.progressView.progress = progress;
-        self.progressView.progressLabel.text = [NSString stringWithFormat:@"%@%%", @((NSInteger)(MIN(progress * 100, 100)))];
-    });
-}
-
-- (void)bleThermometerDidOnOTAStatus:(BOOL)isOn {
-    if (isOn == false) {
-        [YCAlertController showAlertWithBody:@"请把体温计连上电源" finished:nil];
-    }
 }
 
 - (void)updateFirmwareImageFailed:(NSString *)message {
@@ -566,6 +486,61 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
     } else {
         [self.progressView hideAnimated:NO];
     }
+}
+
+#pragma mark - OAD Delegate
+
+-(void)thermometer:(SCBLEThermometer *)thermometer didReadFirmwareImageType:(YCBLEFirmwareImageType)imgReversion {
+    NSLog(@"img reversion  %@", @(imgReversion));
+}
+
+-(void)thermometerDidBeginFirmwareImageUpdate:(SCBLEThermometer *)thermometer {
+    if ([SCBLEThermometer sharedThermometer].activePeripheral == nil) {
+        [YCAlertController showAlertWithBody:@"未连接到设备" finished:nil];
+        return;
+    }
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        self.progressView.progress = 0.0;
+        self.progressView.progressLabel.text = @"0%";
+        [self.view addSubview:self.progressView];
+        [self.progressView showAnimated:YES];
+        self.view.userInteractionEnabled = NO;
+    });
+}
+
+-(void)thermometer:(SCBLEThermometer *)thermometer didUpdateFirmwareImage:(YCBLEOADResultType)type message:(NSString *)message {
+    switch (type) {
+        case YCBLEOADResultTypeSucceed: {
+            dispatch_async(dispatch_get_main_queue(), ^{
+                self.progressView.progress = 1.0;
+                self.progressView.progressLabel.text = @"100%";
+                self.firmwareVersion = self.newestFirmwareVersion;
+                [self hideProgressHUD:NO];
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                    [self handleBindAction];
+                    self.view.userInteractionEnabled = YES;
+                });
+            });
+        }
+            break;
+        case YCBLEOADResultTypeFailed: {
+            [self updateFirmwareImageFailed:message];
+        }
+            break;
+        case YCBLEOADResultTypeIsRunning: {
+        }
+            break;
+        default:
+            break;
+    }
+}
+
+-(void)thermometer:(SCBLEThermometer *)thermometer firmwareImageUpdateProgress:(CGFloat)progress {
+    dispatch_async(dispatch_get_main_queue(), ^{
+        self.progressView.progress = progress;
+        self.progressView.progressLabel.text = [NSString stringWithFormat:@"%@%%", @((NSInteger)(MIN(progress * 100, 100)))];
+    });
 }
 
 #pragma mark - lazy load
@@ -782,9 +757,9 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
     return  _line3View;
 }
 
--(OTAManager *)otaManager {
+-(SCOTAManager *)otaManager {
     if (_otaManager == nil) {
-        _otaManager = [[OTAManager alloc] init];
+        _otaManager = [[SCOTAManager alloc] init];
     }
     return _otaManager;
 }
