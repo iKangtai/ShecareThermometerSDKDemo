@@ -7,7 +7,7 @@
 
 ### Demo 地址
 
-https://e.coding.net/yuncheng/shecarethermometersdkdemo/ShecareThermometerSDKDemo.git
+<http://fir.ikangtai.cn/kf21>
 
 ### 类定义
 
