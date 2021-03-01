@@ -71,7 +71,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
             self.step1IndicateBtn.selected = YES;
             self.macAddress = thermometer.macAddress;
             self.firmwareVersion = thermometer.firmwareVersion;
-            [self checkMACAddressIsBinded:nil];
+            [self checkMACAddressIsBinded];
         });
     } else {
         NSString *state = @"";
@@ -306,9 +306,9 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
 #pragma mark - button status
 
 ///  检查 MAC 地址是否已被绑定。调用此函数时，App与硬件是连接状态
-- (void)checkMACAddressIsBinded:(UIButton *)sender {
-    if (!IS_EMPTY_STRING([SCBLEThermometer sharedThermometer].macAddress)
-        && !IS_EMPTY_STRING([SCBLEThermometer sharedThermometer].firmwareVersion)) {
+- (void)checkMACAddressIsBinded {
+    if (!IS_EMPTY_STRING(self.macAddress)
+        && !IS_EMPTY_STRING(self.firmwareVersion)) {
         NSString *macStr = [YCUtility bindedMACAddressList];
         
         if ([macStr isKindOfClass:[NSString class]]
@@ -327,12 +327,11 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
 }
 
 -(void)checkFirmwareVersion {
-    NSInteger factory = 1; // 1 孕橙 2 安康源
-    if ([[SCBLEThermometer sharedThermometer] isA33]) {
-        factory = 2;
-    }
-
-    NSDictionary *dataDict = @{@"version": @"3.65", @"A": @"http://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/A31/Athermometer.bin", @"B": @"http://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/A31/Bthermometer.bin"};
+    NSDictionary *dataDict = @{
+        @"version": @"3.65",
+        @"A": @"http://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/A31/Athermometer.bin",
+        @"B": @"http://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/A31/Bthermometer.bin"
+    };
     NSMutableArray *urlsM = [NSMutableArray array];
     if (dataDict[@"A"] != nil) {
         [urlsM addObject:dataDict[@"A"]];
@@ -433,7 +432,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
 }
 
 - (void)thermometerConnected:(NSNotification *)notify {
-    BOOL connected = [notify.object boolValue];
+    BOOL connected = [SCBLEThermometer sharedThermometer].activePeripheral != nil;
     dispatch_async(dispatch_get_main_queue(), ^{
         self.step2StatusButton.selected = connected;
         self.step2IndicateBtn.selected = connected;
@@ -455,7 +454,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
             [MBProgressHUD showHUDAddedTo:self.view animated:YES];
             self.macAddress = [SCBLEThermometer sharedThermometer].macAddress;
             self.firmwareVersion = [SCBLEThermometer sharedThermometer].firmwareVersion;
-            [self checkMACAddressIsBinded:nil];
+            [self checkMACAddressIsBinded];
         }
     });
 }

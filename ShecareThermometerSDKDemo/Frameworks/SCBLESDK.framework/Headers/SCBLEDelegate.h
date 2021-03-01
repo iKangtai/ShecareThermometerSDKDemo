@@ -116,6 +116,4 @@
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didGetOTAPowerStatus:(BOOL)isOn;
 
-@optional
-
 @end

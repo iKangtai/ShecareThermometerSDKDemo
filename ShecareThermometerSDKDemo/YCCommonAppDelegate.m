@@ -125,9 +125,7 @@
         //  硬件连接后的提示
         [YCAlertController showToast:@"已连接" completion:nil];
     }
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(3.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_ThermometerConnectSuccessed object:@(YES)];
-    });
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_ThermometerConnectSuccessed object:@(YES)];
 }
 
 -(void)didFailedToConnectThermometer:(SCBLEThermometer *)thermometer {
