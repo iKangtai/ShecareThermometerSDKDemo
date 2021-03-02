@@ -1,197 +1,210 @@
-#shecarethermometersdkdemo
+# ShecareThermometerSDKDemo
 
-#### 集成注意事项
-
-1. 最低兼容版本 iOS 11.0；
-2. 需要引入 CoreBluetooth 系统库；
-
-### Demo 地址
+## Demo 
 
 <http://fir.ikangtai.cn/kf21>
 
-### 类定义
+English | [中文文档](README_zh.md)
 
-#### 核心服务类：SCBLEThermometer
+## Access Guide
+### SDK features
+
+| Function item                    |  Function description      |
+| ------------------------- | ------------      |
+| Scan for nearby Bluetooth devices          | Scan for Bluetooth devices near the phone and refresh the device list every second |
+| Connect to Shecare thermometer to synchronize data&nbsp;&nbsp;&nbsp;&nbsp;| Connect the thermometer to synchronize data, set the thermometer temperature unit and time, and get the firmware version |
+| Connect Shecare forehead thermometer to synchronize data&nbsp;&nbsp;| Connect the forehead thermometer to synchronize data and get the firmware version number |
+| Connect to Shecare fetal heart rate monitor to synchronize data&nbsp;&nbsp;| Connect the forehead thermometer to synchronize data and get the firmware version number |
+| Connect Shecare body temperature stickers to synchronize data&nbsp;&nbsp;| Connect the forehead thermometer to synchronize data and get the firmware version number |
+
+### Integration considerations
+
+1. The minimum compatible version iOS 11.0;
+2. Need to introduce CoreBluetooth system library;
+
+### Class definition
+
+#### Core service class: SCBLEThermometer
 
 ```Objective-C
-/** 代理对象，需要实现 BLEThermometerDelegate、BLEThermometerOADDelegate 协议 */
+/** Proxy object, need to implement BLEThermometerDelegate, BLEThermometerOADDelegate protocol */
 @property (nonatomic, weak) id <BLEThermometerDelegate> delegate;
 @property (nonatomic, weak) id <BLEThermometerOADDelegate> oadDelegate;
 
-/** 单例 */
+/** Singleton */
 +(instancetype)sharedThermometer;
 
 /**
- * 判断当前连接的 activePeripheral 是否是 A33 硬件
+ * Determine whether the currently connected activePeripheral is A33 hardware
  */
-- (BOOL)isA33;
+-(BOOL)isA33;
 
 /**
- * 返回当前设备的 BLE 状态
+ * Return the BLE status of the current device
  */
-- (YCBLEState)bleState;
+-(YCBLEState)bleState;
 
 /**
- * 断开当前连接的设备
+ * Disconnect the currently connected device
  */
-- (void)disconnectActiveThermometer;
+-(void)disconnectActiveThermometer;
 
 /**
- * 扫描并连接设备
+ * Scan and connect the device
  *
- * @param macList 用户绑定的 MAC 地址列表，形式为逗号分隔的字符串，如 “C8:FD:19:02:92:8D,C8:FD:19:02:92:8E”
+ * @param macList user-bound MAC address list, in the form of a comma-separated string, such as "C8:FD:19:02:92:8D,C8:FD:19:02:92:8E"
  *
- * @return 如果成功开始扫描，返回 true，否则返回 false
+ * @return If the scan starts successfully, return true, otherwise return false
  */
-- (BOOL)connectThermometerWithMACList:(NSString *)macList;
+-(BOOL)connectThermometerWithMACList:(NSString *)macList;
 
 /**
- * 停止扫描
+ * Stop scanning
  */
-- (void)stopThermometerScan;
+-(void)stopThermometerScan;
 
 /**
- * 开始 OAD
+ * Start OAD
  *
- * @param imgPaths 固件安装包所在的路径（A面和B面）
+ * @param imgPaths The path where the firmware installation package is located (side A and side B)
  */
-- (void)updateThermometerFirmware:(NSArray <NSString *>*)imgPaths;
+-(void)updateThermometerFirmware:(NSArray <NSString *>*)imgPaths;
 
 /**
- * 停止正在进行的 OAD
+ * Stop the ongoing OAD
  */
-- (void)stopUpdateThermometerFirmwareImage;
+-(void)stopUpdateThermometerFirmwareImage;
 
 /**
- * 修改温度类型、获取电量、给硬件返回接收到的温度数量 和 开始获取温度 等指令
+ * Modify the temperature type, obtain the power, return the received temperature quantity to the hardware, and start obtaining the temperature, etc.
  *
- * @param cleanState 指令类型
+ * @param cleanState command type
  */
-- (void)setCleanState:(NSInteger)cleanState xx:(Byte)xx yy:(Byte)yy;
+-(void)setCleanState:(NSInteger)cleanState xx:(Byte)xx yy:(Byte)yy;
 
 /**
- * 同步设备时间
+ * Synchronize device time
  *
- * @param date 时间
+ * @param date time
  */
-- (void)synchroizeTime:(NSDate *)date;
+-(void)synchroizeTime:(NSDate *)date;
 ```
 
 #### SCBLEDefines
 
 ```Objective-C
-///  指令类型：OAD
-#define YCBLECommandTypeOAD       2
-///  指令类型：获取电量
-#define YCBLECommandTypeGetPower  3
-///  指令类型：温度类型 ℃
-#define YCBLECommandTypeSetUnitC  4
-///  指令类型：温度类型 ℉
-#define YCBLECommandTypeSetUnitF  5
+/// Instruction type: OAD
+#define YCBLECommandTypeOAD 2
+/// Instruction type: get power
+#define YCBLECommandTypeGetPower 3
+/// Instruction type: temperature type ℃
+#define YCBLECommandTypeSetUnitC 4
+/// Instruction type: temperature type ℉
+#define YCBLECommandTypeSetUnitF 5
 
-///  用户硬件镜像版本
+/// User hardware mirror version
 typedef NS_ENUM(NSInteger, YCBLEFirmwareImageType) {
-    ///  未知版本
+    /// Unknown version
     YCBLEFirmwareImageTypeUnknown,
-    ///  A 版本
+    /// A version
     YCBLEFirmwareImageTypeA,
-    ///  B 版本
+    /// Version B
     YCBLEFirmwareImageTypeB,
 };
 
-///  蓝牙连接类型
+/// Bluetooth connection type
 typedef NS_ENUM(NSInteger, YCBLEConnectType) {
-    ///  绑定时的连接（可以连接所有设备）
-    YCBLEConnectTypeBinding     = 0,
-    ///  非绑定时的连接（只能连接 “已绑定” 的硬件）
-    YCBLEConnectTypeNotBinding  = 1
+    /// Connection during binding (all devices can be connected)
+    YCBLEConnectTypeBinding = 0,
+    /// Connection when unbound (only "bound" hardware can be connected)
+    YCBLEConnectTypeNotBinding = 1
 };
 
-///  蓝牙状态定义
+/// Bluetooth status definition
 typedef NS_ENUM(NSInteger, YCBLEState) {
-    ///  有效
+    /// valid
     YCBLEStateValid = 0,
-    ///  未知状态
+    /// Unknown status
     YCBLEStateUnknown,
-    ///  不支持 BLE
+    /// BLE is not supported
     YCBLEStateUnsupported,
-    ///  用户未授权
+    /// User is not authorized
     YCBLEStateUnauthorized,
-    ///  BLE 关闭
+    /// BLE off
     YCBLEStatePoweredOff,
-    ///  Resetting
+    /// Resetting
     YCBLEStateResetting
 };
 
-///  OAD 错误类型
+/// OAD error type
 typedef NS_ENUM(NSInteger, YCBLEOADResultType) {
-    ///  OAD 成功结束
-    YCBLEOADResultTypeSucceed   = 0,
-    ///  PAD 失败（指令发送结束 2s 后，还没有断开连接）
-    YCBLEOADResultTypeFailed    = 1,
-    ///  OAD 正在运行
+    /// OAD successfully ended
+    YCBLEOADResultTypeSucceed = 0,
+    /// PAD failed (2s after the command is sent, the connection has not been disconnected)
+    YCBLEOADResultTypeFailed = 1,
+    /// OAD is running
     YCBLEOADResultTypeIsRunning = 2,
 };
 ```
 
-#### 返回代理类
+#### Back to proxy class
 
 - BLEThermometerDelegate
 
 ```Objective-C
 @required
 /**
- *  连接设备成功的回调
- *  @param  thermometer 当前体温计实例
+ * Callback for successful connection of the device
+ * @param thermometer current thermometer example
  */
--(void)didConnectThermometer:(SCBLEThermometer *)thermometer ;
+-(void)didConnectThermometer:(SCBLEThermometer *)thermometer;
 
 /**
- *  连接设备失败的回调
- *  @param  thermometer 当前体温计实例
+ * Callback for failed device connection
+ * @param thermometer current thermometer example
  */
 -(void)didFailedToConnectThermometer:(SCBLEThermometer *)thermometer;
 
 /**
- *  与设备的连接异常断开的回调
- *  @param  thermometer 当前体温计实例
+ * Callback for abnormal disconnection from the device
+ * @param thermometer current thermometer example
  */
 -(void)didDisconnectThermometer:(SCBLEThermometer *)thermometer error:(NSError*)error;
 
 /**
- *  设备蓝牙状态改变的回调
- *  @param  thermometer 当前体温计实例
- *  @param  state 更新后的蓝牙状态
+ * Callback for device Bluetooth status change
+ * @param thermometer current thermometer example
+ * @param state updated Bluetooth state
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didUpdateBluetoothState:(YCBLEState)state;
 
 /**
- *  温度测量完成的回调
- *  @param  thermometer 当前体温计实例
- *  @param  temperatures  测量温度数组
+ * Callback when temperature measurement is completed
+ * @param thermometer current thermometer example
+ * @param temperatures measure temperature array
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didUploadTemperatures:(NSArray <SCBLETemperature *>*)temperatures;
 
 @optional
 
 /**
- *  同步时间的回调
- *  @param  thermometer 当前体温计实例
- *  @param  success 指令发送结果
+ * Sync time callback
+ * @param thermometer current thermometer example
+ * @param success command to send the result
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didSynchronizeDate:(BOOL)success;
 
 /**
- *  获取温度计电量结果的回调
- *  @param  thermometer 当前体温计实例
- *  @param  powerValue 电量
+ * Get the callback of the thermometer power result
+ * @param thermometer current thermometer example
+ * @param powerValue power
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didGetPower:(float)powerValue;
 
 /**
- *  设置温度类型结果的回调
- *  @param  thermometer 当前体温计实例
- *  @param  success 结果
+ * Set the callback of the temperature type result
+ * @param thermometer current thermometer example
+ * @param success result
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didChangeTemperatureUnit:(BOOL)success;
 ```
@@ -203,39 +216,39 @@ typedef NS_ENUM(NSInteger, YCBLEOADResultType) {
 @required
 
 /**
- *  镜像文件开始写入的回调
- *  @param  thermometer 当前体温计实例
+ * Callback when the image file starts to be written
+ * @param thermometer current thermometer example
  */
 -(void)thermometerDidBeginFirmwareImageUpdate:(SCBLEThermometer *)thermometer;
 
 /**
- *  完成镜像文件写入的回调
- *  @param  thermometer 当前体温计实例
- *  @param  type  OAD 错误类型
- *  @param  message OAD 错误信息
+ * Completion of the callback for writing the image file
+ * @param thermometer current thermometer example
+ * @param type OAD error type
+ * @param message OAD error message
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didUpdateFirmwareImage:(YCBLEOADResultType)type message:(NSString *)message;
 
 /**
- *  镜像文件写入进度的回调
- *  @param  thermometer 当前体温计实例
- *  @param  progress 完成进度
+ * Callback of mirror file writing progress
+ * @param thermometer current thermometer example
+ * @param progress complete progress
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer firmwareImageUpdateProgress:(CGFloat)progress;
 
 @optional
 
 /**
- *  用户硬件镜像版本的回调。仅用于 OAD，不适用于 OTA
- *  @param  thermometer 当前体温计实例
- *  @param  imgReversion 用户硬件镜像版本
+ * Callback of the user's hardware mirroring version. Only for OAD, not for OTA
+ * @param thermometer current thermometer example
+ * @param imgReversion user hardware mirror version
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didReadFirmwareImageType:(YCBLEFirmwareImageType)imgReversion;
 
 /**
- *  设备电源连接状态的回调。四代体温计使用锂电池，OTA 时必须连接电源；三代体温计使用纽扣电池，不需要实现此代理方法。
- *  @param  thermometer 当前体温计实例
- *  @param  isOn 电源连接状态
+ * Callback of device power connection status. The fourth-generation thermometer uses a lithium battery, and it must be connected to the power supply for OTA; the third-generation thermometer uses a button battery and does not need to implement this proxy method.
+ * @param thermometer current thermometer example
+ * @param isOn Power connection status
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didGetOTAPowerStatus:(BOOL)isOn;
 ```
