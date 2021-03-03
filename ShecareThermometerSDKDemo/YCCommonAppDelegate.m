@@ -96,23 +96,38 @@
         [YCUtility addTemperatureInfoToLocal:tempInfo];
     }
     
-    UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:timeInt repeats:NO];
-    UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
-    content.title = @"";
-    content.body = message;
-    content.sound = [UNNotificationSound defaultSound];
-    content.userInfo = @{
-        @"lntype" : @"tempAlarm",
-        @"temperatures": tempDicts.copy
-    };
-    UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"temperatureAlarm" content:content.copy trigger:trigger];
-    [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
-        if (error != nil) {
-            NSLog(@"Error: %@", error);
-        } else {
-            NSLog(@"%s Succeed! ", __FUNCTION__);
-        }
-    }];
+    if (@available(iOS 10.0, *)) {
+        UNTimeIntervalNotificationTrigger *trigger = [UNTimeIntervalNotificationTrigger triggerWithTimeInterval:timeInt repeats:NO];
+        UNMutableNotificationContent *content = [[UNMutableNotificationContent alloc] init];
+        content.title = @"";
+        content.body = message;
+        content.sound = [UNNotificationSound defaultSound];
+        content.userInfo = @{
+            @"lntype" : @"tempAlarm",
+            @"temperatures": tempDicts.copy
+        };
+        UNNotificationRequest *request = [UNNotificationRequest requestWithIdentifier:@"temperatureAlarm" content:content.copy trigger:trigger];
+        [[UNUserNotificationCenter currentNotificationCenter] addNotificationRequest:request withCompletionHandler:^(NSError * _Nullable error) {
+            if (error != nil) {
+                NSLog(@"Error: %@", error);
+            } else {
+                NSLog(@"%s Succeed! ", __FUNCTION__);
+            }
+        }];
+    } else {
+        NSString *subTitleStr = @"温馨提示";
+        UILocalNotification *alarmNotification = [[UILocalNotification alloc] init];
+        alarmNotification.fireDate = [NSDate dateWithTimeIntervalSinceNow:timeInt];
+        alarmNotification.soundName = UILocalNotificationDefaultSoundName;
+        alarmNotification.alertBody = [NSString stringWithFormat:@"%@\n%@", subTitleStr, message];
+        alarmNotification.userInfo = @{
+            @"lntype" : @"tempAlarm",
+            @"temperatures": tempDicts.copy
+        };
+        alarmNotification.repeatInterval = 0;
+        alarmNotification.timeZone = [NSTimeZone systemTimeZone];
+        [[UIApplication sharedApplication] scheduleLocalNotification:alarmNotification];
+    }
 }
 
 #pragma mark - BLEThermometerDelegate
@@ -142,7 +157,7 @@
 }
 
 -(void)thermometer:(SCBLEThermometer *)thermometer didUpdateBluetoothState:(YCBLEState)state {
-    if (state != YCBLEStateValid) {
+    if (state != YCBLEStatePoweredOn) {
         [SCBLEThermometer sharedThermometer].activePeripheral = nil;
         [SCBLEThermometer sharedThermometer].macAddress = @"";
         [SCBLEThermometer sharedThermometer].firmwareVersion = @"";

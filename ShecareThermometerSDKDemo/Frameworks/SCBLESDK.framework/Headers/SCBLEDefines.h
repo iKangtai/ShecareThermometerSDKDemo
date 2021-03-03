@@ -44,7 +44,7 @@ typedef NS_ENUM(NSInteger, YCBLEConnectType) {
 ///  蓝牙状态定义
 typedef NS_ENUM(NSInteger, YCBLEState) {
     ///  有效
-    YCBLEStateValid = 0,
+    YCBLEStatePoweredOn = 0,
     ///  未知状态
     YCBLEStateUnknown,
     ///  不支持 BLE

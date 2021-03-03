@@ -324,7 +324,7 @@ static NSString *inputTimeTFReuseID = @"YCInputTimeTFReuseID";
 
 -(void)setTime:(NSDate *)time {
     _time = time;
-    self.numbers = [self numbersWithText:[NSString stringWithFormat:@"%02ld%02ld", time.hour, time.minute] length:4];
+    self.numbers = [self numbersWithText:[NSString stringWithFormat:@"%02ld%02ld", (long)time.hour, (long)time.minute] length:4];
     [self.contentView reloadData];
 }
 

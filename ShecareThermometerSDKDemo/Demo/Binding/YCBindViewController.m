@@ -97,7 +97,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
                 }];
             }
                 break;
-            case YCBLEStateValid:
+            case YCBLEStatePoweredOn:
                 self.bluetoothIsConnected = true;
                 self.step1StatusButton.selected = YES;
                 self.step1IndicateBtn.selected = YES;
@@ -417,7 +417,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
     YCBLEState state = (YCBLEState)[num integerValue];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (state == YCBLEStateValid) {
+        if (state == YCBLEStatePoweredOn) {
             self.step1StatusButton.selected = YES;
             self.step1IndicateBtn.selected = YES;
         } else {

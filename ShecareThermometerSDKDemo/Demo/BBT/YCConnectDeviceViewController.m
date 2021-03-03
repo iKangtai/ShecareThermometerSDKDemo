@@ -69,7 +69,7 @@
                     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:UIApplicationOpenSettingsURLString]];
                 }];
                 break;
-            case YCBLEStateValid:
+            case YCBLEStatePoweredOn:
                 self.step1Btn.selected = YES;
                 [SCBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeNotBinding;
                 [SHAREDAPP startScan];
@@ -280,7 +280,7 @@
     YCBLEState state = (YCBLEState)[num integerValue];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        if (state == YCBLEStateValid) {
+        if (state == YCBLEStatePoweredOn) {
             self.step1Btn.selected = YES;
         } else {
             self.step1Btn.selected = NO;
