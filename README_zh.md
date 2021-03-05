@@ -13,9 +13,6 @@
 | ------------------------- | ------------      |
 | 扫描附近的蓝牙设备          | 扫描手机附近的蓝牙设备，并每秒刷新设备列表 |
 | 连接到Shecare温度计以同步数据&nbsp;&nbsp;&nbsp;&nbsp;| 连接温度计以同步数据，设置温度计的温度单位和时间，并获取固件版本 |
-| 连接Shecare额温枪同步数据&nbsp;&nbsp;| 连接额温枪同步数据并获取固件版本号 |
-| 连接Shecare胎心仪同步数据&nbsp;&nbsp;| 连接胎心仪同步数据并获取固件版本号 |
-| 连接Shecare体温贴同步数据&nbsp;&nbsp;| 连接体温贴同步数据并获取固件版本号 |
 
 ### 集成注意事项
 
@@ -33,11 +30,6 @@
 
 /** 单例 */
 +(instancetype)sharedThermometer;
-
-/**
- * 判断当前连接的 activePeripheral 是否是 A33 硬件
- */
-- (BOOL)isA33;
 
 /**
  * 返回当前设备的 BLE 状态
@@ -64,6 +56,13 @@
 - (void)stopThermometerScan;
 
 /**
+ * Check firmware version
+ *
+ * @param completion 回调，返回当前连接的硬件是否需要升级；如果需要升级，在 imagePaths 里返回镜像文件的 URL
+ */
+- (void)checkFirmwareVersionCompletion:(void (^)(BOOL needUpgrade, NSDictionary * _Nullable imagePaths))completion;
+
+/**
  * 开始 OAD
  *
  * @param imgPaths 固件安装包所在的路径（A面和B面）
@@ -85,9 +84,9 @@
 /**
  * 同步设备时间
  *
- * @param date 时间
+ * @param time 时间
  */
-- (void)synchroizeTime:(NSDate *)date;
+- (void)synchroizeTime:(NSDate *)time;
 ```
 
 #### SCBLEDefines
@@ -102,7 +101,7 @@
 ///  指令类型：温度类型 ℉
 #define YCBLECommandTypeSetUnitF  5
 
-///  用户硬件镜像版本
+///  硬件镜像版本
 typedef NS_ENUM(NSInteger, YCBLEFirmwareImageType) {
     ///  未知版本
     YCBLEFirmwareImageTypeUnknown,
@@ -122,8 +121,8 @@ typedef NS_ENUM(NSInteger, YCBLEConnectType) {
 
 ///  蓝牙状态定义
 typedef NS_ENUM(NSInteger, YCBLEState) {
-    ///  有效
-    YCBLEStateValid = 0,
+    ///  BLE 可用
+    YCBLEStatePoweredOn = 0,
     ///  未知状态
     YCBLEStateUnknown,
     ///  不支持 BLE
@@ -147,7 +146,7 @@ typedef NS_ENUM(NSInteger, YCBLEOADResultType) {
 };
 ```
 
-#### 返回代理类
+#### Delegate
 
 - BLEThermometerDelegate
 

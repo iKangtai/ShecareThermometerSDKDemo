@@ -17,60 +17,59 @@
 
 @required
 /**
- *  连接设备成功的回调
- *  @param  thermometer 当前体温计实例
+ * Callback for successful connection of the device
+ * @param thermometer current thermometer example
  */
--(void)didConnectThermometer:(SCBLEThermometer *)thermometer ;
+-(void)didConnectThermometer:(SCBLEThermometer *)thermometer;
 
 /**
- *  连接设备失败的回调
- *  @param  thermometer 当前体温计实例
+ * Callback for failed device connection
+ * @param thermometer current thermometer example
  */
 -(void)didFailedToConnectThermometer:(SCBLEThermometer *)thermometer;
 
 /**
- *  与设备的连接异常断开的回调
- *  @param  thermometer 当前体温计实例
+ * Callback for abnormal disconnection from the device
+ * @param thermometer current thermometer example
  */
 -(void)didDisconnectThermometer:(SCBLEThermometer *)thermometer error:(NSError*)error;
 
 /**
- *  设备蓝牙状态改变的回调
- *  @param  thermometer 当前体温计实例
- *  @param  state 更新后的蓝牙状态
+ * Callback for device Bluetooth status change
+ * @param thermometer current thermometer example
+ * @param state updated Bluetooth state
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didUpdateBluetoothState:(YCBLEState)state;
 
 /**
- *  温度测量完成的回调
- *  @param  thermometer 当前体温计实例
- *  @param  temperatures  测量温度数组
+ * Callback when temperature measurement is completed
+ * @param thermometer current thermometer example
+ * @param temperatures measure temperature array
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didUploadTemperatures:(NSArray <SCBLETemperature *>*)temperatures;
 
 @optional
 
 /**
- *  同步时间的回调
- *  @param  thermometer 当前体温计实例
- *  @param  success 指令发送结果
+ * Sync time callback
+ * @param thermometer current thermometer example
+ * @param success command to send the result
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didSynchronizeDate:(BOOL)success;
 
 /**
- *  获取温度计电量结果的回调
- *  @param  thermometer 当前体温计实例
- *  @param  powerValue 电量
+ * Get the callback of the thermometer power result
+ * @param thermometer current thermometer example
+ * @param powerValue power
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didGetPower:(float)powerValue;
 
 /**
- *  设置温度类型结果的回调
- *  @param  thermometer 当前体温计实例
- *  @param  success 结果
+ * Set the callback of the temperature type result
+ * @param thermometer current thermometer example
+ * @param success result
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didChangeTemperatureUnit:(BOOL)success;
-
 
 @end
 
@@ -80,39 +79,39 @@
 @required
 
 /**
- *  镜像文件开始写入的回调
- *  @param  thermometer 当前体温计实例
+ * Callback when the image file starts to be written
+ * @param thermometer current thermometer example
  */
 -(void)thermometerDidBeginFirmwareImageUpdate:(SCBLEThermometer *)thermometer;
 
 /**
- *  完成镜像文件写入的回调
- *  @param  thermometer 当前体温计实例
- *  @param  type  OAD 错误类型
- *  @param  message OAD 错误信息
+ * Completion of the callback for writing the image file
+ * @param thermometer current thermometer example
+ * @param type OAD error type
+ * @param message OAD error message
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didUpdateFirmwareImage:(YCBLEOADResultType)type message:(NSString *)message;
 
 /**
- *  镜像文件写入进度的回调
- *  @param  thermometer 当前体温计实例
- *  @param  progress 完成进度
+ * Callback of mirror file writing progress
+ * @param thermometer current thermometer example
+ * @param progress complete progress
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer firmwareImageUpdateProgress:(CGFloat)progress;
 
 @optional
 
 /**
- *  用户硬件镜像版本的回调。仅用于 OAD，不适用于 OTA
- *  @param  thermometer 当前体温计实例
- *  @param  imgReversion 用户硬件镜像版本
+ * Callback of the user's hardware mirroring version. Only for OAD, not for OTA
+ * @param thermometer current thermometer example
+ * @param imgReversion user hardware mirror version
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didReadFirmwareImageType:(YCBLEFirmwareImageType)imgReversion;
 
 /**
- *  设备电源连接状态的回调。四代体温计使用锂电池，OTA 时必须连接电源；三代体温计使用纽扣电池，不需要实现此代理方法。
- *  @param  thermometer 当前体温计实例
- *  @param  isOn 电源连接状态
+ * Callback of device power connection status. The fourth-generation thermometer uses a lithium battery, and it must be connected to the power supply for OTA; the third-generation thermometer uses a button battery and does not need to implement this proxy method.
+ * @param thermometer current thermometer example
+ * @param isOn Power connection status
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didGetOTAPowerStatus:(BOOL)isOn;
 

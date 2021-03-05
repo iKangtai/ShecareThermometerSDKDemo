@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04493CFB25F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04493CFA25F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.m */; };
 		10142D5025BD7586008696A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142D4F25BD7586008696A5 /* AppDelegate.m */; };
 		10142D5625BD7586008696A5 /* YCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142D5525BD7586008696A5 /* YCMainViewController.m */; };
 		10142D5E25BD7587008696A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10142D5C25BD7587008696A5 /* LaunchScreen.storyboard */; };
@@ -83,6 +84,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		04493CF925F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+YCExtension.h"; sourceTree = "<group>"; };
+		04493CFA25F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+YCExtension.m"; sourceTree = "<group>"; };
 		10142D4B25BD7586008696A5 /* ShecareThermometerSDKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShecareThermometerSDKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10142D4E25BD7586008696A5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		10142D4F25BD7586008696A5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -267,6 +270,8 @@
 				10142E7525C06DFB008696A5 /* YCString+Extension.m */,
 				10142DF025BD8B5E008696A5 /* CAGradientLayer+YCExtension.h */,
 				10142DEF25BD8B5E008696A5 /* CAGradientLayer+YCExtension.m */,
+				04493CF925F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.h */,
+				04493CFA25F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.m */,
 				10142DFF25BD8D94008696A5 /* NSDate+YCUtilities.h */,
 				10142E0025BD8D94008696A5 /* NSDate+YCUtilities.m */,
 				10142E7025C06BCB008696A5 /* YCButton+Extension.h */,
@@ -650,6 +655,7 @@
 				10142EB525C0A124008696A5 /* YCCommonAppDelegate.m in Sources */,
 				10142DF125BD8B5E008696A5 /* CAGradientLayer+YCExtension.m in Sources */,
 				10142E6825C064C9008696A5 /* YCPickerView.m in Sources */,
+				04493CFB25F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.m in Sources */,
 				10142E7725C06DFB008696A5 /* YCString+Extension.m in Sources */,
 				1077F29925C503D50044E77C /* YCDeviceListViewController.m in Sources */,
 				10142D5025BD7586008696A5 /* AppDelegate.m in Sources */,

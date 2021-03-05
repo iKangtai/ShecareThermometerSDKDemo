@@ -13,9 +13,6 @@ English | [中文文档](README_zh.md)
 | ------------------------- | ------------      |
 | Scan for nearby Bluetooth devices          | Scan for Bluetooth devices near the phone and refresh the device list every second |
 | Connect to Shecare thermometer to synchronize data&nbsp;&nbsp;&nbsp;&nbsp;| Connect the thermometer to synchronize data, set the thermometer temperature unit and time, and get the firmware version |
-| Connect Shecare forehead thermometer to synchronize data&nbsp;&nbsp;| Connect the forehead thermometer to synchronize data and get the firmware version number |
-| Connect to Shecare fetal heart rate monitor to synchronize data&nbsp;&nbsp;| Connect the forehead thermometer to synchronize data and get the firmware version number |
-| Connect Shecare body temperature stickers to synchronize data&nbsp;&nbsp;| Connect the forehead thermometer to synchronize data and get the firmware version number |
 
 ### Integration considerations
 
@@ -33,11 +30,6 @@ English | [中文文档](README_zh.md)
 
 /** Singleton */
 +(instancetype)sharedThermometer;
-
-/**
- * Determine whether the currently connected activePeripheral is A33 hardware
- */
--(BOOL)isA33;
 
 /**
  * Return the BLE status of the current device
@@ -64,6 +56,13 @@ English | [中文文档](README_zh.md)
 -(void)stopThermometerScan;
 
 /**
+ * Check firmware version
+ *
+ * @param completion Callback, return whether the currently connected hardware needs to be upgraded; if it needs to be upgraded, return the URL of the image file in imagePaths
+ */
+- (void)checkFirmwareVersionCompletion:(void (^)(BOOL needUpgrade, NSDictionary * _Nullable imagePaths))completion;
+
+/**
  * Start OAD
  *
  * @param imgPaths The path where the firmware installation package is located (side A and side B)
@@ -85,9 +84,9 @@ English | [中文文档](README_zh.md)
 /**
  * Synchronize device time
  *
- * @param date time
+ * @param time Time
  */
--(void)synchroizeTime:(NSDate *)date;
+- (void)synchroizeTime:(NSDate *)time;
 ```
 
 #### SCBLEDefines
@@ -102,13 +101,13 @@ English | [中文文档](README_zh.md)
 /// Instruction type: temperature type ℉
 #define YCBLECommandTypeSetUnitF 5
 
-/// User hardware mirror version
+/// Hardware mirror version
 typedef NS_ENUM(NSInteger, YCBLEFirmwareImageType) {
     /// Unknown version
     YCBLEFirmwareImageTypeUnknown,
     /// A version
     YCBLEFirmwareImageTypeA,
-    /// Version B
+    /// B version
     YCBLEFirmwareImageTypeB,
 };
 
@@ -122,13 +121,13 @@ typedef NS_ENUM(NSInteger, YCBLEConnectType) {
 
 /// Bluetooth status definition
 typedef NS_ENUM(NSInteger, YCBLEState) {
-    /// valid
-    YCBLEStateValid = 0,
+    /// Powered on
+    YCBLEStatePoweredOn = 0,
     /// Unknown status
     YCBLEStateUnknown,
     /// BLE is not supported
     YCBLEStateUnsupported,
-    /// User is not authorized
+    /// User not authorized
     YCBLEStateUnauthorized,
     /// BLE off
     YCBLEStatePoweredOff,
@@ -147,7 +146,7 @@ typedef NS_ENUM(NSInteger, YCBLEOADResultType) {
 };
 ```
 
-#### Back to proxy class
+#### Delegate
 
 - BLEThermometerDelegate
 

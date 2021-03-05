@@ -18,4 +18,3 @@ FOUNDATION_EXPORT const unsigned char SCBLESDKVersionString[];
 #import <SCBLESDK/SCBLEDefines.h>
 #import <SCBLESDK/SCBLEThermometer.h>
 #import <SCBLESDK/SCBLEDelegate.h>
-#import <SCBLESDK/SCOTAManager.h>

@@ -6,27 +6,23 @@
 	<dict>
 		<key>Headers/SCBLEDefines.h</key>
 		<data>
-		YoyKk3rmhgrPeKT79BWodw+P7og=
+		NSGWFfyoHu3qHooRFkLK2xVa7lc=
 		</data>
 		<key>Headers/SCBLEDelegate.h</key>
 		<data>
-		rLPh32Gswygfipp+eJGu7nsa34s=
+		q3AJWk5fq8EX1kNWoC+kF7SyZM8=
 		</data>
 		<key>Headers/SCBLESDK.h</key>
 		<data>
-		sw+xT9bwHL/Alg+cIjS84OzL+DI=
+		uDs+N4uZ0LFD//Ps8ZS59XFp53w=
 		</data>
 		<key>Headers/SCBLEThermometer.h</key>
 		<data>
-		ivjVMdPqec96vTsGvu5RlsyFK6I=
-		</data>
-		<key>Headers/SCOTAManager.h</key>
-		<data>
-		T5psGRtwcbpcjahHsjlA0rDnU44=
+		ABReUbbuWM/e6GB1/JfPD+eJcEk=
 		</data>
 		<key>Info.plist</key>
 		<data>
-		KACfxVPJqdvPfGsSqhBISAHLzkQ=
+		mRtGKSU7S4gh+GPU+OH5S9UHtwQ=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -39,55 +35,44 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			YoyKk3rmhgrPeKT79BWodw+P7og=
+			NSGWFfyoHu3qHooRFkLK2xVa7lc=
 			</data>
 			<key>hash2</key>
 			<data>
-			5MYcYab4OBEeY+iKamp+tObVLyE63brX3uP46bjEoCM=
+			CdC376V8VbTBQVZpjrjaQCOBDi9yyxCk1TAxms3VmGA=
 			</data>
 		</dict>
 		<key>Headers/SCBLEDelegate.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			rLPh32Gswygfipp+eJGu7nsa34s=
+			q3AJWk5fq8EX1kNWoC+kF7SyZM8=
 			</data>
 			<key>hash2</key>
 			<data>
-			tU0S2tUivYIS2/LyeC306OVNSJawoZNwfluvV2qxBNI=
+			Q1CPf4ZaX5CDiZoepiIr28/+dI6v0aOht8ao3CwyctE=
 			</data>
 		</dict>
 		<key>Headers/SCBLESDK.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			sw+xT9bwHL/Alg+cIjS84OzL+DI=
+			uDs+N4uZ0LFD//Ps8ZS59XFp53w=
 			</data>
 			<key>hash2</key>
 			<data>
-			cVALH+nS1sA0GmZNBXnGjiVlywN/Dp3Hr/WnJ+5onmQ=
+			2vQ0+1Fja/EqT+IjAeObZIX7O+xZgMjYlxcRyNlXEf8=
 			</data>
 		</dict>
 		<key>Headers/SCBLEThermometer.h</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			ivjVMdPqec96vTsGvu5RlsyFK6I=
+			ABReUbbuWM/e6GB1/JfPD+eJcEk=
 			</data>
 			<key>hash2</key>
 			<data>
-			dWhGjn3DlUEPAxS8B5MLdE77XZKNyounb3Mf+C8ONNQ=
-			</data>
-		</dict>
-		<key>Headers/SCOTAManager.h</key>
-		<dict>
-			<key>hash</key>
-			<data>
-			T5psGRtwcbpcjahHsjlA0rDnU44=
-			</data>
-			<key>hash2</key>
-			<data>
-			ZsGGWvVJ3B2BceVsIi7NSsAcZzUTS8ZsdYtIfo0bSYY=
+			fkuGvoij5N0s2Dnvw7RHgzt1VKSZ7ohY8M6JmKNXlSc=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

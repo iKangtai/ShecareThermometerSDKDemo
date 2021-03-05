@@ -40,8 +40,6 @@
 + (BOOL)extendedWithPath:(NSString *)path key:(NSString *)key value:(NSData *)value;
 ///  读取文件扩展属性
 + (NSData *)extendedWithPath:(NSString *)path key:(NSString *)key;
-///  版本号比较
-+ (NSComparisonResult)compareVersion:(NSString *)version1 and:(NSString *)version2;
 
 ///  APP 是否成功绑定了体温计设备
 + (BOOL)isAppBindThermometerSuccessed;

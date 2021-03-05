@@ -173,22 +173,6 @@
     return sucess;
 }
 
-+ (NSComparisonResult)compareVersion:(NSString *)version1 and:(NSString *)version2 {
-    
-    //  if version1 is newest  than version2 or the same with version2 , return YES, else return NO
-    float F1 = [version1 floatValue];
-    float F2 = [version2 floatValue];
-    
-    if (F1 - F2 > 10e-8) {
-        return NSOrderedDescending;
-    }
-    else if (fabsf(F1 - F2) >= 0 && fabsf(F1 - F2) < 10e-8) {
-        return NSOrderedSame;
-    }
-    
-    return NSOrderedAscending;
-}
-
 + (BOOL)isAppBindThermometerSuccessed {
     NSArray *bindedDatas = [[NSUserDefaults standardUserDefaults] objectForKey:kDefaults_UserHardwareInfos];
     return bindedDatas.count > 0;

@@ -12,6 +12,7 @@
 #import <SCBLESDK/SCBLESDK.h>
 #import "YCDownloadingFile.h"
 #import "YCBindSuccessViewController.h"
+#import "NSJSONSerialization+YCExtension.h"
 
 static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
 
@@ -48,7 +49,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
 @property (nonatomic, copy) NSString *macAddress;
 @property (nonatomic, copy) NSString *firmwareVersion;
 
-@property (nonatomic, strong) SCOTAManager *otaManager;
+@property (nonatomic, strong) NSMutableArray <NSString *>*localImgPaths;
 
 @end
 
@@ -195,94 +196,6 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
     [self.navigationController popViewControllerAnimated:YES];
 }
 
--(NSArray <NSString *>*)localImgPaths {
-    NSString *folderPath = [YCUtility firmwareImageFolderPath];
-    return @[
-        [folderPath stringByAppendingPathComponent:@"Athermometer.bin"],
-        [folderPath stringByAppendingPathComponent:@"Bthermometer.bin"]
-    ];
-}
-
-- (void)downloadFirmware {
-    YCWeakSelf(self)
-    [self.fileDownload downloadWithUrl:self.downloadUrls progressBlock:^(unsigned long long completeBytes, unsigned long long totalBytes) {
-        NSLog(@"completeBytes %lld,totalBytes %lld", completeBytes, totalBytes);
-    } completionBlock:^(NSString *curUrl, int curIndex, int totalUrlCount, NSData *downloadData) {
-        YCStrongSelf(self)
-        NSRange range = [curUrl rangeOfString:@"/" options:NSBackwardsSearch];
-        NSString *imgName = [curUrl substringFromIndex:range.location];
-        NSString *folderPath = [YCUtility firmwareImageFolderPath];
-        NSString *pathStr = [folderPath stringByAppendingPathComponent:imgName];
-        
-        NSFileManager *fileM = [NSFileManager defaultManager];
-        if ([fileM fileExistsAtPath:pathStr]) {
-            NSError *error = nil;
-            [fileM removeItemAtPath:pathStr error:&error];
-            if (error != nil) {
-                NSLog(@"OAD 旧文件清除失败：%@", error);
-            } else {
-                NSLog(@"OAD 旧文件清除成功！");
-            }
-        }
-        
-        if ([downloadData writeToFile:pathStr atomically:YES]) {
-            NSLog(@"OAD 文件保存成功！");
-        } else {
-            NSLog(@"OAD 文件保存失败！");
-        }
-        [YCUtility extendedWithPath:pathStr key:kDefaults_LocalFirmwareVersion value:[self.newestFirmwareVersion dataUsingEncoding:NSUTF8StringEncoding]];
-        
-        // 新版本固件，使用 OTA，只有一个镜像文件
-        if ([[SCBLEThermometer sharedThermometer] isA33]) {
-            [self oadStart];
-        } else {
-            if (curIndex >= totalUrlCount - 1) {
-                [self oadStart];
-            }
-        }
-    } downloadError:^(NSString *curUrl, int curIndex, int totalUrlCount, NSError *error) {
-        YCStrongSelf(self)
-        [MBProgressHUD hideHUDForView:self.view animated:YES];
-        NSString *errorMsg = @"设备程序下载失败，请检查网络后重新下载。";
-        [YCAlertController showAlertWithTitle:@"温馨提示" message:errorMsg cancelHandler:nil confirmHandler:^(UIAlertAction * _Nonnull action) {
-            [self handleBindAction];
-        }];
-    }];
-}
-
-- (void)oadStart {
-    if ([[SCBLEThermometer sharedThermometer] isA33]) {
-        NSString *folderPath = [YCUtility firmwareImageFolderPath];
-        NSString *filePath = [folderPath stringByAppendingPathComponent:@"Athermometer.bin"];
-        self.otaManager.fileURL = [NSURL fileURLWithPath:filePath];
-        [self.otaManager handleOTAAction];
-        return;
-    }
-    if ([SCBLEThermometer sharedThermometer].activePeripheral != nil
-        && [SCBLEThermometer sharedThermometer].imageType != YCBLEFirmwareImageTypeUnknown
-        && !IS_EMPTY_STRING([SCBLEThermometer sharedThermometer].firmwareVersion)) {
-        [[SCBLEThermometer sharedThermometer] updateThermometerFirmware:[self localImgPaths]];
-        return;
-    }
-    NSString *errorMsg = @"数据获取失败，请重新连接蓝牙后再试";
-    [YCAlertController showAlertWithBody:errorMsg finished:nil];
-    [MBProgressHUD hideHUDForView:self.view animated:YES];
-}
-
-- (void)checkUpLocalNewFirmwareVersion {
-    NSString *pathStr = [YCUtility firmwareImagePath:[SCBLEThermometer sharedThermometer].firmwareVersion];
-    if ([[NSFileManager defaultManager] fileExistsAtPath:pathStr]) {
-        if ([NSData dataWithContentsOfFile:pathStr] != nil) {
-            NSString *lVersion = [[NSString alloc] initWithData:[YCUtility extendedWithPath:pathStr key:kDefaults_LocalFirmwareVersion] encoding:NSUTF8StringEncoding];
-            if ([YCUtility compareVersion:self.newestFirmwareVersion and:lVersion] != NSOrderedDescending) {
-                [self oadStart];
-                return;
-            }
-        }
-    }
-    [self downloadFirmware];
-}
-
 -(void)loading {
     if ([self.loadingImageV.layer.animationKeys containsObject:connectLoadingAnimeKey]) {
         return;
@@ -327,31 +240,98 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
 }
 
 -(void)checkFirmwareVersion {
-    NSDictionary *dataDict = @{
-        @"version": @"3.65",
-        @"A": @"http://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/A31/Athermometer.bin",
-        @"B": @"http://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/A31/Bthermometer.bin"
-    };
-    NSMutableArray *urlsM = [NSMutableArray array];
-    if (dataDict[@"A"] != nil) {
-        [urlsM addObject:dataDict[@"A"]];
-    }
-    if (dataDict[@"B"] != nil) {
-        [urlsM addObject:dataDict[@"B"]];
-    }
-    self.downloadUrls = urlsM.copy;
-    self.newestFirmwareVersion = [dataDict objectForKey:@"version"];
-    dispatch_async(dispatch_get_main_queue(), ^{
-        if ([YCUtility compareVersion:self.newestFirmwareVersion and:[SCBLEThermometer sharedThermometer].firmwareVersion] == NSOrderedDescending) {
-            YCWeakSelf(self)
-            [YCAlertController showAlertWithTitle:@"温馨提示" message:@"您的设备程序不是最新的，请点击确定更新设备程序！" cancelHandler:nil confirmHandler:^(UIAlertAction * _Nonnull action) {
-                YCStrongSelf(self)
-                [self checkUpLocalNewFirmwareVersion];
-            }];
-        } else {
+    YCWeakSelf(self)
+    [[SCBLEThermometer sharedThermometer] checkFirmwareVersionCompletion:^(BOOL needUpgrade, NSDictionary * _Nullable imagePaths) {
+        YCStrongSelf(self)
+        if (!needUpgrade) {
             [self handleBindAction];
+            return;
         }
-    });
+        NSInteger type = [imagePaths[@"type"] integerValue];
+        NSString *fileURLs = imagePaths[@"fileUrl"];
+        if (fileURLs != nil) {
+            // 1 OAD, 2 OTA
+            if (2 == type) {
+                self.downloadUrls = @[fileURLs];
+            } else {
+                NSDictionary *imgDict = [NSJSONSerialization dictionaryWithString:fileURLs];
+                NSMutableArray *urlsM = [NSMutableArray array];
+                if (imgDict[@"A"] != nil) {
+                    [urlsM addObject:imgDict[@"A"]];
+                }
+                if (imgDict[@"B"] != nil) {
+                    [urlsM addObject:imgDict[@"B"]];
+                }
+                self.downloadUrls = urlsM.copy;
+            }
+        }
+        self.newestFirmwareVersion = imagePaths[@"version"];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            [YCAlertController showAlertWithTitle:@"您的设备程序不是最新的，请点击确定更新设备程序！"
+                                          message:nil
+                                    cancelHandler:^(UIAlertAction * _Nonnull action) {
+            } confirmHandler:^(UIAlertAction * _Nonnull action) {
+                [self downloadFirmware];
+            }];
+        });
+    }];
+}
+
+- (void)downloadFirmware {
+    self.localImgPaths = [NSMutableArray array];
+    YCWeakSelf(self)
+    [self.fileDownload downloadWithUrl:self.downloadUrls progressBlock:^(unsigned long long completeBytes, unsigned long long totalBytes) {
+        NSLog(@"completeBytes %lld,totalBytes %lld", completeBytes, totalBytes);
+    } completionBlock:^(NSString *curUrl, int curIndex, int totalUrlCount, NSData *downloadData) {
+        YCStrongSelf(self)
+        NSRange range = [curUrl rangeOfString:@"/" options:NSBackwardsSearch];
+        NSString *imgName = [curUrl substringFromIndex:range.location];
+        NSString *folderPath = [YCUtility firmwareImageFolderPath];
+        NSString *pathStr = [folderPath stringByAppendingPathComponent:imgName];
+        
+        NSFileManager *fileM = [NSFileManager defaultManager];
+        if ([fileM fileExistsAtPath:pathStr]) {
+            NSError *error = nil;
+            [fileM removeItemAtPath:pathStr error:&error];
+            if (error != nil) {
+                NSLog(@"OAD 旧文件清除失败：%@", error);
+            } else {
+                NSLog(@"OAD 旧文件清除成功！");
+            }
+        }
+        
+        if ([downloadData writeToFile:pathStr atomically:YES]) {
+            NSLog(@"OAD 文件保存成功！");
+        } else {
+            NSLog(@"OAD 文件保存失败！");
+        }
+        [YCUtility extendedWithPath:pathStr key:kDefaults_LocalFirmwareVersion value:[self.newestFirmwareVersion dataUsingEncoding:NSUTF8StringEncoding]];
+        [self.localImgPaths addObject:pathStr];
+        
+        if (curIndex >= totalUrlCount - 1) {
+            [self oadStart];
+        }
+    } downloadError:^(NSString *curUrl, int curIndex, int totalUrlCount, NSError *error) {
+        YCStrongSelf(self)
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
+        NSString *errorMsg = @"设备程序下载失败，请检查网络后重新下载。";
+        [YCAlertController showAlertWithTitle:@"温馨提示" message:errorMsg cancelHandler:nil confirmHandler:^(UIAlertAction * _Nonnull action) {
+            [self handleBindAction];
+        }];
+    }];
+}
+
+- (void)oadStart {
+    if ([SCBLEThermometer sharedThermometer].activePeripheral != nil
+        && !IS_EMPTY_STRING([SCBLEThermometer sharedThermometer].firmwareVersion)) {
+        [[SCBLEThermometer sharedThermometer] setCleanState:YCBLECommandTypeOAD xx:0 yy:0];
+        
+        [[SCBLEThermometer sharedThermometer] updateThermometerFirmware:self.localImgPaths.copy];
+        return;
+    }
+    NSString *errorMsg = @"数据获取失败，请重新连接蓝牙后再试";
+    [YCAlertController showAlertWithBody:errorMsg finished:nil];
+    [MBProgressHUD hideHUDForView:self.view animated:YES];
 }
 
 - (void)handleBindAction {
@@ -380,13 +360,6 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
         YCBindSuccessViewController *vc = [[YCBindSuccessViewController alloc] init];
         [self.navigationController pushViewController:vc animated:true];
     });
-}
-
--(BOOL)isOADing {
-    if ([[SCBLEThermometer sharedThermometer] isA33]) {
-        return self.otaManager.isOTAing;
-    }
-    return [SCBLEThermometer sharedThermometer].isOADing;
 }
 
 #pragma mark - BLEThermometer Notify
@@ -441,7 +414,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
         [self setConnectStatus:connected];
         if (!connected) {
             [MBProgressHUD hideHUDForView:self.view animated:YES];
-            if ([self isOADing]) {
+            if ([SCBLEThermometer sharedThermometer].isOADing) {
                 NSString *errorMsg = @"设备断开连接，更新设备程序失败。";
                 [YCAlertController showAlertWithTitle:@"温馨提示" message:errorMsg cancelHandler:nil confirmHandler:^(UIAlertAction * _Nonnull action) {
                     // OAD 失败，仍然绑定成功
@@ -754,13 +727,6 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
         }];
     }
     return  _line3View;
-}
-
--(SCOTAManager *)otaManager {
-    if (_otaManager == nil) {
-        _otaManager = [[SCOTAManager alloc] init];
-    }
-    return _otaManager;
 }
 
 @end

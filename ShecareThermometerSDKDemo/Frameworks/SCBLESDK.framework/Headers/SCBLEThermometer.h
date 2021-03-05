@@ -11,6 +11,8 @@
 #import "SCBLEDefines.h"
 #import "SCBLEDelegate.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface SCBLETemperature : NSObject
 
 /// Temperature
@@ -28,7 +30,7 @@
 ///  OAD Delegate
 @property (nonatomic, weak) id <BLEThermometerOADDelegate> oadDelegate;
 ///  当前连接的蓝牙设备
-@property (nonatomic, strong) CBPeripheral *activePeripheral;
+@property (nonatomic, strong, nullable) CBPeripheral *activePeripheral;
 ///  蓝牙连接类型
 @property (nonatomic, assign) YCBLEConnectType connectType;
 ///  硬件版本信息
@@ -48,62 +50,66 @@
 @property int suotaL2CapPsm;
 
 
-///  单例
+/// Singleton
 + (instancetype)sharedThermometer;
 
 /**
- * 判断当前连接的 activePeripheral 是否是 A33 硬件
- */
-- (BOOL)isA33;
-
-/**
- * 返回当前设备的 BLE 状态
+ * Return the BLE status of the current device
  */
 - (YCBLEState)bleState;
 
 /**
- * 断开当前连接的设备
+ * Disconnect the currently connected device
  */
 - (void)disconnectActiveThermometer;
 
 /**
- * 扫描并连接设备
+ * Scan and connect the device
  *
- * @param macList 用户绑定的 MAC 地址列表，形式为逗号分隔的字符串，如 “C8:FD:19:02:92:8D,C8:FD:19:02:92:8E”
+ * @param macList user-bound MAC address list, in the form of a comma-separated string, such as "C8:FD:19:02:92:8D,C8:FD:19:02:92:8E"
  *
- * @return 如果成功开始扫描，返回 true，否则返回 false
+ * @return If the scan starts successfully, return true, otherwise return false
  */
 - (BOOL)connectThermometerWithMACList:(NSString *)macList;
 
 /**
- * 停止扫描
+ * Stop scanning
  */
 - (void)stopThermometerScan;
 
 /**
- * 开始 OAD
+ * Check firmware version
  *
- * @param imgPaths 固件安装包所在的路径（A面和B面）
+ * @param completion Callback, return whether the currently connected hardware needs to be upgraded; if it needs to be upgraded, return the URL of the image file in imagePaths回调，返回当前连接的硬件是否需要升级；如果需要升级，在 imagePaths 里返回镜像文件的 URL
+ */
+- (void)checkFirmwareVersionCompletion:(void (^)(BOOL needUpgrade, NSDictionary * _Nullable imagePaths))completion;
+
+/**
+ * Start OAD
+ *
+ * @param imgPaths The path where the firmware installation package is located (side A and side B)
  */
 - (void)updateThermometerFirmware:(NSArray <NSString *>*)imgPaths;
 
 /**
- * 停止正在进行的 OAD
+ * Stop the ongoing OAD
  */
 - (void)stopUpdateThermometerFirmwareImage;
 
 /**
- * 修改温度类型、获取电量、给硬件返回接收到的温度数量 和 开始获取温度 等指令
+ * Modify the temperature type, obtain the power, return the received temperature quantity to the hardware, and start obtaining the temperature, etc.
  *
- * @param cleanState 指令类型
+ * @param cleanState command type
  */
 - (void)setCleanState:(NSInteger)cleanState xx:(Byte)xx yy:(Byte)yy;
 
 /**
- * 同步设备时间
+ * Synchronize device time
  *
- * @param date 时间
+ * @param time Time
  */
-- (void)synchroizeTime:(NSDate *)date;
+- (void)synchroizeTime:(NSDate *)time;
 
 @end
+
+NS_ASSUME_NONNULL_END
