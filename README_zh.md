@@ -80,13 +80,6 @@
  * @param cleanState 指令类型
  */
 - (void)setCleanState:(NSInteger)cleanState xx:(Byte)xx yy:(Byte)yy;
-
-/**
- * 同步设备时间
- *
- * @param time 时间
- */
-- (void)synchroizeTime:(NSDate *)time;
 ```
 
 #### SCBLEDefines
@@ -189,23 +182,23 @@ typedef NS_ENUM(NSInteger, YCBLEOADResultType) {
 /**
  *  同步时间的回调
  *  @param  thermometer 当前体温计实例
- *  @param  success 指令发送结果
+ *  @param result 指令发送结果 "success" or "fail" 
  */
--(void)thermometer:(SCBLEThermometer *)thermometer didSynchronizeDate:(BOOL)success;
+-(void)thermometer:(SCBLEThermometer *)thermometer didSynchronizeDate:(NSString *)result;
 
 /**
  *  获取温度计电量结果的回调
  *  @param  thermometer 当前体温计实例
  *  @param  powerValue 电量
  */
--(void)thermometer:(SCBLEThermometer *)thermometer didGetPower:(float)powerValue;
+-(void)thermometer:(SCBLEThermometer *)thermometer didGetPower:(NSString *)powerValue;
 
 /**
  *  设置温度类型结果的回调
  *  @param  thermometer 当前体温计实例
- *  @param  success 结果
+ *  @param result 指令发送结果 "success" or "fail" 
  */
--(void)thermometer:(SCBLEThermometer *)thermometer didChangeTemperatureUnit:(BOOL)success;
+-(void)thermometer:(SCBLEThermometer *)thermometer didChangeTemperatureUnit:(NSString *)result;
 ```
 
 - BLEThermometerOADDelegate

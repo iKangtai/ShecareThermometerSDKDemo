@@ -103,13 +103,6 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)setCleanState:(NSInteger)cleanState xx:(Byte)xx yy:(Byte)yy;
 
-/**
- * Synchronize device time
- *
- * @param time Time
- */
-- (void)synchroizeTime:(NSDate *)time;
-
 @end
 
 NS_ASSUME_NONNULL_END

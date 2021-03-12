@@ -53,23 +53,23 @@
 /**
  * Sync time callback
  * @param thermometer current thermometer example
- * @param success command to send the result
+ * @param result "success" or "fail" 
  */
--(void)thermometer:(SCBLEThermometer *)thermometer didSynchronizeDate:(BOOL)success;
+-(void)thermometer:(SCBLEThermometer *)thermometer didSynchronizeDate:(NSString *)result;
 
 /**
  * Get the callback of the thermometer power result
  * @param thermometer current thermometer example
  * @param powerValue power
  */
--(void)thermometer:(SCBLEThermometer *)thermometer didGetPower:(float)powerValue;
+-(void)thermometer:(SCBLEThermometer *)thermometer didGetPower:(NSString *)powerValue;
 
 /**
  * Set the callback of the temperature type result
  * @param thermometer current thermometer example
- * @param success result
+ * @param result "success" or "fail"
  */
--(void)thermometer:(SCBLEThermometer *)thermometer didChangeTemperatureUnit:(BOOL)success;
+-(void)thermometer:(SCBLEThermometer *)thermometer didChangeTemperatureUnit:(NSString *)result;
 
 @end
 

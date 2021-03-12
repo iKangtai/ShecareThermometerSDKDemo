@@ -80,13 +80,6 @@ English | [中文文档](README_zh.md)
  * @param cleanState command type
  */
 -(void)setCleanState:(NSInteger)cleanState xx:(Byte)xx yy:(Byte)yy;
-
-/**
- * Synchronize device time
- *
- * @param time Time
- */
-- (void)synchroizeTime:(NSDate *)time;
 ```
 
 #### SCBLEDefines
@@ -189,23 +182,23 @@ typedef NS_ENUM(NSInteger, YCBLEOADResultType) {
 /**
  * Sync time callback
  * @param thermometer current thermometer example
- * @param success command to send the result
+ * @param result "success" or "fail" 
  */
--(void)thermometer:(SCBLEThermometer *)thermometer didSynchronizeDate:(BOOL)success;
+-(void)thermometer:(SCBLEThermometer *)thermometer didSynchronizeDate:(NSString *)result;
 
 /**
  * Get the callback of the thermometer power result
  * @param thermometer current thermometer example
  * @param powerValue power
  */
--(void)thermometer:(SCBLEThermometer *)thermometer didGetPower:(float)powerValue;
+-(void)thermometer:(SCBLEThermometer *)thermometer didGetPower:(NSString *)powerValue;
 
 /**
  * Set the callback of the temperature type result
  * @param thermometer current thermometer example
- * @param success result
+ * @param result "success" or "fail"
  */
--(void)thermometer:(SCBLEThermometer *)thermometer didChangeTemperatureUnit:(BOOL)success;
+-(void)thermometer:(SCBLEThermometer *)thermometer didChangeTemperatureUnit:(NSString *)result;
 ```
 
 - BLEThermometerOADDelegate

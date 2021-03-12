@@ -185,18 +185,18 @@
     [self insertTemperaturesToDB:tempsM.copy];
 }
 
--(void)thermometer:(SCBLEThermometer *)thermometer didGetPower:(float)powerValue {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_ThermometerCurrentPower object:@(powerValue)];
+-(void)thermometer:(SCBLEThermometer *)thermometer didGetPower:(NSString *)powerValue {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_ThermometerCurrentPower object:powerValue];
 }
 
--(void)thermometer:(SCBLEThermometer *)thermometer didChangeTemperatureUnit:(BOOL)success {
-    if (success) {
+-(void)thermometer:(SCBLEThermometer *)thermometer didChangeTemperatureUnit:(NSString *)result {
+    if ([result isEqualToString:@"success"]) {
         [[NSUserDefaults standardUserDefaults] setBool:NO forKey:kDefaults_TemperatureUnitsChanged];
     }
 }
 
--(void)thermometer:(SCBLEThermometer *)thermometer didSynchronizeDate:(BOOL)success {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_ThermometerSyncDateResult object:@(success)];
+-(void)thermometer:(SCBLEThermometer *)thermometer didSynchronizeDate:(NSString *)result {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_ThermometerSyncDateResult object:@([result isEqualToString:@"success"])];
     
     [[SCBLEThermometer sharedThermometer] setCleanState:YCBLECommandTypeGetPower xx:0 yy:0];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
