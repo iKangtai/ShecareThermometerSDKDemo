@@ -144,7 +144,7 @@
 - (void)oadStart {
     if ([SCBLEThermometer sharedThermometer].activePeripheral != nil
         && !IS_EMPTY_STRING([SCBLEThermometer sharedThermometer].firmwareVersion)) {
-        [[SCBLEThermometer sharedThermometer] setCleanState:YCBLECommandTypeOAD xx:0 yy:0];
+        [[SCBLEThermometer sharedThermometer] pushNotifyWithType:YCBLECommandTypeOAD];
         
         [[SCBLEThermometer sharedThermometer] updateThermometerFirmware:self.localImgPaths.copy];
         return;

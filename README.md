@@ -77,9 +77,9 @@ English | [中文文档](README_zh.md)
 /**
  * Modify the temperature type, obtain the power, return the received temperature quantity to the hardware, and start obtaining the temperature, etc.
  *
- * @param cleanState command type
+ * @param type command type
  */
--(void)setCleanState:(NSInteger)cleanState xx:(Byte)xx yy:(Byte)yy;
+- (void)pushNotifyWithType:(NSInteger)type;
 ```
 
 #### SCBLEDefines

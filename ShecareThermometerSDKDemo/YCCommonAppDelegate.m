@@ -198,15 +198,15 @@
 -(void)thermometer:(SCBLEThermometer *)thermometer didSynchronizeDate:(NSString *)result {
     [[NSNotificationCenter defaultCenter] postNotificationName:kNotification_ThermometerSyncDateResult object:@([result isEqualToString:@"success"])];
     
-    [[SCBLEThermometer sharedThermometer] setCleanState:YCBLECommandTypeGetPower xx:0 yy:0];
+    [[SCBLEThermometer sharedThermometer] pushNotifyWithType:YCBLECommandTypeGetPower];
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         BOOL typeChanged = [[NSUserDefaults standardUserDefaults] boolForKey:kDefaults_TemperatureUnitsChanged];
         if (typeChanged) {
             NSInteger tempType = [[NSUserDefaults standardUserDefaults] integerForKey:kDefaults_TemperatureUnits];
             if (2 == tempType) {
-                [[SCBLEThermometer sharedThermometer] setCleanState:YCBLECommandTypeSetUnitF xx:0 yy:0];
+                [[SCBLEThermometer sharedThermometer] pushNotifyWithType:YCBLECommandTypeSetUnitF];
             } else if (1 == tempType) {
-                [[SCBLEThermometer sharedThermometer] setCleanState:YCBLECommandTypeSetUnitC xx:0 yy:0];
+                [[SCBLEThermometer sharedThermometer] pushNotifyWithType:YCBLECommandTypeSetUnitC];
             }
         }
     });

@@ -77,9 +77,9 @@
 /**
  * 修改温度类型、获取电量、给硬件返回接收到的温度数量 和 开始获取温度 等指令
  *
- * @param cleanState 指令类型
+ * @param type 指令类型
  */
-- (void)setCleanState:(NSInteger)cleanState xx:(Byte)xx yy:(Byte)yy;
+- (void)pushNotifyWithType:(NSInteger)type;
 ```
 
 #### SCBLEDefines

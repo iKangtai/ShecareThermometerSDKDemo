@@ -324,7 +324,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
 - (void)oadStart {
     if ([SCBLEThermometer sharedThermometer].activePeripheral != nil
         && !IS_EMPTY_STRING([SCBLEThermometer sharedThermometer].firmwareVersion)) {
-        [[SCBLEThermometer sharedThermometer] setCleanState:YCBLECommandTypeOAD xx:0 yy:0];
+        [[SCBLEThermometer sharedThermometer] pushNotifyWithType:YCBLECommandTypeOAD];
         
         [[SCBLEThermometer sharedThermometer] updateThermometerFirmware:self.localImgPaths.copy];
         return;
@@ -347,9 +347,9 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
     //  绑定时设置温度单位
     NSInteger tempType = [[NSUserDefaults standardUserDefaults] integerForKey:kDefaults_TemperatureUnits];
     if (2 == tempType) {
-        [[SCBLEThermometer sharedThermometer] setCleanState:YCBLECommandTypeSetUnitF xx:0 yy:0];
+        [[SCBLEThermometer sharedThermometer] pushNotifyWithType:YCBLECommandTypeSetUnitF];
     } else if (1 == tempType) {
-        [[SCBLEThermometer sharedThermometer] setCleanState:YCBLECommandTypeSetUnitC xx:0 yy:0];
+        [[SCBLEThermometer sharedThermometer] pushNotifyWithType:YCBLECommandTypeSetUnitC];
     }
     //  存储绑定信息到本地
     YCUserHardwareInfoModel *bindingModel = [YCUserHardwareInfoModel modelWithMACAddress:self.macAddress version:self.firmwareVersion syncType:NO];
