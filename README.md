@@ -13,6 +13,8 @@ English | [中文文档](README_zh.md)
 | ------------------------- | ------------      |
 | Scan for nearby Bluetooth devices          | Scan for Bluetooth devices near the phone and refresh the device list every second |
 | Connect to Shecare thermometer to synchronize data&nbsp;&nbsp;&nbsp;&nbsp;| Connect the thermometer to synchronize data, set the thermometer temperature unit and time, and get the firmware version |
+| Connect Shecare forehead thermometer to synchronize data&nbsp;&nbsp;| Connect the forehead thermometer to synchronize data and get the firmware version number |
+| Connect to Shecare fetal heart rate monitor to synchronize data&nbsp;&nbsp;| Connect the forehead thermometer to synchronize data and get the firmware version number |
 
 ### Integration considerations
 
@@ -199,6 +201,13 @@ typedef NS_ENUM(NSInteger, YCBLEOADResultType) {
  * @param result "success" or "fail"
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didChangeTemperatureUnit:(NSString *)result;
+
+/**
+ * Return to fetal heart rate related data
+ * @param fhr fetal heart rate
+ * @param fha Fetal Heart Sound
+ */
+-(void)thermometer:(SCBLEThermometer *)thermometer didGetFHR:(NSInteger)fhr fha:(NSData *)fha;
 ```
 
 - BLEThermometerOADDelegate

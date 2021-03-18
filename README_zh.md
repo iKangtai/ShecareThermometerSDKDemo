@@ -12,7 +12,9 @@
 | 功能                    |  描述       |
 | ------------------------- | ------------      |
 | 扫描附近的蓝牙设备          | 扫描手机附近的蓝牙设备，并每秒刷新设备列表 |
-| 连接到Shecare温度计以同步数据&nbsp;&nbsp;&nbsp;&nbsp;| 连接温度计以同步数据，设置温度计的温度单位和时间，并获取固件版本 |
+| 连接Shecare体温计以同步数据&nbsp;&nbsp;| 连接温度计以同步数据，设置温度计的温度单位和时间，并获取固件版本 |
+| 连接Shecare额温枪同步数据&nbsp;&nbsp;| 连接额温枪同步数据并获取固件版本号 |
+| 连接Shecare胎心仪同步数据&nbsp;&nbsp;| 连接胎心仪同步数据并获取固件版本号 |
 
 ### 集成注意事项
 
@@ -199,6 +201,13 @@ typedef NS_ENUM(NSInteger, YCBLEOADResultType) {
  *  @param result 指令发送结果 "success" or "fail" 
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didChangeTemperatureUnit:(NSString *)result;
+
+/**
+ * 返回胎心仪相关数据
+ * @param fhr 胎心率
+ * @param fha 胎心音
+ */
+-(void)thermometer:(SCBLEThermometer *)thermometer didGetFHR:(NSInteger)fhr fha:(NSData *)fha;
 ```
 
 - BLEThermometerOADDelegate
