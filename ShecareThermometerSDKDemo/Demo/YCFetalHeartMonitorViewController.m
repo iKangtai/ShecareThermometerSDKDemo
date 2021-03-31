@@ -8,7 +8,6 @@
 
 #import "YCFetalHeartMonitorViewController.h"
 #import "YCAudioFileHandler.h"
-#import "ShecareThermometerSDKDemo-Swift.h"
 #import "ShecareThermometerSDKDemo-Bridging-Header.h"
 #import "YCLeftAxisValueFormatter.h"
 #import "YCFHRecordModel.h"

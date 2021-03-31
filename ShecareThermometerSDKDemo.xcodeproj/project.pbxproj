@@ -11,7 +11,6 @@
 		043BFDC32614AB0C00C4301A /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 043BFDAF2614AA6F00C4301A /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		043BFDC82614AB3600C4301A /* YCFetalHeartMonitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFDC72614AB3600C4301A /* YCFetalHeartMonitorViewController.m */; };
 		043BFDD12614ABC300C4301A /* YCAudioFileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFDCD2614ABC300C4301A /* YCAudioFileHandler.m */; };
-		043BFDD52614AC8300C4301A /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043BFDD42614AC8300C4301A /* File.swift */; };
 		04493CFB25F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04493CFA25F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.m */; };
 		04B9A6572614B6580089DB1D /* YCFHRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B9A6552614B6580089DB1D /* YCFHRecordModel.m */; };
 		04B9A6742614BC630089DB1D /* YCLeftAxisValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B9A6732614BC630089DB1D /* YCLeftAxisValueFormatter.m */; };
@@ -112,7 +111,6 @@
 		043BFDC72614AB3600C4301A /* YCFetalHeartMonitorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCFetalHeartMonitorViewController.m; sourceTree = "<group>"; };
 		043BFDCD2614ABC300C4301A /* YCAudioFileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCAudioFileHandler.m; sourceTree = "<group>"; };
 		043BFDCF2614ABC300C4301A /* YCAudioFileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCAudioFileHandler.h; sourceTree = "<group>"; };
-		043BFDD42614AC8300C4301A /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		043BFDE52614AD4D00C4301A /* YCSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCSingleton.h; sourceTree = "<group>"; };
 		04493CF925F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+YCExtension.h"; sourceTree = "<group>"; };
 		04493CFA25F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+YCExtension.m"; sourceTree = "<group>"; };
@@ -293,7 +291,6 @@
 				10142E5725C05FCA008696A5 /* SupportingFiles */,
 				10142D4E25BD7586008696A5 /* AppDelegate.h */,
 				10142D4F25BD7586008696A5 /* AppDelegate.m */,
-				043BFDD42614AC8300C4301A /* File.swift */,
 				10142EB325C0A124008696A5 /* YCCommonAppDelegate.h */,
 				10142EB425C0A124008696A5 /* YCCommonAppDelegate.m */,
 				10142D5C25BD7587008696A5 /* LaunchScreen.storyboard */,
@@ -759,7 +756,6 @@
 				1077F13D25C298600044E77C /* YCConnectLoadingView.m in Sources */,
 				10142EAF25C09E66008696A5 /* YCAlertController.m in Sources */,
 				10142E7125C06BCB008696A5 /* YCButton+Extension.m in Sources */,
-				043BFDD52614AC8300C4301A /* File.swift in Sources */,
 				10142E0B25BD9173008696A5 /* UIColor+YCExtension.m in Sources */,
 				043BFDC82614AB3600C4301A /* YCFetalHeartMonitorViewController.m in Sources */,
 				10142E8425C07953008696A5 /* YCUtility.m in Sources */,
@@ -1007,7 +1003,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E18E0D47A41E23F8A5DF6454 /* Pods-ShecareThermometerSDKDemoTests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1035,7 +1030,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FFBED1ABA10BA8A662267935 /* Pods-ShecareThermometerSDKDemoTests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1063,7 +1057,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 154D5867BBB8693C22503562 /* Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ShecareThermometerSDKDemoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1082,7 +1075,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D19972284B448475EA43DBE0 /* Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ShecareThermometerSDKDemoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
