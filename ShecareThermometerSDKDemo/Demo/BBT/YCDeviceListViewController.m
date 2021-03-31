@@ -10,6 +10,7 @@
 #import "YCUserHardwareInfoModel.h"
 #import "YCDeviceInfoViewController.h"
 #import "YCDeviceTableViewCell.h"
+#import "YCBindViewController.h"
 
 static NSString *deviceListVCReuseID = @"YCDeviceTypeReuseCellId";
 
@@ -39,6 +40,7 @@ static NSString *deviceListVCReuseID = @"YCDeviceTypeReuseCellId";
 
 -(void)setupNavigationItem {
     self.navigationItem.leftBarButtonItem = [YCUtility navigationBackItemWithTarget:self action:@selector(back)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"绑定新设备" style:UIBarButtonItemStylePlain target:self action:@selector(handleBindAction:)];
 }
 
 -(void)setupUI {
@@ -48,6 +50,11 @@ static NSString *deviceListVCReuseID = @"YCDeviceTypeReuseCellId";
         self.tableView.hidden = false;
         [self.tableView reloadData];
     }
+}
+
+-(void)handleBindAction:(UIBarButtonItem *)sender {
+    YCBindViewController *targetVC = [[YCBindViewController alloc] init];
+    [self.navigationController pushViewController:targetVC animated:true];
 }
 
 -(void)back {

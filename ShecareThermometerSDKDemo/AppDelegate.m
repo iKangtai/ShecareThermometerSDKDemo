@@ -21,7 +21,13 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];
-    self.window.rootViewController = [[UINavigationController alloc] initWithRootViewController:[[YCMainViewController alloc] init]];
+    
+    YCMainViewController *temVC = [[YCMainViewController alloc] init];
+    temVC.title = @"首页";
+    UINavigationController *temNavC = [[UINavigationController alloc] initWithRootViewController:temVC];
+    temNavC.navigationBar.translucent = false;
+    
+    self.window.rootViewController = temNavC;
     [self.window makeKeyAndVisible];
     
     return YES;

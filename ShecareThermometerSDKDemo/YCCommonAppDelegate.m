@@ -11,6 +11,7 @@
 #import <SCBLESDK/SCBLESDK.h>
 #import "YCBindViewController.h"
 #import "YCUserTemperatureModel.h"
+#import "YCFetalHeartMonitorViewController.h"
 
 @interface YCCommonAppDelegate()<BLEThermometerDelegate>
 
@@ -210,6 +211,17 @@
             }
         }
     });
+}
+
+-(void)thermometer:(SCBLEThermometer *)thermometer didGetFHR:(NSInteger)fhr fha:(NSData *)fha {
+    UIViewController *curVC = [UIViewController currentViewController];
+    // 只有当前处于 “胎心监护” 页时，才响应胎心仪数据上传
+    if (![curVC isKindOfClass:[YCFetalHeartMonitorViewController class]]) {
+        return;
+    }
+    YCFetalHeartMonitorViewController *vc = (YCFetalHeartMonitorViewController *)curVC;
+    vc.fhrData = fhr;
+    vc.fhaData = fha;
 }
 
 @end

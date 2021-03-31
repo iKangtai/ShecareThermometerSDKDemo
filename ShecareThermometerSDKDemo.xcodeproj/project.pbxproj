@@ -7,7 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		043BFDC22614AB0C00C4301A /* Charts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 043BFDAF2614AA6F00C4301A /* Charts.framework */; };
+		043BFDC32614AB0C00C4301A /* Charts.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 043BFDAF2614AA6F00C4301A /* Charts.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		043BFDC82614AB3600C4301A /* YCFetalHeartMonitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFDC72614AB3600C4301A /* YCFetalHeartMonitorViewController.m */; };
+		043BFDD12614ABC300C4301A /* YCAudioFileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFDCD2614ABC300C4301A /* YCAudioFileHandler.m */; };
+		043BFDD52614AC8300C4301A /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 043BFDD42614AC8300C4301A /* File.swift */; };
 		04493CFB25F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04493CFA25F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.m */; };
+		04B9A6572614B6580089DB1D /* YCFHRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B9A6552614B6580089DB1D /* YCFHRecordModel.m */; };
+		04B9A6742614BC630089DB1D /* YCLeftAxisValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B9A6732614BC630089DB1D /* YCLeftAxisValueFormatter.m */; };
 		10142D5025BD7586008696A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142D4F25BD7586008696A5 /* AppDelegate.m */; };
 		10142D5625BD7586008696A5 /* YCMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142D5525BD7586008696A5 /* YCMainViewController.m */; };
 		10142D5E25BD7587008696A5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 10142D5C25BD7587008696A5 /* LaunchScreen.storyboard */; };
@@ -54,6 +61,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		043BFDAE2614AA6F00C4301A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 043BFDA72614AA6F00C4301A /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 5BA8EC401A9D14DC00CE82E1;
+			remoteInfo = "Charts-iOS";
+		};
+		043BFDB42614AA6F00C4301A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 043BFDA72614AA6F00C4301A /* Charts.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 06AEE7A21BDC3F8B009875AE;
+			remoteInfo = ChartsTests;
+		};
 		10142D6725BD7588008696A5 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 10142D4325BD7586008696A5 /* Project object */;
@@ -77,6 +98,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				043BFDC32614AB0C00C4301A /* Charts.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -84,8 +106,20 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		043BFDA72614AA6F00C4301A /* Charts.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Charts.xcodeproj; path = Charts/Charts.xcodeproj; sourceTree = SOURCE_ROOT; };
+		043BFDBB2614AAAE00C4301A /* ShecareThermometerSDKDemo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShecareThermometerSDKDemo-Bridging-Header.h"; sourceTree = "<group>"; };
+		043BFDC62614AB3600C4301A /* YCFetalHeartMonitorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCFetalHeartMonitorViewController.h; sourceTree = "<group>"; };
+		043BFDC72614AB3600C4301A /* YCFetalHeartMonitorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCFetalHeartMonitorViewController.m; sourceTree = "<group>"; };
+		043BFDCD2614ABC300C4301A /* YCAudioFileHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCAudioFileHandler.m; sourceTree = "<group>"; };
+		043BFDCF2614ABC300C4301A /* YCAudioFileHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCAudioFileHandler.h; sourceTree = "<group>"; };
+		043BFDD42614AC8300C4301A /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
+		043BFDE52614AD4D00C4301A /* YCSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCSingleton.h; sourceTree = "<group>"; };
 		04493CF925F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+YCExtension.h"; sourceTree = "<group>"; };
 		04493CFA25F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+YCExtension.m"; sourceTree = "<group>"; };
+		04B9A6552614B6580089DB1D /* YCFHRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCFHRecordModel.m; sourceTree = "<group>"; };
+		04B9A6562614B6580089DB1D /* YCFHRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCFHRecordModel.h; sourceTree = "<group>"; };
+		04B9A6702614BC630089DB1D /* YCLeftAxisValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCLeftAxisValueFormatter.h; sourceTree = "<group>"; };
+		04B9A6732614BC630089DB1D /* YCLeftAxisValueFormatter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCLeftAxisValueFormatter.m; sourceTree = "<group>"; };
 		10142D4B25BD7586008696A5 /* ShecareThermometerSDKDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ShecareThermometerSDKDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		10142D4E25BD7586008696A5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		10142D4F25BD7586008696A5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -178,6 +212,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5273CB6E25C9BDE800DF1789 /* SCBLESDK.framework in Frameworks */,
+				043BFDC22614AB0C00C4301A /* Charts.framework in Frameworks */,
 				101E12F425C1F0F1005F8ABB /* CoreBluetooth.framework in Frameworks */,
 				9138420FA3D228C4FD17D87B /* Pods_ShecareThermometerSDKDemo.framework in Frameworks */,
 			);
@@ -203,6 +238,29 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		043BFDA82614AA6F00C4301A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				043BFDAF2614AA6F00C4301A /* Charts.framework */,
+				043BFDB52614AA6F00C4301A /* ChartsTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		043BFDCB2614ABC300C4301A /* FHR */ = {
+			isa = PBXGroup;
+			children = (
+				043BFDE52614AD4D00C4301A /* YCSingleton.h */,
+				043BFDCF2614ABC300C4301A /* YCAudioFileHandler.h */,
+				043BFDCD2614ABC300C4301A /* YCAudioFileHandler.m */,
+				04B9A6562614B6580089DB1D /* YCFHRecordModel.h */,
+				04B9A6552614B6580089DB1D /* YCFHRecordModel.m */,
+				04B9A6702614BC630089DB1D /* YCLeftAxisValueFormatter.h */,
+				04B9A6732614BC630089DB1D /* YCLeftAxisValueFormatter.m */,
+			);
+			path = FHR;
+			sourceTree = "<group>";
+		};
 		10142D4225BD7586008696A5 = {
 			isa = PBXGroup;
 			children = (
@@ -235,12 +293,14 @@
 				10142E5725C05FCA008696A5 /* SupportingFiles */,
 				10142D4E25BD7586008696A5 /* AppDelegate.h */,
 				10142D4F25BD7586008696A5 /* AppDelegate.m */,
+				043BFDD42614AC8300C4301A /* File.swift */,
 				10142EB325C0A124008696A5 /* YCCommonAppDelegate.h */,
 				10142EB425C0A124008696A5 /* YCCommonAppDelegate.m */,
 				10142D5C25BD7587008696A5 /* LaunchScreen.storyboard */,
 				1077F13525C28E470044E77C /* Assets.xcassets */,
 				10142D5F25BD7587008696A5 /* Info.plist */,
 				10142D6025BD7587008696A5 /* main.m */,
+				043BFDBB2614AAAE00C4301A /* ShecareThermometerSDKDemo-Bridging-Header.h */,
 			);
 			path = ShecareThermometerSDKDemo;
 			sourceTree = "<group>";
@@ -287,8 +347,12 @@
 		10142E4125BDD5EB008696A5 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				043BFDA72614AA6F00C4301A /* Charts.xcodeproj */,
 				10142D5425BD7586008696A5 /* YCMainViewController.h */,
 				10142D5525BD7586008696A5 /* YCMainViewController.m */,
+				043BFDC62614AB3600C4301A /* YCFetalHeartMonitorViewController.h */,
+				043BFDC72614AB3600C4301A /* YCFetalHeartMonitorViewController.m */,
+				043BFDCB2614ABC300C4301A /* FHR */,
 				1077F14025C2BF0C0044E77C /* BBT */,
 				10142EA025C09AD4008696A5 /* Binding */,
 				10142E7B25C076DE008696A5 /* Model */,
@@ -479,6 +543,7 @@
 				TargetAttributes = {
 					10142D4A25BD7586008696A5 = {
 						CreatedOnToolsVersion = 12.3;
+						LastSwiftMigration = 1240;
 					};
 					10142D6525BD7588008696A5 = {
 						CreatedOnToolsVersion = 12.3;
@@ -501,6 +566,12 @@
 			mainGroup = 10142D4225BD7586008696A5;
 			productRefGroup = 10142D4C25BD7586008696A5 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 043BFDA82614AA6F00C4301A /* Products */;
+					ProjectRef = 043BFDA72614AA6F00C4301A /* Charts.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				10142D4A25BD7586008696A5 /* ShecareThermometerSDKDemo */,
@@ -509,6 +580,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		043BFDAF2614AA6F00C4301A /* Charts.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = Charts.framework;
+			remoteRef = 043BFDAE2614AA6F00C4301A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		043BFDB52614AA6F00C4301A /* ChartsTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ChartsTests.xctest;
+			remoteRef = 043BFDB42614AA6F00C4301A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		10142D4925BD7586008696A5 /* Resources */ = {
@@ -646,6 +734,7 @@
 			files = (
 				10142E5325C05D43008696A5 /* YCInputBBTView.m in Sources */,
 				10142E9025C099D8008696A5 /* YCDownloadingFile.m in Sources */,
+				04B9A6742614BC630089DB1D /* YCLeftAxisValueFormatter.m in Sources */,
 				10142E8A25C09197008696A5 /* YCBindViewController.m in Sources */,
 				10142D5625BD7586008696A5 /* YCMainViewController.m in Sources */,
 				10142E3D25BD9FF7008696A5 /* YCViewController+Extension.m in Sources */,
@@ -663,12 +752,16 @@
 				1077F29425C4FDC70044E77C /* YCUpdateDeviceController.m in Sources */,
 				10142DDE25BD8820008696A5 /* YCBBTView.m in Sources */,
 				10142EBB25C0A401008696A5 /* YCUserTemperatureModel.m in Sources */,
+				043BFDD12614ABC300C4301A /* YCAudioFileHandler.m in Sources */,
 				10142E7E25C07711008696A5 /* YCUserHardwareInfoModel.m in Sources */,
 				10142E9625C09A5D008696A5 /* YCBindSuccessViewController.m in Sources */,
+				04B9A6572614B6580089DB1D /* YCFHRecordModel.m in Sources */,
 				1077F13D25C298600044E77C /* YCConnectLoadingView.m in Sources */,
 				10142EAF25C09E66008696A5 /* YCAlertController.m in Sources */,
 				10142E7125C06BCB008696A5 /* YCButton+Extension.m in Sources */,
+				043BFDD52614AC8300C4301A /* File.swift in Sources */,
 				10142E0B25BD9173008696A5 /* UIColor+YCExtension.m in Sources */,
+				043BFDC82614AB3600C4301A /* YCFetalHeartMonitorViewController.m in Sources */,
 				10142E8425C07953008696A5 /* YCUtility.m in Sources */,
 				1077F29E25C5052B0044E77C /* YCDeviceTableViewCell.m in Sources */,
 				1077F14A25C30A610044E77C /* YCBBTShowView.m in Sources */,
@@ -842,6 +935,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YL5HCBTF4V;
 				ENABLE_BITCODE = NO;
@@ -865,6 +959,9 @@
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.ShecareThermometerSDKDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ShecareThermometerSDKDemo/ShecareThermometerSDKDemo-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_WORKSPACE = YES;
 			};
@@ -876,6 +973,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = YL5HCBTF4V;
 				ENABLE_BITCODE = NO;
@@ -898,6 +996,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ikangtai.ShecareThermometerSDKDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "ShecareThermometerSDKDemo/ShecareThermometerSDKDemo-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_WORKSPACE = YES;
 			};
@@ -907,6 +1007,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E18E0D47A41E23F8A5DF6454 /* Pods-ShecareThermometerSDKDemoTests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -934,6 +1035,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FFBED1ABA10BA8A662267935 /* Pods-ShecareThermometerSDKDemoTests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				FRAMEWORK_SEARCH_PATHS = (
@@ -961,6 +1063,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 154D5867BBB8693C22503562 /* Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ShecareThermometerSDKDemoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -979,6 +1082,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D19972284B448475EA43DBE0 /* Pods-ShecareThermometerSDKDemo-ShecareThermometerSDKDemoUITests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = ShecareThermometerSDKDemoUITests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (

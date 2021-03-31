@@ -43,11 +43,11 @@
 }
 
 -(UIImage *)hardwareImg {
-    return [UIImage imageNamed:@"bind_img_1"];
+    return [self.macAddress hasPrefix:@"MD1000AF4"] ? [UIImage imageNamed:@"device_list_pic_fetal_favorite"] : [UIImage imageNamed:@"bind_img_1"];
 }
 
 -(NSString *)hardwareTitle {
-    return @"孕橙智能基础体温计";
+    return [self.macAddress hasPrefix:@"MD1000AF4"] ? @"孕橙智能胎心仪" : @"孕橙智能基础体温计";
 }
 
 @end

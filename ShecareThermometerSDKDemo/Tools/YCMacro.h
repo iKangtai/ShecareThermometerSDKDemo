@@ -48,7 +48,7 @@
 ///  当前屏幕的尺寸
 #define kScreenWidth [UIScreen mainScreen].bounds.size.width
 #define kScreenHeight [UIScreen mainScreen].bounds.size.height
-#define kBottomHeight ([YCUtility isiPhoneXSeries] ? 34.0 : 0.0)
+#define kBottomHeight ([YCUtility hasNotch] ? 34.0 : 0.0)
 #define kTabBarHeight (kBottomHeight + 49)
 #define kNavBarHeight 44.0
 #define kStatusBarHeight [UIApplication sharedApplication].statusBarFrame.size.height

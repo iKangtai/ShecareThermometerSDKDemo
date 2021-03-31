@@ -51,7 +51,9 @@
 ///  打开控制器
 + (void)showVC:(UIViewController *)vc;
 
-///  判断是否是iPhone X 系列
-+ (BOOL)isiPhoneXSeries;
+///  判断设备是否是刘海屏
++ (BOOL)hasNotch;
+///  胎心音记录， wav 格式的路径
++(NSString *)fhAudioWavPath:(NSString *)recordId;
 
 @end
