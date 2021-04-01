@@ -491,7 +491,28 @@
             return;
         }
 
-        // 上传数据到服务器
+        NSString *path = [YCUtility fhAudioWavPath:saveID];
+        NSData *audioData = [NSData dataWithContentsOfFile:path];
+        // 音频文件不存在
+        if (audioData == nil) {
+            NSLog(@"Error: Audio file does not exists!");
+            return;
+        }
+        
+        // 上传数据到服务器，用于客服分析
+        SCBLEFHRecordModel *model = [[SCBLEFHRecordModel alloc] init];
+        model.audioData = audioData;
+        NSString *ext = [path componentsSeparatedByString:@"."].lastObject ?: @"wav";
+        model.fileExtension = ext;
+        model.recordId = self.curRecordModel.recordID;
+        model.duration = [NSString stringWithFormat:@"%@", self.curRecordModel.duration];
+        model.title = @"孕9周5天"; // 此处应传真实值
+        model.recordTime = self.curRecordModel.createTime;
+        model.averageFhr = [NSString stringWithFormat:@"%@", self.curRecordModel.averageFhr];
+        model.quickening = [NSString stringWithFormat:@"%@", self.curRecordModel.quickening];
+        model.history = self.curRecordModel.history;
+        
+        [[SCBLEThermometer sharedThermometer] uploadFetalHeartRecord:model];
     });
 }
 

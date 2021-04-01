@@ -8,6 +8,7 @@
 #import "AppDelegate.h"
 #import "YCMainViewController.h"
 #import "YCCommonAppDelegate.h"
+#import <SCBLESDK/SCBLESDK.h>
 
 @interface AppDelegate ()
 
@@ -18,6 +19,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[YCCommonAppDelegate shared] prepareAppWithOptions:launchOptions];
+    
+    [SCBLEThermometer sharedThermometer].appId = @"100017";
+    [SCBLEThermometer sharedThermometer].appSecret = @"b1eed2fb4686e1b1049a9486d49ba015af00d5a0";
+    [SCBLEThermometer sharedThermometer].unionId = @"15311411877";
     
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor = [UIColor whiteColor];

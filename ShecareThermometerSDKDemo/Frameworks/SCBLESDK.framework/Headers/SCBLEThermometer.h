@@ -13,6 +13,37 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@interface SCBLECustomerServiceModel: NSObject
+
+/// 设备Mac地址,非必传
+@property (nonatomic, copy) NSString *macAddress;
+/// 年龄，非必传
+@property (nonatomic, assign) NSInteger age;
+/// 孕周,非必传
+@property (nonatomic, assign) NSInteger pregnantWeek;
+/// 设备类型, 1、2、3体温计，4 额温枪， 5 胎心仪 ,非必传
+@property (nonatomic, assign) NSInteger hardwareType;
+/// 购买时间，秒，非必传
+@property (nonatomic, assign) NSTimeInterval bindTime;
+
+@end
+
+@interface SCBLEFHRecordModel : NSObject
+
+@property (nonatomic, strong) NSData *audioData;
+@property (nonatomic, copy) NSString *fileExtension;
+@property (nonatomic, copy) NSString *recordId;
+/// 记录时长，单位 秒
+@property (nonatomic, copy) NSString *duration;
+@property (nonatomic, copy) NSString *title;
+@property (nonatomic, strong) NSDate *recordTime;
+@property (nonatomic, copy) NSString *averageFhr;
+@property (nonatomic, copy) NSString *quickening;
+@property (nonatomic, copy) NSString *history;
+
+@end
+
+
 @interface SCBLETemperature : NSObject
 
 /// Temperature
@@ -24,6 +55,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 @interface SCBLEThermometer : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
+
+/// 由 `孕橙` 统一分配的应用唯一标识符，用于区分不同的集成方
+@property (nonatomic, copy) NSString *appId;
+/// 由 `孕橙` 统一分配的应用秘钥，用于 SDK 校验
+@property (nonatomic, copy) NSString *appSecret;
+/// 根据userId、手机号、邮箱之类信息生成用户的唯一ID，与试纸SDK生成的unionid相同
+@property (nonatomic, copy) NSString *unionId;
 
 ///  Delegate
 @property (nonatomic, weak) id <BLEThermometerDelegate> delegate;
@@ -102,6 +140,16 @@ NS_ASSUME_NONNULL_BEGIN
  * @param type command type
  */
 - (void)pushNotifyWithType:(NSInteger)type;
+
+/**
+ * 上传胎心记录
+ */
+- (void)uploadFetalHeartRecord:(SCBLEFHRecordModel *)record;
+
+/**
+ * 获取 “客服” 链接
+ */
+- (NSURL *)customerServiceURLWithModel:(SCBLECustomerServiceModel *)model;
 
 @end
 

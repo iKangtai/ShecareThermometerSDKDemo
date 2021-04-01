@@ -12,6 +12,7 @@
 		043BFDC82614AB3600C4301A /* YCFetalHeartMonitorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFDC72614AB3600C4301A /* YCFetalHeartMonitorViewController.m */; };
 		043BFDD12614ABC300C4301A /* YCAudioFileHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 043BFDCD2614ABC300C4301A /* YCAudioFileHandler.m */; };
 		04493CFB25F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.m in Sources */ = {isa = PBXBuildFile; fileRef = 04493CFA25F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.m */; };
+		0493F2F7261641F2003DCC9E /* YCWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0493F2F6261641F2003DCC9E /* YCWebViewController.m */; };
 		04B9A6572614B6580089DB1D /* YCFHRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B9A6552614B6580089DB1D /* YCFHRecordModel.m */; };
 		04B9A6742614BC630089DB1D /* YCLeftAxisValueFormatter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04B9A6732614BC630089DB1D /* YCLeftAxisValueFormatter.m */; };
 		10142D5025BD7586008696A5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142D4F25BD7586008696A5 /* AppDelegate.m */; };
@@ -114,6 +115,8 @@
 		043BFDE52614AD4D00C4301A /* YCSingleton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = YCSingleton.h; sourceTree = "<group>"; };
 		04493CF925F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSJSONSerialization+YCExtension.h"; sourceTree = "<group>"; };
 		04493CFA25F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSJSONSerialization+YCExtension.m"; sourceTree = "<group>"; };
+		0493F2F3261641F2003DCC9E /* YCWebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCWebViewController.h; sourceTree = "<group>"; };
+		0493F2F6261641F2003DCC9E /* YCWebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCWebViewController.m; sourceTree = "<group>"; };
 		04B9A6552614B6580089DB1D /* YCFHRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCFHRecordModel.m; sourceTree = "<group>"; };
 		04B9A6562614B6580089DB1D /* YCFHRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCFHRecordModel.h; sourceTree = "<group>"; };
 		04B9A6702614BC630089DB1D /* YCLeftAxisValueFormatter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCLeftAxisValueFormatter.h; sourceTree = "<group>"; };
@@ -255,6 +258,8 @@
 				04B9A6552614B6580089DB1D /* YCFHRecordModel.m */,
 				04B9A6702614BC630089DB1D /* YCLeftAxisValueFormatter.h */,
 				04B9A6732614BC630089DB1D /* YCLeftAxisValueFormatter.m */,
+				0493F2F3261641F2003DCC9E /* YCWebViewController.h */,
+				0493F2F6261641F2003DCC9E /* YCWebViewController.m */,
 			);
 			path = FHR;
 			sourceTree = "<group>";
@@ -732,6 +737,7 @@
 				10142E5325C05D43008696A5 /* YCInputBBTView.m in Sources */,
 				10142E9025C099D8008696A5 /* YCDownloadingFile.m in Sources */,
 				04B9A6742614BC630089DB1D /* YCLeftAxisValueFormatter.m in Sources */,
+				0493F2F7261641F2003DCC9E /* YCWebViewController.m in Sources */,
 				10142E8A25C09197008696A5 /* YCBindViewController.m in Sources */,
 				10142D5625BD7586008696A5 /* YCMainViewController.m in Sources */,
 				10142E3D25BD9FF7008696A5 /* YCViewController+Extension.m in Sources */,

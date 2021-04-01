@@ -11,6 +11,8 @@
 #import "YCBBTShowView.h"
 #import "YCFetalHeartMonitorViewController.h"
 #import "YCDeviceListViewController.h"
+#import "YCWebViewController.h"
+#import <SCBLESDK/SCBLESDK.h>
 
 @interface YCMainViewController ()
 
@@ -29,6 +31,21 @@
     [self fhrBtn];
     [self deviceBtn];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(didUploadTemperatures:) name:kNotification_DidUploadTemperatures object:nil];
+    
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"联系客服" style:UIBarButtonItemStylePlain target:self action:@selector(handleCustomerServiceAction:)];
+}
+
+-(void)handleCustomerServiceAction:(UIBarButtonItem *)sender {
+    YCWebViewController *vc = [[YCWebViewController alloc] init];
+    SCBLECustomerServiceModel *model = [[SCBLECustomerServiceModel alloc] init];
+    model.macAddress = @"B0:7E:11:ED:A4:75";
+    model.age = 26;
+    model.pregnantWeek = 12;
+    model.hardwareType = 5;
+    model.bindTime = round([[NSDate date] timeIntervalSince1970]) - 5 * 86400;
+    NSURL *url = [[SCBLEThermometer sharedThermometer] customerServiceURLWithModel:model];
+    vc.url = url;
+    [self.navigationController pushViewController:vc animated:true];
 }
 
 -(void)handleAction:(UIButton *)sender {
