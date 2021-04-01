@@ -21,12 +21,18 @@
 1. 最低兼容版本 iOS 11.0；
 2. 需要引入 CoreBluetooth 系统库；
 
-### 类定义
+### 核心类定义
 
 #### 核心服务类：SCBLEThermometer
 
 ```Objective-C
-/** 代理对象，需要实现 BLEThermometerDelegate、BLEThermometerOADDelegate 协议 */
+/// 由 `孕橙` 统一分配的应用唯一标识符，用于区分不同的集成方
+@property (nonatomic, copy) NSString *appId;
+/// 由 `孕橙` 统一分配的应用秘钥，用于 SDK 校验
+@property (nonatomic, copy) NSString *appSecret;
+/// 根据userId、手机号、邮箱之类信息生成用户的唯一ID，与试纸SDK生成的unionid相同
+@property (nonatomic, copy) NSString *unionId;
+/// 代理对象，需要实现 BLEThermometerDelegate、BLEThermometerOADDelegate 协议
 @property (nonatomic, weak) id <BLEThermometerDelegate> delegate;
 @property (nonatomic, weak) id <BLEThermometerOADDelegate> oadDelegate;
 
@@ -82,6 +88,16 @@
  * @param type 指令类型
  */
 - (void)pushNotifyWithType:(NSInteger)type;
+
+/**
+ * 上传胎心记录
+ */
+- (void)uploadFetalHeartRecord:(SCBLEFHRecordModel *)record;
+
+/**
+ * 获取 “客服” 链接
+ */
+- (NSURL *)customerServiceURLWithModel:(SCBLECustomerServiceModel *)model;
 ```
 
 #### SCBLEDefines
@@ -252,4 +268,55 @@ typedef NS_ENUM(NSInteger, YCBLEOADResultType) {
  *  @param  isOn 电源连接状态
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didGetOTAPowerStatus:(BOOL)isOn;
+```
+
+### 其他类定义
+```Objective-C
+@interface SCBLECustomerServiceModel: NSObject
+
+/// 设备Mac地址,非必传
+@property (nonatomic, copy) NSString *macAddress;
+/// 年龄，非必传
+@property (nonatomic, assign) NSInteger age;
+/// 孕周,非必传
+@property (nonatomic, assign) NSInteger pregnantWeek;
+/// 设备类型, 1、2、3体温计，4 额温枪， 5 胎心仪 ,非必传
+@property (nonatomic, assign) NSInteger hardwareType;
+/// 购买时间，秒，非必传
+@property (nonatomic, assign) NSTimeInterval bindTime;
+
+@end
+
+@interface SCBLEFHRecordModel : NSObject
+
+/// 音频文件的二进制数据
+@property (nonatomic, strong) NSData *audioData;
+/// 音频文件后缀名
+@property (nonatomic, copy) NSString *fileExtension;
+/// 记录 ID
+@property (nonatomic, copy) NSString *recordId;
+/// 记录时长，单位 秒
+@property (nonatomic, copy) NSString *duration;
+/// 记录标题，推荐使用 “孕？周？天”
+@property (nonatomic, copy) NSString *title;
+/// 产生记录的时间
+@property (nonatomic, strong) NSDate *recordTime;
+/// 平均胎心率
+@property (nonatomic, copy) NSString *averageFhr;
+/// 胎动次数
+@property (nonatomic, copy) NSString *quickening;
+/// 胎心率和胎动的记录详情
+@property (nonatomic, copy) NSString *history;
+
+@end
+
+
+@interface SCBLETemperature : NSObject
+
+/// Temperature
+@property (nonatomic, assign) double temperature;
+/// The measure time
+@property (nonatomic, copy) NSString *time;
+
+@end
 ```
