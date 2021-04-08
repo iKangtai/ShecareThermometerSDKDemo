@@ -320,3 +320,13 @@ typedef NS_ENUM(NSInteger, YCBLEOADResultType) {
 
 @end
 ```
+
+## Privacy Agreement
+
+Third-party SDK: Pregnant Orange Bluetooth SDK
+
+1. Purpose/purpose of collecting personal information: optimizing hardware compatible devices
+2. The type of personal information collected: device model, operating system, mobile phone developer identifier, network data
+3. Required permissions: network permissions, Bluetooth permissions
+4. Third-party SDK privacy policy link: https://static.shecarefertility.com/shecare/resource/dist/#/blesdk_privacy_policy
+5. Provider: Beijing Aikangtai Technology Co., Ltd.
