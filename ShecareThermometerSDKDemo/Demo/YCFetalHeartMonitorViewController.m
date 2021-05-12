@@ -24,6 +24,7 @@
 
 @property (nonatomic, strong) NSTimer *timer;
 @property (nonatomic, strong) NSMutableArray *fhrDataFrameCache;
+@property (nonatomic, strong) NSMutableData *fhaDataFrameCache;
 /// 用于存储蓝牙上传和手动标记的数据
 @property (nonatomic, strong) NSMutableArray *chartDatas;
 @property (nonatomic, assign) NSTimeInterval recordStartTimeInt;
@@ -62,6 +63,7 @@
 
 -(void)initChartData {
     self.fhrDataFrameCache = [NSMutableArray array];
+    self.fhaDataFrameCache = [NSMutableData data];
     self.chartDatas = [NSMutableArray arrayWithObject:[self getFirstChartsData]];
 }
 
@@ -150,12 +152,22 @@
         [self startHeartAnimate];
     }
     if (self.isRecording) {
-        if (self.curRecordModel.duration.intValue > 15 * 60) {
-            [YCAlertController showAlertWithBody:@"单次胎心记录最长时间为15分钟，胎心记录已为您保存成功，如需再次记录请点击开始记录按钮进行记录" finished:nil];
-            [self handleRecordAction:self.recordBtn];
-        }
         // 存入数据库
         [self syncNewValueToDB:avgFHR isNew:false];
+        // 存入音频
+        if (self.fhaDataFrameCache.length > 0) {
+            [[YCAudioFileHandler getInstance] writeAudioData:self.fhaDataFrameCache recordID:self.curRecordModel.recordID];
+            self.fhaDataFrameCache = [NSMutableData data];
+        } else {
+            // 一帧胎心音的长度为 800；定时器 500ms 执行一次，相当于 10帧
+            NSMutableData *emptyData = [NSMutableData dataWithLength:800 * 10];
+            [[YCAudioFileHandler getInstance] writeAudioData:emptyData recordID:self.curRecordModel.recordID];
+        }
+        
+        if (self.curRecordModel.duration.intValue > 15 * 60) {
+            [YCAlertController showAlertWithBody:@"单次胎心记录最长时间为15分钟，胎心记录已为您保存成功，如需再次记录请点击开始记录按钮进行记录" finished:nil];
+            [self handleFinishRecord:self.recordBtn];
+        }
     }
 }
 
@@ -202,8 +214,8 @@
             NSMutableData *fhaDataM = [NSMutableData dataWithLength:800];
             fhaData = fhaDataM.copy;
         }
-        // 录制
-        [[YCAudioFileHandler getInstance] writeAudioData:fhaData recordID:self.curRecordModel.recordID];
+        // 音频数据存入缓存
+        [self.fhaDataFrameCache appendData:fhaData];
     }
 }
 
@@ -400,9 +412,8 @@
         } else {
             // 断开连接，且当前记录时长已满足最小值，自动停止记录
             if (self.isRecording && self.curRecordModel.duration.intValue >= YC_TXY_RECORD_MIN_LENGTH) {
-                [YCAlertController showAlertWithBody:@"断开连接，自动停止记录" finished:^(UIAlertAction * _Nonnull action) {
-                    [self handleFinishRecord:self.recordBtn];
-                }];
+                [self handleFinishRecord:self.recordBtn];
+                [YCAlertController showAlertWithBody:@"断开连接，自动停止记录" finished:nil];
             }
         }
     });

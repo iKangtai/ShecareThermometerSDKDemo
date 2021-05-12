@@ -16,10 +16,10 @@
 
 @implementation AppDelegate
 
-
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [[YCCommonAppDelegate shared] prepareAppWithOptions:launchOptions];
     
+#warning SDK 正式上线时，需要把 appId、appSecret 和 unionId 改为厂商正式环境的数据
     [SCBLEThermometer sharedThermometer].appId = @"100017";
     [SCBLEThermometer sharedThermometer].appSecret = @"b1eed2fb4686e1b1049a9486d49ba015af00d5a0";
     [SCBLEThermometer sharedThermometer].unionId = @"15311411877";
