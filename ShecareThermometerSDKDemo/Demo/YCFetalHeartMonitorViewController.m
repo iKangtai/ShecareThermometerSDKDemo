@@ -13,7 +13,6 @@
 #import "YCFHRecordModel.h"
 #import <SCBLESDK/SCBLESDK.h>
 
-#define TXY_NAME @"MD1000AF4"
 #define YC_TXY_TIMER_LENGTH 0.5
 #define YC_TXY_VALUES_PER_MINUTE 120 // 每分钟显示、存储的胎心率数量
 #define YC_TXY_RECORD_MIN_LENGTH 5 // 胎心记录时长，最少 5s

@@ -82,3 +82,5 @@
     })
 
 #endif /* YCMacro_h */
+
+#define TXY_NAME @"MD1000AF4"

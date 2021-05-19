@@ -54,7 +54,7 @@
         if (self.downloadErrorBlock) {
             NSDictionary *userInfo = @{
                 NSLocalizedDescriptionKey: @"unsupported URL",
-                NSURLErrorFailingURLStringErrorKey: curStr
+                NSURLErrorFailingURLStringErrorKey: curStr ?: @"nil"
             };
             NSError *urlErr = [NSError errorWithDomain:NSURLErrorDomain code:NSURLErrorUnsupportedURL userInfo:userInfo];
             self.downloadErrorBlock(curStr, self.downloadIndex, (int)self.downloadingUrls.count, urlErr);

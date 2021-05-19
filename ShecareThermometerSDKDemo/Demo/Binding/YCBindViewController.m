@@ -240,6 +240,30 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
 }
 
 -(void)checkFirmwareVersion {
+#if DEBUG
+    // 调试模式下，使用 Mock 数据测试固件升级
+    NSDictionary *imagePaths = @{
+        @"code": @200,
+        @"message": @"Success",
+        @"data": @{
+                @"fileUrl": @"https://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/A32/thermometer_6.01.img",
+                @"version": @"6.01",
+                @"type": @2
+        }
+    };
+    if ([[SCBLEThermometer sharedThermometer].activePeripheral.name isEqualToString:TXY_NAME]) {
+        imagePaths = @{
+            @"code": @200,
+            @"message": @"Success",
+            @"data": @{
+                    @"fileUrl": @"https://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/FD120A/txy_1.0.1.img",
+                    @"version": @"1.01",
+                    @"type": @2
+            }
+        };
+    }
+    [self didGetFirmwareVersion:imagePaths[@"data"] isMock:true];
+#else
     YCWeakSelf(self)
     [[SCBLEThermometer sharedThermometer] checkFirmwareVersionCompletion:^(BOOL needUpgrade, NSDictionary * _Nullable imagePaths) {
         YCStrongSelf(self)
@@ -247,37 +271,42 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
             [self handleBindAction];
             return;
         }
-        NSInteger type = [imagePaths[@"type"] integerValue];
-        NSString *fileURLs = imagePaths[@"fileUrl"];
-        if (fileURLs != nil) {
-            // 1 OAD, 2 OTA
-            if (2 == type) {
-                self.downloadUrls = @[fileURLs];
-            } else {
-                NSDictionary *imgDict = [NSJSONSerialization dictionaryWithString:fileURLs];
-                NSMutableArray *urlsM = [NSMutableArray array];
-                if (imgDict[@"A"] != nil) {
-                    [urlsM addObject:imgDict[@"A"]];
-                }
-                if (imgDict[@"B"] != nil) {
-                    [urlsM addObject:imgDict[@"B"]];
-                }
-                self.downloadUrls = urlsM.copy;
-            }
-        }
-        self.newestFirmwareVersion = imagePaths[@"version"];
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            [YCAlertController showAlertWithTitle:@"您的设备程序不是最新的，请点击确定更新设备程序！"
-                                          message:nil
-                                    cancelHandler:^(UIAlertAction * _Nonnull action) {
-            } confirmHandler:^(UIAlertAction * _Nonnull action) {
-                [self downloadFirmware];
-            }];
-        });
+        [self didGetFirmwareVersion:imagePaths isMock:false];
     }];
+#endif
 }
 
-- (void)downloadFirmware {
+-(void)didGetFirmwareVersion:(NSDictionary *)imagePaths isMock:(BOOL)isMock {
+    NSInteger type = [imagePaths[@"type"] integerValue];
+    NSString *fileURLs = imagePaths[@"fileUrl"];
+    if (fileURLs != nil) {
+        // 1 OAD, 2 OTA
+        if (2 == type) {
+            self.downloadUrls = @[fileURLs];
+        } else {
+            NSDictionary *imgDict = [NSJSONSerialization dictionaryWithString:fileURLs];
+            NSMutableArray *urlsM = [NSMutableArray array];
+            if (imgDict[@"A"] != nil) {
+                [urlsM addObject:imgDict[@"A"]];
+            }
+            if (imgDict[@"B"] != nil) {
+                [urlsM addObject:imgDict[@"B"]];
+            }
+            self.downloadUrls = urlsM.copy;
+        }
+    }
+    self.newestFirmwareVersion = imagePaths[@"version"];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.4 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        [YCAlertController showAlertWithTitle:@"您的设备程序不是最新的，请点击确定更新设备程序！"
+                                      message:nil
+                                cancelHandler:^(UIAlertAction * _Nonnull action) {
+        } confirmHandler:^(UIAlertAction * _Nonnull action) {
+            [self downloadFirmwareWithMock:isMock];
+        }];
+    });
+}
+
+- (void)downloadFirmwareWithMock:(BOOL)mock {
     self.localImgPaths = [NSMutableArray array];
     YCWeakSelf(self)
     [self.fileDownload downloadWithUrl:self.downloadUrls progressBlock:^(unsigned long long completeBytes, unsigned long long totalBytes) {
@@ -309,7 +338,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
         [self.localImgPaths addObject:pathStr];
         
         if (curIndex >= totalUrlCount - 1) {
-            [self oadStart];
+            [self oadWithMock:mock];
         }
     } downloadError:^(NSString *curUrl, int curIndex, int totalUrlCount, NSError *error) {
         YCStrongSelf(self)
@@ -321,7 +350,39 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
     }];
 }
 
-- (void)oadStart {
+static int mockCounter = 0;
+static NSTimer *mockTimer = nil;
+- (void)oadMockProgress {
+   mockCounter = 0;
+   mockTimer = [NSTimer scheduledTimerWithTimeInterval:0.1 target:self selector:@selector(handleMockTimer) userInfo:nil repeats:true];
+   // Timer 的 Add 和 Remove 需要在同一个 Thread
+   dispatch_async(dispatch_get_main_queue(), ^{
+       [[NSRunLoop currentRunLoop] addTimer:mockTimer forMode:NSRunLoopCommonModes];
+   });
+}
+
+- (void)handleMockTimer {
+    if (mockCounter >= 100) {
+        if ([mockTimer isValid]) {
+            [mockTimer invalidate];
+        }
+        mockTimer = nil;
+        // 完成
+        [self thermometer:[SCBLEThermometer sharedThermometer] didUpdateFirmwareImage:YCBLEOADResultTypeSucceed message:@"Success"];
+        return;
+    }
+    mockCounter++;
+    [self thermometer:[SCBLEThermometer sharedThermometer] firmwareImageUpdateProgress:(mockCounter * 0.01)];
+}
+
+- (void)oadWithMock:(BOOL)mock {
+    if (mock) {
+        // 开始
+        [self thermometerDidBeginFirmwareImageUpdate:[SCBLEThermometer sharedThermometer]];
+        // 进度条
+        [self oadMockProgress];
+        return;
+    }
     if ([SCBLEThermometer sharedThermometer].activePeripheral != nil
         && !IS_EMPTY_STRING([SCBLEThermometer sharedThermometer].firmwareVersion)) {
         [[SCBLEThermometer sharedThermometer] pushNotifyWithType:YCBLECommandTypeOAD];
