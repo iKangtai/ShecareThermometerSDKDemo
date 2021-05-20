@@ -30,15 +30,23 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SCBLEFHRecordModel : NSObject
 
+/// 音频文件的二进制数据
 @property (nonatomic, strong) NSData *audioData;
+/// 音频文件后缀名
 @property (nonatomic, copy) NSString *fileExtension;
+/// 记录 ID
 @property (nonatomic, copy) NSString *recordId;
 /// 记录时长，单位 秒
 @property (nonatomic, copy) NSString *duration;
+/// 记录标题，推荐使用 “孕？周？天”
 @property (nonatomic, copy) NSString *title;
+/// 产生记录的时间
 @property (nonatomic, strong) NSDate *recordTime;
+/// 平均胎心率
 @property (nonatomic, copy) NSString *averageFhr;
+/// 胎动次数
 @property (nonatomic, copy) NSString *quickening;
+/// 胎心率和胎动的记录详情
 @property (nonatomic, copy) NSString *history;
 
 @end
