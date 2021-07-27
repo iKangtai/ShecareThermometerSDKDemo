@@ -240,30 +240,30 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
 }
 
 -(void)checkFirmwareVersion {
-#if DEBUG
-    // 调试模式下，使用 Mock 数据测试固件升级
-    NSDictionary *imagePaths = @{
-        @"code": @200,
-        @"message": @"Success",
-        @"data": @{
-                @"fileUrl": @"https://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/A32/thermometer_6.01.img",
-                @"version": @"6.01",
-                @"type": @2
-        }
-    };
-    if ([[SCBLEThermometer sharedThermometer].activePeripheral.name isEqualToString:TXY_NAME]) {
-        imagePaths = @{
-            @"code": @200,
-            @"message": @"Success",
-            @"data": @{
-                    @"fileUrl": @"https://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/FD120A/txy_1.0.1.img",
-                    @"version": @"1.01",
-                    @"type": @2
-            }
-        };
-    }
-    [self didGetFirmwareVersion:imagePaths[@"data"] isMock:true];
-#else
+//#if DEBUG
+//    // 调试模式下，使用 Mock 数据测试固件升级
+//    NSDictionary *imagePaths = @{
+//        @"code": @200,
+//        @"message": @"Success",
+//        @"data": @{
+//                @"fileUrl": @"https://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/A32/thermometer_6.01.img",
+//                @"version": @"6.01",
+//                @"type": @2
+//        }
+//    };
+//    if ([[SCBLEThermometer sharedThermometer].activePeripheral.name isEqualToString:TXY_NAME]) {
+//        imagePaths = @{
+//            @"code": @200,
+//            @"message": @"Success",
+//            @"data": @{
+//                    @"fileUrl": @"https://yunchengfile.oss-cn-beijing.aliyuncs.com/firmware/FD120A/txy_1.0.1.img",
+//                    @"version": @"1.01",
+//                    @"type": @2
+//            }
+//        };
+//    }
+//    [self didGetFirmwareVersion:imagePaths[@"data"] isMock:true];
+//#else
     YCWeakSelf(self)
     [[SCBLEThermometer sharedThermometer] checkFirmwareVersionCompletion:^(BOOL needUpgrade, NSDictionary * _Nullable imagePaths) {
         YCStrongSelf(self)
@@ -273,7 +273,7 @@ static NSString *connectLoadingAnimeKey = @"ycbind.loading.rotationAnimation";
         }
         [self didGetFirmwareVersion:imagePaths isMock:false];
     }];
-#endif
+//#endif
 }
 
 -(void)didGetFirmwareVersion:(NSDictionary *)imagePaths isMock:(BOOL)isMock {
