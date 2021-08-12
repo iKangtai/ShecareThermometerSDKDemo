@@ -15,5 +15,7 @@
 ///  蓝牙连接类型
 @property (nonatomic, assign) YCBLEConnectType connectType;
 
+- (void)startScan;
+
 @end
 

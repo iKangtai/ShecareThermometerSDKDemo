@@ -16,10 +16,50 @@ English | [中文文档](README_zh.md)
 | Connect Shecare forehead thermometer to synchronize data&nbsp;&nbsp;| Connect the forehead thermometer to synchronize data and get the firmware version number |
 | Connect to Shecare fetal heart rate monitor to synchronize data&nbsp;&nbsp;| Connect the forehead thermometer to synchronize data and get the firmware version number |
 
-### Integration considerations
+### Integration 
+
+Drag `SCBLESDK.framework` to the project, and `#import <SCBLESDK/SCBLESDK.h>` where you need to use it.
+
+#### Considerations
 
 1. The minimum compatible version iOS 11.0;
-2. Need to introduce CoreBluetooth system library;
+2. Need to introduce CoreBluetooth library.
+
+#### Initialization
+
+```Objective-C
+     SCBLEThermometer *thermometer = [SCBLEThermometer sharedThermometer];
+     thermometer.appId = DEMO_APP_ID;
+     thermometer.appSecret = DEMO_APP_SECRET;
+     thermometer.unionId = DEMO_UNION_ID;
+     thermometer.delegate = self;
+```
+
+#### Start scanning
+
+1. Connect any device
+```Objective-C
+     if (thermometer.activePeripheral == nil) {
+         thermometer.connectType = YCBLEConnectTypeBinding;
+         [thermometer connectThermometerWithMACList:@""];
+     }
+```
+
+2. Connect to a device with a specific MAC address
+```Objective-C
+     if (thermometer.activePeripheral == nil) {
+         thermometer.connectType = YCBLEConnectTypeNotBinding;
+         [thermometer connectThermometerWithMACList:MAC_ADDRESS];
+     }
+```
+
+#### Process received body temperature data
+
+```Objective-C
+-(void)thermometer:(SCBLEThermometer *)thermometer didUploadTemperatures:(NSArray<SCBLETemperature *> *)temperatures {
+     // Temperature data is in `temperatures`
+}
+```
 
 ### Class definition
 

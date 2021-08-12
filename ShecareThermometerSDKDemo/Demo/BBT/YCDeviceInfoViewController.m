@@ -124,7 +124,7 @@
 -(void)unbindSuccessHandler {
     [YCUtility removeDevice:self.deviceModel.macAddress];
     [SCBLEThermometer sharedThermometer].connectType = YCBLEConnectTypeNotBinding;
-    [[YCCommonAppDelegate shared] startScan];
+    [SHAREDAPP startScan];
     [self.navigationController popToRootViewControllerAnimated:true];
 }
 

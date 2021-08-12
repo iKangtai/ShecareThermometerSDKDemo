@@ -16,7 +16,7 @@
 
 #import <Masonry/Masonry.h>
 
-#import "YCCommonAppDelegate.h"
+#import "AppDelegate.h"
 #import "YCGradientButton.h"
 #import "YCAlertController.h"
 #import "YCMacro.h"

@@ -16,10 +16,50 @@
 | 连接Shecare额温枪同步数据&nbsp;&nbsp;| 连接额温枪同步数据并获取固件版本号 |
 | 连接Shecare胎心仪同步数据&nbsp;&nbsp;| 连接胎心仪同步数据并获取固件版本号 |
 
-### 集成注意事项
+### 集成
+
+把 `SCBLESDK.framework` 拖到项目的合适位置，在需要使用的地方 `#import <SCBLESDK/SCBLESDK.h>` 引入即可。
+
+#### 注意事项
 
 1. 最低兼容版本 iOS 11.0；
-2. 需要引入 CoreBluetooth 系统库；
+2. 需要引入 CoreBluetooth 系统库。
+
+#### 初始化
+
+```Objective-C
+    SCBLEThermometer *thermometer = [SCBLEThermometer sharedThermometer];
+    thermometer.appId = DEMO_APP_ID;
+    thermometer.appSecret = DEMO_APP_SECRET;
+    thermometer.unionId = DEMO_UNION_ID;
+    thermometer.delegate = self;
+```
+
+#### 开始扫描
+
+1. 连接任意设备
+```Objective-C
+    if (thermometer.activePeripheral == nil) {
+        thermometer.connectType = YCBLEConnectTypeBinding;
+        [thermometer connectThermometerWithMACList:@""];
+    }
+```
+
+2. 连接特定 MAC 地址的设备
+```Objective-C
+    if (thermometer.activePeripheral == nil) {
+        thermometer.connectType = YCBLEConnectTypeNotBinding;
+        [thermometer connectThermometerWithMACList:MAC_ADDRESS];
+    }
+```
+
+#### 处理收到的体温数据
+
+```Objective-C
+-(void)thermometer:(SCBLEThermometer *)thermometer didUploadTemperatures:(NSArray<SCBLETemperature *> *)temperatures {
+    // 体温数据在 `temperatures` 里
+}
+```
 
 ### 核心类定义
 

@@ -42,7 +42,7 @@
 #define YCStrongSelf(args)  __strong typeof(args) args = weak##args;
 
 #define KEY_WINDOW ([UIApplication sharedApplication].keyWindow)
-#define SHAREDAPP ([YCCommonAppDelegate shared])
+#define SHAREDAPP ((AppDelegate *)[[UIApplication sharedApplication] delegate])
 ///  是否空字符串
 #define IS_EMPTY_STRING(str) (([str isKindOfClass:[NSNull class]]) || (str == nil) || ([str isEqualToString:@""]) || ([str stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceCharacterSet]].length == 0))
 ///  当前屏幕的尺寸

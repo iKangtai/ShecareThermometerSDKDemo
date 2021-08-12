@@ -39,7 +39,6 @@
 		10142E9025C099D8008696A5 /* YCDownloadingFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E8F25C099D8008696A5 /* YCDownloadingFile.m */; };
 		10142E9625C09A5D008696A5 /* YCBindSuccessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142E9525C09A5D008696A5 /* YCBindSuccessViewController.m */; };
 		10142EAF25C09E66008696A5 /* YCAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142EAD25C09E66008696A5 /* YCAlertController.m */; };
-		10142EB525C0A124008696A5 /* YCCommonAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142EB425C0A124008696A5 /* YCCommonAppDelegate.m */; };
 		10142EBB25C0A401008696A5 /* YCUserTemperatureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 10142EBA25C0A401008696A5 /* YCUserTemperatureModel.m */; };
 		101E12F425C1F0F1005F8ABB /* CoreBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101E125B25C1DDAC005F8ABB /* CoreBluetooth.framework */; };
 		1052A6D725C1B48F0089CA98 /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 1052A6D625C1B48F0089CA98 /* MBProgressHUD.m */; };
@@ -173,8 +172,6 @@
 		10142E9525C09A5D008696A5 /* YCBindSuccessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCBindSuccessViewController.m; sourceTree = "<group>"; };
 		10142EAD25C09E66008696A5 /* YCAlertController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCAlertController.m; sourceTree = "<group>"; };
 		10142EAE25C09E66008696A5 /* YCAlertController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCAlertController.h; sourceTree = "<group>"; };
-		10142EB325C0A124008696A5 /* YCCommonAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCCommonAppDelegate.h; sourceTree = "<group>"; };
-		10142EB425C0A124008696A5 /* YCCommonAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCCommonAppDelegate.m; sourceTree = "<group>"; };
 		10142EB925C0A401008696A5 /* YCUserTemperatureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YCUserTemperatureModel.h; sourceTree = "<group>"; };
 		10142EBA25C0A401008696A5 /* YCUserTemperatureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YCUserTemperatureModel.m; sourceTree = "<group>"; };
 		101E125B25C1DDAC005F8ABB /* CoreBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreBluetooth.framework; path = System/Library/Frameworks/CoreBluetooth.framework; sourceTree = SDKROOT; };
@@ -296,8 +293,6 @@
 				10142E5725C05FCA008696A5 /* SupportingFiles */,
 				10142D4E25BD7586008696A5 /* AppDelegate.h */,
 				10142D4F25BD7586008696A5 /* AppDelegate.m */,
-				10142EB325C0A124008696A5 /* YCCommonAppDelegate.h */,
-				10142EB425C0A124008696A5 /* YCCommonAppDelegate.m */,
 				10142D5C25BD7587008696A5 /* LaunchScreen.storyboard */,
 				1077F13525C28E470044E77C /* Assets.xcassets */,
 				10142D5F25BD7587008696A5 /* Info.plist */,
@@ -744,7 +739,6 @@
 				10142E0125BD8D94008696A5 /* NSDate+YCUtilities.m in Sources */,
 				1077F28F25C4FD590044E77C /* YCDeviceInfoViewController.m in Sources */,
 				10142E6725C064C9008696A5 /* YCDatePickerView.m in Sources */,
-				10142EB525C0A124008696A5 /* YCCommonAppDelegate.m in Sources */,
 				10142DF125BD8B5E008696A5 /* CAGradientLayer+YCExtension.m in Sources */,
 				10142E6825C064C9008696A5 /* YCPickerView.m in Sources */,
 				04493CFB25F1E5C1002D4BD1 /* NSJSONSerialization+YCExtension.m in Sources */,
