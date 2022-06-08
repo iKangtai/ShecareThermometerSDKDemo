@@ -74,8 +74,7 @@
         return;
     }
     //  start to scan the peripheral
-    if ([thermometer connectThermometerWithMACList:[YCUtility bindedMACAddressList]]) {
-    }
+    [thermometer connectThermometerWithMACList:[YCUtility bindedMACAddressList]];
 }
 
 -(YCBLEConnectType)getNewConnectType {

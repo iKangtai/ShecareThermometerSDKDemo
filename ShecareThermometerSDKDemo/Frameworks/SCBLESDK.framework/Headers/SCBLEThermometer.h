@@ -113,10 +113,8 @@ NS_ASSUME_NONNULL_BEGIN
  * Scan and connect the device
  *
  * @param macList user-bound MAC address list, in the form of a comma-separated string, such as "C8:FD:19:02:92:8D,C8:FD:19:02:92:8E"
- *
- * @return If the scan starts successfully, return true, otherwise return false
  */
-- (BOOL)connectThermometerWithMACList:(NSString *)macList;
+- (void)connectThermometerWithMACList:(NSString *)macList;
 
 /**
  * Stop scanning

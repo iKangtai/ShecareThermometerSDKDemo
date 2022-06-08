@@ -93,10 +93,8 @@
  * 扫描并连接设备
  *
  * @param macList 用户绑定的 MAC 地址列表，形式为逗号分隔的字符串，如 “C8:FD:19:02:92:8D,C8:FD:19:02:92:8E”
- *
- * @return 如果成功开始扫描，返回 true，否则返回 false
  */
-- (BOOL)connectThermometerWithMACList:(NSString *)macList;
+- (void)connectThermometerWithMACList:(NSString *)macList;
 
 /**
  * 停止扫描

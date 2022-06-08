@@ -431,8 +431,7 @@ static NSTimer *mockTimer = nil;
         return;
     }
     //  start to scan the peripheral
-    if ([[SCBLEThermometer sharedThermometer] connectThermometerWithMACList:[YCUtility bindedMACAddressList]]) {
-    }
+    [[SCBLEThermometer sharedThermometer] connectThermometerWithMACList:[YCUtility bindedMACAddressList]];
 }
 
 -(void)setConnectStatus:(BOOL)connected {

@@ -5,8 +5,8 @@
 #ifndef ShecareThermometerSDKDemo_Bridging_Header_h
 #define ShecareThermometerSDKDemo_Bridging_Header_h
 
-#import <Masonry/Masonry.h>
-
 @import Charts;
+
+#import <Masonry/Masonry.h>
 
 #endif /* ShecareThermometerSDKDemo_Bridging_Header_h */
