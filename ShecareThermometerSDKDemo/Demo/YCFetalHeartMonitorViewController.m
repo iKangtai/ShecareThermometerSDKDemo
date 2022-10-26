@@ -8,10 +8,10 @@
 
 #import "YCFetalHeartMonitorViewController.h"
 #import "YCAudioFileHandler.h"
-#import "ShecareThermometerSDKDemo-Bridging-Header.h"
 #import "YCLeftAxisValueFormatter.h"
 #import "YCFHRecordModel.h"
 #import <SCBLESDK/SCBLESDK.h>
+@import Charts;
 
 #define YC_TXY_TIMER_LENGTH 0.5
 #define YC_TXY_VALUES_PER_MINUTE 120 // 每分钟显示、存储的胎心率数量

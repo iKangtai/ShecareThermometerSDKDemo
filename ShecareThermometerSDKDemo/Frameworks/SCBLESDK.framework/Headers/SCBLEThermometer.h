@@ -70,6 +70,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, copy) NSString *appSecret;
 /// 根据userId、手机号、邮箱之类信息生成用户的唯一ID，与试纸SDK生成的unionid相同
 @property (nonatomic, copy) NSString *unionId;
+/** SDK 调用服务端接口时的 Base URL。不设置时，使用 SDK 内置的。 */
+@property (nonatomic, copy) NSString *baseURL;
 
 ///  Delegate
 @property (nonatomic, weak) id <BLEThermometerDelegate> delegate;

@@ -29,6 +29,7 @@
     thermometer.appId = DEMO_APP_ID;
     thermometer.appSecret = DEMO_APP_SECRET;
     thermometer.unionId = DEMO_UNION_ID;
+    thermometer.baseURL = @"https://saas.shecarefertility.com";
     
 #if !TARGET_OS_SIMULATOR
     thermometer.delegate = self;

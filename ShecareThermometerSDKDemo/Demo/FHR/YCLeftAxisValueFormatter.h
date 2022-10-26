@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "ShecareThermometerSDKDemo-Bridging-Header.h"
+@import Charts;
 
 NS_ASSUME_NONNULL_BEGIN
 
