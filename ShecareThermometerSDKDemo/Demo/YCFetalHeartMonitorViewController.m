@@ -815,8 +815,9 @@
 }
 
 -(BOOL)isConnected {
-    return [SCBLEThermometer sharedThermometer].activePeripheral != nil
-        && [[SCBLEThermometer sharedThermometer].activePeripheral.name isEqualToString:TXY_NAME];
+    CBPeripheral *peri = [SCBLEThermometer sharedThermometer].activePeripheral;
+    return peri != nil
+        && ([peri.name isEqualToString:TXY_NAME] || [peri.name isEqualToString:TXY_NAME_2]);
 }
 
 @end

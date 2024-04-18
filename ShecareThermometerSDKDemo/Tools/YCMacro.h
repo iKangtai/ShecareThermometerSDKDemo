@@ -84,3 +84,4 @@
 #endif /* YCMacro_h */
 
 #define TXY_NAME @"MD1000AF4"
+#define TXY_NAME_2 @"MD1000AF4_FD-168"
