@@ -72,9 +72,9 @@
 -(void)thermometer:(SCBLEThermometer *)thermometer didChangeTemperatureUnit:(NSString *)result;
 
 /**
- * 返回胎心仪相关数据
- * @param fhr 胎心率
- * @param fha 胎心音
+ * Return data from the fetal heart monitor
+ * @param fhr fetal heart rate
+ * @param fha fetal heart sound
  */
 -(void)thermometer:(SCBLEThermometer *)thermometer didGetFHR:(NSInteger)fhr fha:(NSData *)fha;
 

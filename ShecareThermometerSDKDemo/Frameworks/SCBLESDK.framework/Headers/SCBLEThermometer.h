@@ -15,38 +15,38 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SCBLECustomerServiceModel: NSObject
 
-/// 设备Mac地址,非必传
+/// Device MAC address, optional.
 @property (nonatomic, copy) NSString *macAddress;
-/// 年龄，非必传
+/// Age, optional.
 @property (nonatomic, assign) NSInteger age;
-/// 孕周,非必传
+/// Gestational age in weeks, optional.
 @property (nonatomic, assign) NSInteger pregnantWeek;
-/// 设备类型, 1、2、3体温计，4 额温枪， 5 胎心仪 ,非必传
+/// Device type, optional: 1, 2, 3. Digital thermometer, 4. Forehead thermometer, 5. Fetal heart monitor.
 @property (nonatomic, assign) NSInteger hardwareType;
-/// 购买时间，秒，非必传
+/// Purchase time in seconds, optional.
 @property (nonatomic, assign) NSTimeInterval bindTime;
 
 @end
 
 @interface SCBLEFHRecordModel : NSObject
 
-/// 音频文件的二进制数据
+/// Binary data of an audio file
 @property (nonatomic, strong) NSData *audioData;
-/// 音频文件后缀名
+/// Audio file extension
 @property (nonatomic, copy) NSString *fileExtension;
-/// 记录 ID
+/// Record Id
 @property (nonatomic, copy) NSString *recordId;
-/// 记录时长，单位 秒
+/// Recording duration in seconds
 @property (nonatomic, copy) NSString *duration;
-/// 记录标题，推荐使用 “孕？周？天”
+/// Recording title, recommended format: "? Week? Day"
 @property (nonatomic, copy) NSString *title;
-/// 产生记录的时间
+/// The time when the record was created
 @property (nonatomic, strong) NSDate *recordTime;
-/// 平均胎心率
+/// Average fetal heart rate
 @property (nonatomic, copy) NSString *averageFhr;
-/// 胎动次数
+/// Fetal movement count
 @property (nonatomic, copy) NSString *quickening;
-/// 胎心率和胎动的记录详情
+/// Detailed record of fetal heart rate and movement
 @property (nonatomic, copy) NSString *history;
 
 @end
@@ -64,32 +64,32 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface SCBLEThermometer : NSObject <CBCentralManagerDelegate, CBPeripheralDelegate>
 
-/// 由 `孕橙` 统一分配的应用唯一标识符，用于区分不同的集成方
+/// A unique application identifier, uniformly assigned by YunCheng, used to distinguish different integration parties.
 @property (nonatomic, copy) NSString *appId;
-/// 由 `孕橙` 统一分配的应用秘钥，用于 SDK 校验
+/// A unified application secret key distributed by YunCheng for SDK verification.
 @property (nonatomic, copy) NSString *appSecret;
-/// 根据userId、手机号、邮箱之类信息生成用户的唯一ID，与试纸SDK生成的unionid相同
+/// To align with the test strip SDK, a unique user ID.
 @property (nonatomic, copy) NSString *unionId;
-/** SDK 调用服务端接口时的 Base URL。不设置时，使用 SDK 内置的。 */
+/// Base URL for SDK calls to the server-side interface. If not set, the built-in default will be used.
 @property (nonatomic, copy) NSString *baseURL;
 
 ///  Delegate
 @property (nonatomic, weak) id <BLEThermometerDelegate> delegate;
 ///  OAD Delegate
 @property (nonatomic, weak) id <BLEThermometerOADDelegate> oadDelegate;
-///  当前连接的蓝牙设备
+///  Currently connected Bluetooth device
 @property (nonatomic, strong, nullable) CBPeripheral *activePeripheral;
-///  蓝牙连接类型
+///  Type of Bluetooth connection
 @property (nonatomic, assign) YCBLEConnectType connectType;
-///  硬件版本信息
+///  Firmware Version
 @property (nonatomic, copy) NSString *firmwareVersion;
-///  ImageType，OAD 升级的时候使用
+///  Image Type, used for OAD
 @property (nonatomic, assign) YCBLEFirmwareImageType imageType;
 ///  MAC Address
 @property (nonatomic, copy) NSString *macAddress;
-///  硬件名称
+///  Hardware Name
 @property (copy, nonatomic) NSString *hardwareName;
-///  是否正在 OAD
+///  Is an OAD in progress
 @property (assign, nonatomic) BOOL isOADing;
 
 @property int suotaVersion;
@@ -126,7 +126,7 @@ NS_ASSUME_NONNULL_BEGIN
 /**
  * Check firmware version
  *
- * @param completion Callback, return whether the currently connected hardware needs to be upgraded; if it needs to be upgraded, return the URL of the image file in imagePaths回调，返回当前连接的硬件是否需要升级；如果需要升级，在 imagePaths 里返回镜像文件的 URL
+ * @param completion Callback, return whether the currently connected hardware needs to be upgraded; if it needs to be upgraded, return the URL of the image file in imagePaths.
  */
 - (void)checkFirmwareVersionCompletion:(void (^)(BOOL needUpgrade, NSDictionary * _Nullable imagePaths))completion;
 
@@ -150,12 +150,12 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)pushNotifyWithType:(NSInteger)type;
 
 /**
- * 上传胎心记录
+ * Upload fetal heart rate data
  */
 - (void)uploadFetalHeartRecord:(SCBLEFHRecordModel *)record;
 
 /**
- * 获取 “客服” 链接
+ * Get the "customer service" link.
  */
 - (NSURL *)customerServiceURLWithModel:(SCBLECustomerServiceModel *)model;
 
